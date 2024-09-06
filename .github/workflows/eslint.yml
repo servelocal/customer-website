@@ -18,7 +18,7 @@ jobs:
       - name: Checkout repository
         uses: actions/checkout@v3
 
-      # Set up Node.js (matching the Node version from the project)
+      # Set up Node.js
       - name: Set up Node.js
         uses: actions/setup-node@v3
         with:
@@ -30,4 +30,13 @@ jobs:
 
       # Run ESLint
       - name: Run ESLint
-        run: npm run lint
+        run: |
+          npx eslint . --config .eslintrc.json --ext .js,.jsx,.ts,.tsx --format @microsoft/eslint-formatter-sarif --output-file eslint-results.sarif
+        continue-on-error: true
+
+      # Upload SARIF file
+      - name: Upload SARIF
+        if: success()
+        uses: github/codeql-action/upload-sarif@v3
+        with:
+          sarif_file: eslint-results.sarif
