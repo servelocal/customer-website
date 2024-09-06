@@ -1,41 +1,33 @@
-name: ESLint
+name: Lint
 
 on:
   push:
-    branches: [ "main" ]
+    branches:
+      - main
   pull_request:
-    branches: [ "main" ]
-  schedule:
-    - cron: '37 2 * * 4'
+    branches:
+      - main
 
 jobs:
   eslint:
-    name: Run ESLint scanning
+    name: Run ESLint
     runs-on: ubuntu-latest
-    permissions:
-      contents: read
-      security-events: write
-      actions: read
-    steps:
-      - name: Checkout code
-        uses: actions/checkout@v4
 
+    steps:
+      # Checkout the code
+      - name: Checkout repository
+        uses: actions/checkout@v3
+
+      # Set up Node.js (matching the Node version from the project)
+      - name: Set up Node.js
+        uses: actions/setup-node@v3
+        with:
+          node-version: '18' # Adjust based on your Node.js version
+
+      # Install dependencies
       - name: Install dependencies
         run: npm install
 
+      # Run ESLint
       - name: Run ESLint
-        run: npm run lint -- --format @microsoft/eslint-formatter-sarif --output-file eslint-results.sarif
-        continue-on-error: true
-
-      - name: List ESLint results file
-        run: ls -la eslint-results.sarif || echo "SARIF file not found"
-
-      - name: List all output files
-        run: ls -la
-
-      - name: Upload analysis results to GitHub
-        if: success() || failure()
-        uses: github/codeql-action/upload-sarif@v3
-        with:
-          sarif_file: eslint-results.sarif
-          wait-for-processing: true
+        run: npm run lint
