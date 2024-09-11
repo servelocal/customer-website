@@ -1,4 +1,4 @@
 export interface ButtonProps
   extends React.ButtonHTMLAttributes<HTMLButtonElement> {
-  $variant?: 'primary' | 'secondary' | 'success' | 'danger' | 'warning'; // Variant as a strict union type
+  $variant?: 'primary' | 'secondary' | 'success' | 'danger' | 'warning';
 }
