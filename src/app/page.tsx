@@ -11,7 +11,7 @@ export default function Home() {
         <Button variant="secondary" size="large">
           Secondary Button
         </Button>
-        <Button variant="outline" size="small" fullWidth>
+        <Button variant="outline" size="small">
           Outline Full-Width Button
         </Button>
         <Button variant="primary" size="medium" disabled>
