@@ -1,22 +1,15 @@
 'use client';
-import Button from '../components/Button/Button';
+import Button from '@/components/Button';
 
 export default function Home() {
   return (
     <main>
       <div>
-        <Button variant="primary" size="medium">
-          Primary Button
-        </Button>
-        <Button variant="secondary" size="large">
-          Secondary Button
-        </Button>
-        <Button variant="outline" size="small">
-          Outline Full-Width Button
-        </Button>
-        <Button variant="primary" size="medium" disabled>
-          Disabled Button
-        </Button>
+        <Button $variant="primary">Primary</Button>
+        <Button $variant="secondary">Secondary</Button>
+        <Button $variant="success">Success</Button>
+        <Button $variant="danger">Danger</Button>
+        <Button $variant="warning">Warning</Button>
       </div>
     </main>
   );

@@ -1,76 +1,78 @@
-'use client';
-import styled from 'styled-components';
-import { ButtonProps } from './Button';
+import styled, { css } from 'styled-components';
+import { ButtonProps } from './Button.types';
 
-const getBackgroundColor = (variant: ButtonProps['variant']) => {
-  switch (variant) {
-    case 'primary':
-      return '#0070f3';
-    case 'secondary':
-      return '#6c757d';
-    case 'outline':
-      return 'transparent';
-    default:
-      return 'transparent';
-  }
-};
-
-const getColor = (variant: ButtonProps['variant']) => {
-  return variant === 'outline' ? '#0070f3' : '#fff';
-};
-
-const getBorder = (variant: ButtonProps['variant']) => {
-  return variant === 'outline' ? '2px solid #0070f3' : 'none';
-};
-
-const getHoverBackgroundColor = (variant: ButtonProps['variant']) => {
-  switch (variant) {
-    case 'primary':
-      return '#005bb5';
-    case 'secondary':
-      return '#5a6268';
-    case 'outline':
-      return '#0070f31a';
-    default:
-      return 'transparent';
-  }
-};
-
-// Styled Button component
-export const StyledButton = styled.button<ButtonProps>`
-  display: inline-block;
-  padding: ${({ size }) => {
-    switch (size) {
-      case 'small':
-        return '0.4rem 0.8rem';
-      case 'large':
-        return '0.8rem 1.6rem';
-      default:
-        return '0.6rem 1.2rem';
-    }
-  }};
-  font-size: ${({ size }) => {
-    switch (size) {
-      case 'small':
-        return '0.8rem';
-      case 'large':
-        return '1rem';
-      default:
-        return '0.9rem';
-    }
-  }};
-  background-color: ${({ variant }) => getBackgroundColor(variant)};
-  color: ${({ variant }) => getColor(variant)};
-  border: ${({ variant }) => getBorder(variant)};
+const baseStyle = css`
+  padding: 0.75rem 1.5rem;
+  font-size: 1rem;
   border-radius: 4px;
-  cursor: ${({ disabled }) => (disabled ? 'not-allowed' : 'pointer')};
-  opacity: ${({ disabled }) => (disabled ? '0.6' : '1')};
-  transition: all 0.3s ease;
+  border: none;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+`;
+
+const primaryStyle = css`
+  background-color: #0070f3;
+  color: white;
 
   &:hover {
-    background-color: ${({ variant, disabled }) =>
-      !disabled && getHoverBackgroundColor(variant)};
-    color: ${({ variant, disabled }) =>
-      variant === 'outline' && !disabled ? '#005bb5' : undefined};
+    background-color: #005bb5;
   }
+`;
+
+const secondaryStyle = css`
+  background-color: #eaeaea;
+  color: black;
+
+  &:hover {
+    background-color: #cacaca;
+  }
+`;
+
+const successStyle = css`
+  background-color: #28a745;
+  color: white;
+
+  &:hover {
+    background-color: #218838;
+  }
+`;
+
+const dangerStyle = css`
+  background-color: #dc3545;
+  color: white;
+
+  &:hover {
+    background-color: #c82333;
+  }
+`;
+
+const warningStyle = css`
+  background-color: #ffc107;
+  color: black;
+
+  &:hover {
+    background-color: #e0a800;
+  }
+`;
+
+const getVariantStyle = (variant: string = 'primary') => {
+  switch (variant) {
+    case 'primary':
+      return primaryStyle;
+    case 'secondary':
+      return secondaryStyle;
+    case 'success':
+      return successStyle;
+    case 'danger':
+      return dangerStyle;
+    case 'warning':
+      return warningStyle;
+    default:
+      return primaryStyle;
+  }
+};
+
+export const StyledButton = styled.button<ButtonProps>`
+  ${baseStyle};
+  ${(props) => getVariantStyle(props.$variant)};
 `;

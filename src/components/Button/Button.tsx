@@ -1,22 +1,9 @@
-'use client';
-import React, { ButtonHTMLAttributes } from 'react';
+import { ButtonProps } from './Button.types';
 import { StyledButton } from './Button.styles';
 
-export interface ButtonProps extends ButtonHTMLAttributes<HTMLButtonElement> {
-  variant?: 'primary' | 'secondary' | 'outline';
-  size?: 'small' | 'medium' | 'large';
-  disabled?: boolean;
-}
-
-const Button = ({
-  children,
-  variant = 'primary',
-  size = 'medium',
-  disabled = false,
-  ...props
-}: ButtonProps) => {
+const Button = ({ children, $variant = 'primary', ...props }: ButtonProps) => {
   return (
-    <StyledButton variant={variant} size={size} disabled={disabled} {...props}>
+    <StyledButton $variant={$variant || 'primary'} {...props}>
       {children}
     </StyledButton>
   );
