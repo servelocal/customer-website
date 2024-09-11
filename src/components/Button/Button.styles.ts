@@ -10,69 +10,50 @@ const baseStyle = css`
   transition: background-color 0.3s ease;
 `;
 
-const primaryStyle = css`
-  background-color: #0070f3;
-  color: white;
+const variantStyles = {
+  primary: css`
+    background-color: #0070f3;
+    color: white;
 
-  &:hover {
-    background-color: #005bb5;
-  }
-`;
+    &:hover {
+      background-color: #005bb5;
+    }
+  `,
+  secondary: css`
+    background-color: #eaeaea;
+    color: black;
 
-const secondaryStyle = css`
-  background-color: #eaeaea;
-  color: black;
+    &:hover {
+      background-color: #cacaca;
+    }
+  `,
+  success: css`
+    background-color: #28a745;
+    color: white;
 
-  &:hover {
-    background-color: #cacaca;
-  }
-`;
+    &:hover {
+      background-color: #218838;
+    }
+  `,
+  danger: css`
+    background-color: #dc3545;
+    color: white;
 
-const successStyle = css`
-  background-color: #28a745;
-  color: white;
+    &:hover {
+      background-color: #c82333;
+    }
+  `,
+  warning: css`
+    background-color: #ffc107;
+    color: black;
 
-  &:hover {
-    background-color: #218838;
-  }
-`;
-
-const dangerStyle = css`
-  background-color: #dc3545;
-  color: white;
-
-  &:hover {
-    background-color: #c82333;
-  }
-`;
-
-const warningStyle = css`
-  background-color: #ffc107;
-  color: black;
-
-  &:hover {
-    background-color: #e0a800;
-  }
-`;
-
-const getVariantStyle = (variant: string = 'primary') => {
-  switch (variant) {
-    case 'primary':
-      return primaryStyle;
-    case 'secondary':
-      return secondaryStyle;
-    case 'success':
-      return successStyle;
-    case 'danger':
-      return dangerStyle;
-    case 'warning':
-      return warningStyle;
-    default:
-      return primaryStyle;
-  }
+    &:hover {
+      background-color: #e0a800;
+    }
+  `,
 };
 
 export const StyledButton = styled.button<ButtonProps>`
   ${baseStyle};
-  ${(props) => getVariantStyle(props.$variant)};
+  ${({ $variant = 'primary' }) => variantStyles[$variant]}
 `;
