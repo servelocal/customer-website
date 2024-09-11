@@ -1,8 +1,9 @@
 import Button from '@/components/Button';
 
-export default function Home() {
+export default function PlaygroundPage() {
   return (
     <main>
+      <h1>Play with your components</h1>
       <div>
         <Button $variant="primary">Primary</Button>
         <Button $variant="secondary">Secondary</Button>
