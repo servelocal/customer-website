@@ -1,5 +1,5 @@
 import styled, { css } from 'styled-components';
-import { ButtonProps } from './Button.types';
+// import { ButtonProps } from './Button.types';
 
 const baseStyle = css`
   padding: 0.75rem 1.5rem;
