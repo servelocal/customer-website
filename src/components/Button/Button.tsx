@@ -1,5 +1,5 @@
-// import { variants } from '@/lib/variants';
 import styles from './Button.module.css';
+
 interface ButtonProps extends React.ButtonHTMLAttributes<HTMLButtonElement> {
   variant?: keyof typeof variants;
   className?: string;
@@ -7,7 +7,10 @@ interface ButtonProps extends React.ButtonHTMLAttributes<HTMLButtonElement> {
 
 const variants = {
   primary: styles.primary,
-  secondary: styles.secondary, // Ensure you have a default variant in the CSS module
+  secondary: styles.secondary,
+  success: styles.success,
+  danger: styles.danger,
+  warning: styles.warning,
 };
 
 export default function Button({

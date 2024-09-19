@@ -24,3 +24,30 @@
 .secondary:hover {
   background-color: #cacaca;
 }
+
+.success {
+  background-color: #28a745;
+  color: white;
+}
+
+.success:hover {
+  background-color: #218838;
+}
+
+.danger {
+  background-color: #dc3545;
+  color: white;
+}
+
+.danger:hover {
+  background-color: #c82333;
+}
+
+.warning {
+  background-color: #ffc107;
+  color: black;
+}
+
+.warning:hover {
+  background-color: #e0a800;
+}
