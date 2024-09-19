@@ -7,6 +7,8 @@ type LogEntry = {
   [key: string]: string; // For additional fields that might be added
 };
 
+const RECORD_CAP = 10;
+
 function addLog(
   logs: LogEntry[],
   message: string,
@@ -34,21 +36,41 @@ async function createServicesTable(client: PoolClient, logs: LogEntry[]) {
 
 async function seedServices(client: PoolClient, logs: LogEntry[]) {
   try {
-    const services = Array.from({ length: 10 }).map(() => ({
-      serviceName: faker.person.jobTitle(),
-    }));
+    // Step 1: Check the current count of services
+    const result = await client.query('SELECT COUNT(*) FROM services');
+    const currentCount = parseInt(result.rows[0].count, 10);
 
-    await Promise.all(
-      services.map(({ serviceName }) =>
-        client.query(
-          `INSERT INTO services (service_name)
-                    VALUES ($1)
-                    `,
-          [serviceName]
-        )
-      )
+    // If there are already 10 or more records, no need to seed
+    if (currentCount >= RECORD_CAP) {
+      addLog(
+        logs,
+        `🛑 Service table already contains ${RECORD_CAP} or more records, no seeding needed.`,
+        {
+          currentCount,
+          table: 'services',
+        }
+      );
+      return;
+    }
+
+    // Step 2: Calculate how many records need to be inserted to reach 10
+    const recordsToInsert = RECORD_CAP - currentCount;
+
+    // Step 3: Generate the required number of service names
+    const services = Array.from({ length: recordsToInsert }).map(() =>
+      faker.person.jobTitle()
     );
 
+    // Step 4: Prepare the query to insert the remaining records
+    const values = services
+      .map((serviceName) => `('${serviceName}')`)
+      .join(',');
+
+    // Step 5: Execute batch insertion if we have records to insert
+    await client.query(`
+      INSERT INTO services (service_name)
+      VALUES ${values}
+    `);
     addLog(logs, '🌱 Service table seeded successfully', {
       seededCount: services.length,
       table: 'services',

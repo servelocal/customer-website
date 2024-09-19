@@ -1,8 +1,13 @@
 import db from '@/lib/db';
 
-export default async function getServices() {
+type Service = {
+  service_id: number;
+  service_name: string;
+};
+
+export default async function getServices(): Promise<Service[] | void> {
   try {
-    const data = await db.query(
+    const data = await db.query<Service>(
       `SELECT service_id, service_name FROM services`
     );
     return data.rows;
