@@ -8,7 +8,9 @@ export default async function ServiceList() {
     <>
       Here is the list of services
       <div>
-        {services?.map((service, i) => <p key={i}>{service.service_name}</p>)}
+        {services?.map(({ service_name, service_id }) => (
+          <p key={service_id}>{service_name}</p>
+        ))}
       </div>
     </>
   );
