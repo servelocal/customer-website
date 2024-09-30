@@ -9,12 +9,11 @@ export default function PlaygroundPage() {
       <br></br>
 
       <div>
-        <h2>Button componenets</h2>
-        <Button $variant="primary">Primary</Button>
-        <Button $variant="secondary">Secondary</Button>
-        <Button $variant="success">Success</Button>
-        <Button $variant="danger">Danger</Button>
-        <Button $variant="warning">Warning</Button>
+        <Button variant="primary">primary</Button>
+        <Button variant="secondary">secondary</Button>
+        <Button variant="success">Success</Button>
+        <Button variant="danger">Danger</Button>
+        <Button variant="warning">Warning</Button>
       </div>
 
       <br></br>
