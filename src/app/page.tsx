@@ -1,15 +1,10 @@
-import Button from '@components/Button';
+import Link from 'next/link';
 
 export default function Home() {
   return (
     <main>
-      <div>
-        <Button $variant="primary">Primary</Button>
-        <Button $variant="secondary">Secondary</Button>
-        <Button $variant="success">Success</Button>
-        <Button $variant="danger">Danger</Button>
-        <Button $variant="warning">Warning</Button>
-      </div>
+      <h1>This is the Home page</h1>
+      <Link href="/playground">Go to playground 🤜</Link>
     </main>
   );
 }
