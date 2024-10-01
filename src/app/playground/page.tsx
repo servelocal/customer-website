@@ -1,7 +1,6 @@
 import Button from '@/components/Button';
 import styles from './page.module.css';
-import { LuHome } from 'react-icons/lu';
-import { MdClose } from 'react-icons/md';
+import Icons from '@/lib/icons';
 
 export default function PlaygroundPage() {
   return (
@@ -14,14 +13,18 @@ export default function PlaygroundPage() {
         <Button variant="danger">Danger</Button>
         <Button variant="warning">Warning</Button>
 
-        <Button variant="primary" icon={<LuHome />} iconPosition="left">
+        <Button variant="primary" icon={<Icons.Home />} iconPosition="left">
           Icon Left
         </Button>
-        <Button variant="primary" icon={<LuHome />} iconPosition="right">
+        <Button variant="primary" icon={<Icons.Home />} iconPosition="right">
           Icon Right
         </Button>
 
-        <Button variant="primary" icon={<MdClose />} ariaLabel="close"></Button>
+        <Button
+          variant="primary"
+          icon={<Icons.Close />}
+          ariaLabel="close"
+        ></Button>
       </div>
     </main>
   );
