@@ -1,6 +1,6 @@
 'use client';
 import Link from 'next/link';
-import styles from './notFound.module.sass';
+import styles from './notFound.module.scss';
 import { usePathname } from 'next/navigation';
 import Button from '@/components/Button';
 
@@ -19,7 +19,7 @@ export default function NotFound() {
         below to head back to the homepage.
       </p>
       <Link href="/" className={styles.homeLink}>
-        <Button variant="primary">🏠 Go Back to Home</Button>
+        <Button variant="primary"> Go Back to Home</Button>
       </Link>
     </div>
   );
