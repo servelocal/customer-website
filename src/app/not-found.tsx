@@ -1,6 +1,6 @@
 'use client';
 import Link from 'next/link';
-import styles from './notFound.module.css';
+import styles from './notFound.module.sass';
 import { usePathname } from 'next/navigation';
 import Button from '@/components/Button';
 
