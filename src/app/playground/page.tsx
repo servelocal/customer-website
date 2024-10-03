@@ -30,6 +30,9 @@ export default function PlaygroundPage() {
           icon={<Icons.Close />}
           ariaLabel="close"
         ></Button>
+        <Link href="/notFoundExmple">
+          <Button>Not Found</Button>
+        </Link>
       </div>
     </main>
   );
