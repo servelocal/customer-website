@@ -1,16 +1,17 @@
 'use client';
 import Button from '@/components/Button';
 import Link from 'next/link';
-import styles from './page.module.css';
-import Icons from '@/lib/icons';
+import styles from './page.module.scss';
+import { FaArrowRightLong, FaArrowLeftLong } from 'react-icons/fa6';
+import { IoClose } from 'react-icons/io5';
 
 export default function PlaygroundPage() {
   return (
     <main>
       <h1>Play with your components</h1>
       <div className={styles.buttonsContainer}>
-        <Button variant="primary">primary</Button>
-        <Button variant="secondary">secondary</Button>
+        <Button variant="primary">Primary</Button>
+        <Button variant="secondary">Secondary</Button>
         <Button variant="success">Success</Button>
         <Button variant="danger">Danger</Button>
         <Button variant="warning">Warning</Button>
@@ -18,21 +19,18 @@ export default function PlaygroundPage() {
           <Button>Not Found</Button>
         </Link>
 
-        <Button variant="primary" icon={<Icons.Home />} iconPosition="left">
+        <Button icon={<FaArrowLeftLong />} iconPosition="left">
           Icon Left
         </Button>
-        <Button variant="primary" icon={<Icons.Home />} iconPosition="right">
+        <Button icon={<FaArrowRightLong />} iconPosition="right">
           Icon Right
         </Button>
 
         <Button
-          variant="primary"
-          icon={<Icons.Close />}
+          className={styles.button}
+          icon={<IoClose />}
           ariaLabel="close"
         ></Button>
-        <Link href="/notFoundExmple">
-          <Button>Not Found</Button>
-        </Link>
       </div>
     </main>
   );
