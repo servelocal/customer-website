@@ -1,0 +1,28 @@
+// components/EventList.module.scss
+.eventList {
+  padding: 20px;
+}
+
+.eventItem {
+  border: 1px solid #ccc;
+  padding: 20px;
+  margin: 20px 0;
+  display: flex;
+  align-items: center;
+  background-color: #f9f9f9;
+}
+
+.thumbnail {
+  max-width: 150px;
+  margin-right: 20px;
+}
+
+.eventDetails {
+  h2 {
+    margin: 0 0 10px 0;
+  }
+
+  p {
+    margin: 5px 0;
+  }
+}
