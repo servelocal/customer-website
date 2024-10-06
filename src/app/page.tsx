@@ -1,6 +1,9 @@
+import { prisma } from '@/lib/prisma';
 import Button from '@components/Button';
 
-export default function Home() {
+export default async function Home() {
+  const events = await prisma.events.findMany();
+
   return (
     <main>
       <div>
@@ -10,6 +13,10 @@ export default function Home() {
         <Button $variant="danger">Danger</Button>
         <Button $variant="warning">Warning</Button>
       </div>
+
+      {events.map(({ event_id, name }) => (
+        <p key={event_id}>{name}</p>
+      ))}
     </main>
   );
 }

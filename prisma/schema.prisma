@@ -1,0 +1,54 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model cities {
+  city_id   Int         @id @default(autoincrement())
+  city_name String      @db.VarChar(255)
+  county_id Int?
+  counties  counties?   @relation(fields: [county_id], references: [county_id], onDelete: NoAction, onUpdate: NoAction)
+  locations locations[]
+}
+
+model counties {
+  county_id   Int      @id @default(autoincrement())
+  county_name String   @db.VarChar(255)
+  cities      cities[]
+}
+
+model events {
+  event_id    Int        @id @default(autoincrement())
+  name        String     @db.VarChar(255)
+  description String?
+  price       Decimal?   @db.Decimal(10, 2)
+  start_date  DateTime?  @db.Timestamp(6)
+  end_date    DateTime?  @db.Timestamp(6)
+  thumbnail   String?    @db.VarChar(255)
+  banner      String?    @db.VarChar(255)
+  type        String?    @db.VarChar(40)
+  service_id  Int?
+  location_id Int?
+  locations   locations? @relation(fields: [location_id], references: [location_id], onDelete: NoAction, onUpdate: NoAction)
+  services    services?  @relation(fields: [service_id], references: [service_id], onDelete: NoAction, onUpdate: NoAction)
+}
+
+model locations {
+  location_id    Int      @id @default(autoincrement())
+  street_address String   @db.VarChar(255)
+  post_code      String?  @db.VarChar(255)
+  city_id        Int?
+  events         events[]
+  cities         cities?  @relation(fields: [city_id], references: [city_id], onDelete: NoAction, onUpdate: NoAction)
+}
+
+model services {
+  service_id Int      @id @default(autoincrement())
+  name       String   @db.VarChar(255)
+  category   String?  @db.VarChar(255)
+  events     events[]
+}

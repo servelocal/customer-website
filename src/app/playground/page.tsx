@@ -1,5 +1,4 @@
 import Button from '@/components/Button';
-import ServiceList from '@/components/ServiceList';
 
 export default function PlaygroundPage() {
   return (
@@ -21,7 +20,6 @@ export default function PlaygroundPage() {
 
       <div>
         <h2>Fetching services from server component </h2>
-        <ServiceList />
       </div>
     </main>
   );
