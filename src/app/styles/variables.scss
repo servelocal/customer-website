@@ -1,0 +1,27 @@
+$button-colors: (
+  primary: (
+    #0070f3,    // background colour
+    #005bb5,    // hover color
+    white,      // text color
+  ),
+  secondary: (
+    #eaeaea,
+    #cacaca,
+    black,
+  ),
+  success: (
+    #28a745,
+    #218838,
+    white,
+  ),
+  danger: (
+    #dc3545,
+    #c82333,
+    white,
+  ),
+  warning: (
+    #ffc107,
+    #e0a800,
+    black,
+  ),
+);

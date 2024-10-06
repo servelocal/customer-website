@@ -1,0 +1,39 @@
+@mixin button-styles($bg-color, $hover-color, $text-color) {
+  background-color: $bg-color;
+  color: $text-color;
+
+  &:hover {
+    background-color: $hover-color;
+  }
+}
+
+// Loop through the color map to generate classes
+@each $type, $colors in $button-colors {
+  .button.#{$type} {
+    @include button-styles(nth($colors, 1), nth($colors, 2), nth($colors, 3));
+  }
+}
+
+.button {
+  display: flex;
+  align-items: center;
+  padding: 0.75rem 1.2rem;
+  min-width: fit-content;
+  height: fit-content;
+  font-size: 1rem;
+  border-radius: 4px;
+  border: none;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+
+  .iconLeft {
+    margin-right: 0.5rem;
+  }
+
+  .iconRight {
+    margin-left: 0.5rem;
+  }
+  .icon {
+    display: flex;
+  }
+}
