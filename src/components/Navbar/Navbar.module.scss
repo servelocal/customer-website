@@ -1,13 +1,14 @@
 .navbar {
   display: flex;
-  justify-content: space-between;
+  border: 1px solid #ddd;
+  gap: 2rem;
   align-items: center;
   padding: 1rem;
-  background-color: #333;
 
-  .text {
-    color: white;
+  .logo {
     font-size: 1.5rem;
+    color: black;
+    font-weight: bold;
   }
 
   .menuToggle {
@@ -45,7 +46,7 @@
     }
 
     a {
-      color: white;
+      color: #6f6f6f;
       text-decoration: none;
       padding: 0.5rem;
       width: 100%;
@@ -54,8 +55,7 @@
   }
 
   .active {
-    font-weight: bold;
-    border-bottom: 0.125rem solid white;
+    color: black !important;
   }
 
   @media (min-width: 600px) {

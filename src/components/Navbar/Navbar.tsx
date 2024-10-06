@@ -8,7 +8,6 @@ import { LuMenu } from 'react-icons/lu';
 import Button from '../Button';
 
 const itemLinks = [
-  { name: 'Home', href: '/' },
   { name: 'Event', href: '/events' },
   { name: 'Playground', href: '/playground' },
 ];
@@ -23,7 +22,7 @@ const Navbar = () => {
   return (
     <nav className={styles.navbar}>
       <div>
-        <Link className={styles.text} href="/">
+        <Link className={styles.logo} href="/">
           ServeLocal
         </Link>
       </div>

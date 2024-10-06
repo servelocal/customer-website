@@ -1,15 +1,20 @@
-// components/EventList.module.scss
 .eventList {
-  padding: 20px;
+  padding: 1rem;
+  ul {
+    margin-top: 1rem;
+    gap: 1rem;
+    display: flex;
+    flex-direction: column;
+  }
 }
 
 .eventItem {
-  border: 1px solid #ccc;
-  padding: 20px;
-  margin: 20px 0;
+  border: 1px solid #ddd;
+  padding: 2rem;
+  border-radius: 1rem;
   display: flex;
   align-items: center;
-  background-color: #f9f9f9;
+  background: #fafafa;
 }
 
 .thumbnail {
