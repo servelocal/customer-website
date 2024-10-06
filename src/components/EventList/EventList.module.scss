@@ -15,6 +15,13 @@
   display: flex;
   align-items: center;
   background: #fafafa;
+  transition: 0.3s;
+}
+
+.eventItem:hover {
+  cursor: pointer;
+  background-color: white;
+  border-color: black;
 }
 
 .thumbnail {
