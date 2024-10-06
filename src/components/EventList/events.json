@@ -1,0 +1,69 @@
+{
+  "events": [
+    {
+      "event_id": 1,
+      "name": "Onam Celebration 2024",
+      "description": "Join us for a grand Onam celebration featuring traditional Kerala food, cultural performances, and games. A family-friendly event filled with music and festivities to celebrate Malayali heritage.",
+      "location": "London, UK",
+      "price": 25.0,
+      "start_date": "2024-09-15T10:00:00",
+      "end_date": "2024-09-15T18:00:00",
+      "thumbnail": "/images/events/onam_celebration_thumbnail.jpg",
+      "banner": "/images/events/onam_celebration_banner.jpg",
+      "type": "Cultural",
+      "service_id": 1
+    },
+    {
+      "event_id": 2,
+      "name": "Malayali Music Night",
+      "description": "A night of soulful Malayalam music featuring popular artists from Kerala. Enjoy live performances of classic hits and modern favorites in an intimate setting.",
+      "location": "Manchester, UK",
+      "price": 35.0,
+      "start_date": "2024-11-05T19:00:00",
+      "end_date": "2024-11-05T23:00:00",
+      "thumbnail": "/images/events/music_night_thumbnail.jpg",
+      "banner": "/images/events/music_night_banner.jpg",
+      "type": "Music",
+      "service_id": 1
+    },
+    {
+      "event_id": 3,
+      "name": "Kerala Film Festival",
+      "description": "A weekend festival showcasing the best of contemporary and classic Malayalam cinema. Featuring director Q&A sessions, exclusive screenings, and film discussions.",
+      "location": "Birmingham, UK",
+      "price": 50.0,
+      "start_date": "2024-10-12T12:00:00",
+      "end_date": "2024-10-14T20:00:00",
+      "thumbnail": "/images/events/film_festival_thumbnail.jpg",
+      "banner": "/images/events/film_festival_banner.jpg",
+      "type": "Film",
+      "service_id": 1
+    },
+    {
+      "event_id": 4,
+      "name": "Malayali Entrepreneurs Conference",
+      "description": "A networking event for Malayali entrepreneurs and business professionals in the UK. Learn from industry experts, attend workshops, and connect with potential business partners.",
+      "location": "Bristol, UK",
+      "price": 100.0,
+      "start_date": "2024-11-20T09:00:00",
+      "end_date": "2024-11-20T17:00:00",
+      "thumbnail": "/images/events/entrepreneurs_conference_thumbnail.jpg",
+      "banner": "/images/events/entrepreneurs_conference_banner.jpg",
+      "type": "Conference",
+      "service_id": 1
+    },
+    {
+      "event_id": 5,
+      "name": "Malayali Food Festival",
+      "description": "Savor the flavors of Kerala with a variety of food stalls serving authentic Malayali dishes. Enjoy live cooking demos and traditional performances while exploring the rich culinary heritage of Kerala.",
+      "location": "Leeds, UK",
+      "price": 15.0,
+      "start_date": "2024-12-05T11:00:00",
+      "end_date": "2024-12-05T17:00:00",
+      "thumbnail": "/images/events/food_festival_thumbnail.jpg",
+      "banner": "/images/events/food_festival_banner.jpg",
+      "type": "Food",
+      "service_id": 1
+    }
+  ]
+}

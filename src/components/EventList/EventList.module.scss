@@ -1,0 +1,40 @@
+.eventList {
+  padding: 1rem;
+  ul {
+    margin-top: 1rem;
+    gap: 1rem;
+    display: flex;
+    flex-direction: column;
+  }
+}
+
+.eventItem {
+  border: 1px solid #ddd;
+  padding: 2rem;
+  border-radius: 1rem;
+  display: flex;
+  align-items: center;
+  background: #fafafa;
+  transition: 0.3s;
+}
+
+.eventItem:hover {
+  cursor: pointer;
+  background-color: white;
+  border-color: black;
+}
+
+.thumbnail {
+  max-width: 150px;
+  margin-right: 20px;
+}
+
+.eventDetails {
+  h2 {
+    margin: 0 0 10px 0;
+  }
+
+  p {
+    margin: 5px 0;
+  }
+}
