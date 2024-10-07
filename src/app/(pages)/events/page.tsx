@@ -1,11 +1,18 @@
 import EventList from '@/components/EventList';
+import EventLists from '@/components/EventLists/EventLists';
 
-const EventsPage = () => {
+export default function EventsPage() {
   return (
     <div>
-      <EventList />
+      <div>
+        <h2>This is the events from the database</h2>
+        <EventLists />
+      </div>
+      <br />
+      <div>
+        <h2>This is from JSON file</h2>
+        <EventList />
+      </div>
     </div>
   );
-};
-
-export default EventsPage;
+}
