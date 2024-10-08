@@ -1,4 +1,4 @@
-.eventList {
+.serviceList {
   padding: 1rem;
   ul {
     margin-top: 1rem;
@@ -8,7 +8,7 @@
   }
 }
 
-.eventItem {
+.serviceItem {
   border: 1px solid #ddd;
   padding: 2rem;
   border-radius: 1rem;
@@ -18,7 +18,7 @@
   transition: 0.3s;
 }
 
-.eventItem:hover {
+.serviceItem:hover {
   cursor: pointer;
   background-color: white;
   border-color: black;
@@ -29,7 +29,7 @@
   margin-right: 20px;
 }
 
-.eventDetails {
+.serviceDetails {
   h2 {
     margin: 0 0 10px 0;
   }
