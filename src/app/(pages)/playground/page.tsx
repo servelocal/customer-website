@@ -4,8 +4,22 @@ import Link from 'next/link';
 import styles from './page.module.scss';
 import { FaArrowRightLong, FaArrowLeftLong } from 'react-icons/fa6';
 import { IoClose } from 'react-icons/io5';
+import { useEffect, useState } from 'react';
+import ServiceList from '@/components/ServiceList';
 
 export default function PlaygroundPage() {
+  const [services, setServices] = useState([]);
+
+  useEffect(() => {
+    const fetchEvents = async () => {
+      const response = await fetch('/data/events.json');
+      const data = await response.json();
+      setServices(data.events);
+    };
+
+    fetchEvents();
+  }, []);
+
   return (
     <main>
       <h1>Play with your components</h1>
@@ -15,6 +29,7 @@ export default function PlaygroundPage() {
         <Button variant="success">Success</Button>
         <Button variant="danger">Danger</Button>
         <Button variant="warning">Warning</Button>
+
         <Link href="/notFoundExmple">
           <Button>Not Found</Button>
         </Link>
@@ -31,6 +46,10 @@ export default function PlaygroundPage() {
           icon={<IoClose />}
           ariaLabel="close"
         ></Button>
+
+        <div>
+          <ServiceList services={services} />
+        </div>
       </div>
     </main>
   );
