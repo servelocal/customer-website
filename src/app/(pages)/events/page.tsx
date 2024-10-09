@@ -1,7 +1,7 @@
 import EventList from '@/components/EventList';
 import EventLists from '@/components/EventLists/EventLists';
 
-export default function EventsPage() {
+export default async function EventsPage() {
   return (
     <div>
       <div>

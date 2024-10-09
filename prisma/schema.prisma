@@ -22,19 +22,21 @@ model counties {
 }
 
 model events {
-  event_id    Int        @id @default(autoincrement())
-  name        String     @db.VarChar(255)
-  description String?
-  price       Decimal?   @db.Decimal(10, 2)
-  start_date  DateTime?  @db.Timestamp(6)
-  end_date    DateTime?  @db.Timestamp(6)
-  thumbnail   String?    @db.VarChar(255)
-  banner      String?    @db.VarChar(255)
-  type        String?    @db.VarChar(40)
-  service_id  Int?
-  location_id Int?
-  locations   locations? @relation(fields: [location_id], references: [location_id], onDelete: NoAction, onUpdate: NoAction)
-  services    services?  @relation(fields: [service_id], references: [service_id], onDelete: NoAction, onUpdate: NoAction)
+  event_id     Int          @id @default(autoincrement())
+  name         String       @db.VarChar(255)
+  description  String?
+  price        Decimal?     @db.Decimal(10, 2)
+  start_date   DateTime?    @db.Timestamp(6)
+  end_date     DateTime?    @db.Timestamp(6)
+  thumbnail    String?      @db.VarChar(255)
+  banner       String?      @db.VarChar(255)
+  category     String?      @db.VarChar(40)
+  service_id   Int?
+  location_id  Int?
+  community_id Int?
+  communities  communities? @relation(fields: [community_id], references: [community_id], onDelete: NoAction, onUpdate: NoAction)
+  locations    locations?   @relation(fields: [location_id], references: [location_id], onDelete: NoAction, onUpdate: NoAction)
+  services     services?    @relation(fields: [service_id], references: [service_id], onDelete: NoAction, onUpdate: NoAction)
 }
 
 model locations {
@@ -47,8 +49,17 @@ model locations {
 }
 
 model services {
-  service_id Int      @id @default(autoincrement())
-  name       String   @db.VarChar(255)
-  category   String?  @db.VarChar(255)
-  events     events[]
+  service_id   Int          @id @default(autoincrement())
+  name         String       @db.VarChar(255)
+  category     String?      @db.VarChar(255)
+  community_id Int?
+  events       events[]
+  communities  communities? @relation(fields: [community_id], references: [community_id], onDelete: NoAction, onUpdate: NoAction, map: "community_id")
+}
+
+model communities {
+  community_id   Int        @id @default(autoincrement())
+  community_name String     @unique @db.VarChar(255)
+  events         events[]
+  services       services[]
 }

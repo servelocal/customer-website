@@ -1,16 +1,22 @@
 import { prisma } from '@/lib/prisma';
 
-interface Event {
-  event_id: number;
-  name: string;
+interface Community {
+  community_id: number;
+  community_name: string;
 }
 export default async function EventLists() {
-  const events: Event[] = await prisma.events.findMany();
+  let communities: Community[] = [];
 
+  try {
+    // Fetching data directly from Prisma in the server component
+    communities = await prisma.communities.findMany();
+  } catch (err) {
+    console.error(`Error: ${err}`);
+  }
   return (
     <div>
-      {events.map(({ event_id, name }) => (
-        <p key={event_id}>{name}</p>
+      {communities.map(({ community_id, community_name }) => (
+        <p key={community_id}>{community_name}</p>
       ))}
     </div>
   );

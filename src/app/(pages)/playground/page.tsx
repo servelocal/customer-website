@@ -4,6 +4,7 @@ import Link from 'next/link';
 import styles from './page.module.scss';
 import { FaArrowRightLong, FaArrowLeftLong } from 'react-icons/fa6';
 import { IoClose } from 'react-icons/io5';
+import EventLists from '@/components/EventLists/EventLists';
 
 export default function PlaygroundPage() {
   return (
@@ -31,6 +32,8 @@ export default function PlaygroundPage() {
           icon={<IoClose />}
           ariaLabel="close"
         ></Button>
+
+        <EventLists />
       </div>
     </main>
   );
