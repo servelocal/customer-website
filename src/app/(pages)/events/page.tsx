@@ -19,4 +19,6 @@ const EventsPage = () => {
       <ServiceList services={services} />
     </div>
   );
-}
+};
+
+export default EventsPage;
