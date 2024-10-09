@@ -15,6 +15,7 @@ export default function PlaygroundPage() {
         <Button variant="success">Success</Button>
         <Button variant="danger">Danger</Button>
         <Button variant="warning">Warning</Button>
+
         <Link href="/notFoundExmple">
           <Button>Not Found</Button>
         </Link>

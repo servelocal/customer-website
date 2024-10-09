@@ -1,18 +1,22 @@
-import EventList from '@/components/EventList';
-import EventLists from '@/components/EventLists/EventLists';
+'use client';
+import ServiceList from '@/components/ServiceList';
+import { useEffect, useState } from 'react';
 
-export default function EventsPage() {
+const EventsPage = () => {
+  const [services, setServices] = useState([]);
+
+  useEffect(() => {
+    const fetchEvents = async () => {
+      const response = await fetch('/data/events.json');
+      const data = await response.json();
+      setServices(data.events);
+    };
+
+    fetchEvents();
+  }, []);
   return (
     <div>
-      <div>
-        <h2>This is the events from the database</h2>
-        <EventLists />
-      </div>
-      <br />
-      <div>
-        <h2>This is from JSON file</h2>
-        <EventList />
-      </div>
+      <ServiceList services={services} />
     </div>
   );
 }
