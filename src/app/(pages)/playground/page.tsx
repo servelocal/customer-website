@@ -1,9 +1,9 @@
-'use client';
 import Button from '@/components/Button';
 import Link from 'next/link';
 import styles from './page.module.scss';
 import { FaArrowRightLong, FaArrowLeftLong } from 'react-icons/fa6';
 import { IoClose } from 'react-icons/io5';
+import ServiceCard from '@/components/ServiceCard';
 
 export default function PlaygroundPage() {
   return (
@@ -32,6 +32,11 @@ export default function PlaygroundPage() {
           icon={<IoClose />}
           ariaLabel="close"
         ></Button>
+
+        <div className={styles.serviceList}>
+          <h2>Service list cards</h2>
+          <ServiceCard />
+        </div>
       </div>
     </main>
   );
