@@ -11,6 +11,7 @@ const itemLinks = [
   { name: 'Events', href: '/events' },
   { name: 'Services', href: '/services' },
   { name: 'Testing', href: '/playground' },
+  { name: 'Activity', href: '/activities' },
 ];
 
 const Navbar = () => {
