@@ -7,59 +7,86 @@ datasource db {
   url      = env("DATABASE_URL")
 }
 
-model cities {
-  city_id   Int         @id @default(autoincrement())
-  city_name String      @db.VarChar(255)
-  county_id Int?
-  counties  counties?   @relation(fields: [county_id], references: [county_id], onDelete: NoAction, onUpdate: NoAction)
-  locations locations[]
-}
-
-model communities {
-  community_id   Int        @id @default(autoincrement())
-  community_name String     @unique @db.VarChar(255)
-  events         events[]
-  services       services[]
-}
-
-model counties {
-  county_id   Int      @id @default(autoincrement())
-  county_name String   @db.VarChar(255)
-  cities      cities[]
-}
-
-model events {
-  event_id     Int          @id @default(autoincrement())
-  name         String       @db.VarChar(255)
+model Activity {
+  activity_id  Int        @id @default(autoincrement())
+  name         String     @db.VarChar(255)
   description  String?
-  price        Decimal?     @db.Decimal(10, 2)
-  start_date   DateTime?    @db.Timestamp(6)
-  end_date     DateTime?    @db.Timestamp(6)
-  thumbnail    String?      @db.VarChar(255)
-  banner       String?      @db.VarChar(255)
-  category     String       @db.VarChar(40)
-  service_id   Int?
-  location_id  Int?
-  community_id Int?
-  communities  communities? @relation(fields: [community_id], references: [community_id], onDelete: NoAction, onUpdate: NoAction)
-  locations    locations?   @relation(fields: [location_id], references: [location_id], onDelete: NoAction, onUpdate: NoAction)
-  services     services?    @relation(fields: [service_id], references: [service_id], onDelete: NoAction, onUpdate: NoAction)
+  category     String?    @db.VarChar(255)
+  sub_category String?    @db.VarChar(255)
+  rating       Decimal?   @db.Decimal(3, 1)
+  price        Decimal?   @db.Decimal(7, 2)
+  location_id  Int
+  contact_id   Int
+  contact      Contact    @relation(fields: [contact_id], references: [contact_id], onDelete: Cascade, onUpdate: NoAction, map: "fk_contact")
+  location     Location   @relation(fields: [location_id], references: [location_id], onDelete: Cascade, onUpdate: NoAction, map: "fk_location")
+  timeslot     Timeslot[]
+
+  @@index([category], map: "idx_activity_category")
+  @@index([contact_id], map: "idx_activity_contact_id")
+  @@index([location_id], map: "idx_activity_location_id")
+  @@index([name], map: "idx_activity_name")
+  @@map("activity")
 }
 
-model locations {
-  location_id    Int      @id @default(autoincrement())
-  street_address String   @db.VarChar(255)
-  post_code      String?  @db.VarChar(255)
-  city_id        Int?
-  events         events[]
-  cities         cities?  @relation(fields: [city_id], references: [city_id], onDelete: NoAction, onUpdate: NoAction)
+model City {
+  city_id   Int        @id @default(autoincrement())
+  city_name String     @db.VarChar(255)
+  county_id Int
+  county    County     @relation(fields: [county_id], references: [county_id], onDelete: Cascade, onUpdate: NoAction, map: "fk_county")
+  location  Location[]
+
+  @@index([county_id], map: "idx_city_county_id")
+  @@map("city")
 }
 
-model services {
-  service_id   Int          @id @default(autoincrement())
-  name         String       @db.VarChar(255)
-  category     String       @db.VarChar(255)
-  community_id Int?
-  events       events[]
-  communities  communities? @relation(fields: [community_id], references: [community_id], onDelete: NoAction, onUpdate: NoAction)
+model Contact {
+  contact_id    Int        @id @default(autoincrement())
+  phone_number  String     @db.VarChar(15)
+  website       String?    @db.VarChar(255)
+  email_address String?    @db.VarChar(255)
+  activity      Activity[]
+  
+  @@map("contact")
+}
+
+model County {
+  county_id   Int    @id @default(autoincrement())
+  county_name String @db.VarChar(255)
+  city        City[]
+
+  @@map("county")
+}
+
+model Location {
+  location_id    Int        @id @default(autoincrement())
+  street_address String     @db.VarChar(255)
+  post_code      String?    @db.VarChar(255)
+  city_id        Int
+  activity       Activity[]
+  city           City       @relation(fields: [city_id], references: [city_id], onDelete: Cascade, onUpdate: NoAction, map: "fk_city")
+
+  @@index([city_id], map: "idx_location_city_id")
+  @@map("location")
+}
+
+model Timeslot {
+  timeslot_id  Int              @id @default(autoincrement())
+  day_of_week  DayOfWeekEnum
+  opening_time DateTime         @db.Time(6)
+  closing_time DateTime         @db.Time(6)
+  activity_id  Int
+  activity     Activity         @relation(fields: [activity_id], references: [activity_id], onDelete: Cascade, onUpdate: NoAction, map: "fk_activity")
+
+  @@index([activity_id], map: "idx_timeslot_activity_id")
+  @@map("timeslot")
+}
+
+enum DayOfWeekEnum {
+  Monday
+  Tuesday
+  Wednesday
+  Thursday
+  Friday
+  Saturday
+  Sunday
 }

@@ -3,9 +3,9 @@ import Link from 'next/link';
 import styles from './page.module.scss';
 import { FaArrowRightLong, FaArrowLeftLong } from 'react-icons/fa6';
 import { IoClose } from 'react-icons/io5';
-import ServiceCard from '@/components/ServiceCard';
+import ActivitiesCard from '@/components/ActivitiesCard';
 
-export default function PlaygroundPage() {
+export default async function PlaygroundPage() {
   return (
     <main>
       <h1>Play with your components</h1>
@@ -34,8 +34,9 @@ export default function PlaygroundPage() {
         ></Button>
 
         <div className={styles.serviceList}>
-          <h2>Service list cards</h2>
-          <ServiceCard />
+          <h2>Activites card list</h2>
+
+          <ActivitiesCard />
         </div>
       </div>
     </main>

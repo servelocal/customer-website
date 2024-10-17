@@ -1,84 +1,102 @@
+-- CreateEnum
+CREATE TYPE "DayOfWeekEnum" AS ENUM ('Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday', 'Sunday');
+
 -- CreateTable
-CREATE TABLE "cities" (
+CREATE TABLE "activity" (
+    "activity_id" SERIAL NOT NULL,
+    "name" VARCHAR(255) NOT NULL,
+    "description" TEXT,
+    "category" VARCHAR(255),
+    "sub_category" VARCHAR(255),
+    "rating" DECIMAL(3,1),
+    "price" DECIMAL(7,2),
+    "location_id" INTEGER NOT NULL,
+    "contact_id" INTEGER NOT NULL,
+
+    CONSTRAINT "activity_pkey" PRIMARY KEY ("activity_id")
+);
+
+-- CreateTable
+CREATE TABLE "city" (
     "city_id" SERIAL NOT NULL,
     "city_name" VARCHAR(255) NOT NULL,
-    "county_id" INTEGER,
+    "county_id" INTEGER NOT NULL,
 
-    CONSTRAINT "cities_pkey" PRIMARY KEY ("city_id")
+    CONSTRAINT "city_pkey" PRIMARY KEY ("city_id")
 );
 
 -- CreateTable
-CREATE TABLE "communities" (
-    "community_id" SERIAL NOT NULL,
-    "community_name" VARCHAR(255) NOT NULL,
+CREATE TABLE "contact" (
+    "contact_id" SERIAL NOT NULL,
+    "phone_number" VARCHAR(15) NOT NULL,
+    "website" VARCHAR(255),
+    "email_address" VARCHAR(255),
 
-    CONSTRAINT "communities_pkey" PRIMARY KEY ("community_id")
+    CONSTRAINT "contact_pkey" PRIMARY KEY ("contact_id")
 );
 
 -- CreateTable
-CREATE TABLE "counties" (
+CREATE TABLE "county" (
     "county_id" SERIAL NOT NULL,
     "county_name" VARCHAR(255) NOT NULL,
 
-    CONSTRAINT "counties_pkey" PRIMARY KEY ("county_id")
+    CONSTRAINT "county_pkey" PRIMARY KEY ("county_id")
 );
 
 -- CreateTable
-CREATE TABLE "events" (
-    "event_id" SERIAL NOT NULL,
-    "name" VARCHAR(255) NOT NULL,
-    "description" TEXT,
-    "price" DECIMAL(10,2),
-    "start_date" TIMESTAMP(6),
-    "end_date" TIMESTAMP(6),
-    "thumbnail" VARCHAR(255),
-    "banner" VARCHAR(255),
-    "category" VARCHAR(40) NOT NULL,
-    "service_id" INTEGER,
-    "location_id" INTEGER,
-    "community_id" INTEGER,
-
-    CONSTRAINT "events_pkey" PRIMARY KEY ("event_id")
-);
-
--- CreateTable
-CREATE TABLE "locations" (
+CREATE TABLE "location" (
     "location_id" SERIAL NOT NULL,
     "street_address" VARCHAR(255) NOT NULL,
     "post_code" VARCHAR(255),
-    "city_id" INTEGER,
+    "city_id" INTEGER NOT NULL,
 
-    CONSTRAINT "locations_pkey" PRIMARY KEY ("location_id")
+    CONSTRAINT "location_pkey" PRIMARY KEY ("location_id")
 );
 
 -- CreateTable
-CREATE TABLE "services" (
-    "service_id" SERIAL NOT NULL,
-    "name" VARCHAR(255) NOT NULL,
-    "category" VARCHAR(255) NOT NULL,
-    "community_id" INTEGER,
+CREATE TABLE "timeslot" (
+    "timeslot_id" SERIAL NOT NULL,
+    "day_of_week" "DayOfWeekEnum" NOT NULL,
+    "opening_time" TIME(6) NOT NULL,
+    "closing_time" TIME(6) NOT NULL,
+    "activity_id" INTEGER NOT NULL,
 
-    CONSTRAINT "services_pkey" PRIMARY KEY ("service_id")
+    CONSTRAINT "timeslot_pkey" PRIMARY KEY ("timeslot_id")
 );
 
 -- CreateIndex
-CREATE UNIQUE INDEX "communities_community_name_key" ON "communities"("community_name");
+CREATE INDEX "idx_activity_category" ON "activity"("category");
+
+-- CreateIndex
+CREATE INDEX "idx_activity_contact_id" ON "activity"("contact_id");
+
+-- CreateIndex
+CREATE INDEX "idx_activity_location_id" ON "activity"("location_id");
+
+-- CreateIndex
+CREATE INDEX "idx_activity_name" ON "activity"("name");
+
+-- CreateIndex
+CREATE INDEX "idx_city_county_id" ON "city"("county_id");
+
+-- CreateIndex
+CREATE INDEX "idx_location_city_id" ON "location"("city_id");
+
+-- CreateIndex
+CREATE INDEX "idx_timeslot_activity_id" ON "timeslot"("activity_id");
 
 -- AddForeignKey
-ALTER TABLE "cities" ADD CONSTRAINT "cities_county_id_fkey" FOREIGN KEY ("county_id") REFERENCES "counties"("county_id") ON DELETE NO ACTION ON UPDATE NO ACTION;
+ALTER TABLE "activity" ADD CONSTRAINT "fk_contact" FOREIGN KEY ("contact_id") REFERENCES "contact"("contact_id") ON DELETE CASCADE ON UPDATE NO ACTION;
 
 -- AddForeignKey
-ALTER TABLE "events" ADD CONSTRAINT "events_community_id_fkey" FOREIGN KEY ("community_id") REFERENCES "communities"("community_id") ON DELETE NO ACTION ON UPDATE NO ACTION;
+ALTER TABLE "activity" ADD CONSTRAINT "fk_location" FOREIGN KEY ("location_id") REFERENCES "location"("location_id") ON DELETE CASCADE ON UPDATE NO ACTION;
 
 -- AddForeignKey
-ALTER TABLE "events" ADD CONSTRAINT "events_location_id_fkey" FOREIGN KEY ("location_id") REFERENCES "locations"("location_id") ON DELETE NO ACTION ON UPDATE NO ACTION;
+ALTER TABLE "city" ADD CONSTRAINT "fk_county" FOREIGN KEY ("county_id") REFERENCES "county"("county_id") ON DELETE CASCADE ON UPDATE NO ACTION;
 
 -- AddForeignKey
-ALTER TABLE "events" ADD CONSTRAINT "events_service_id_fkey" FOREIGN KEY ("service_id") REFERENCES "services"("service_id") ON DELETE NO ACTION ON UPDATE NO ACTION;
+ALTER TABLE "location" ADD CONSTRAINT "fk_city" FOREIGN KEY ("city_id") REFERENCES "city"("city_id") ON DELETE CASCADE ON UPDATE NO ACTION;
 
 -- AddForeignKey
-ALTER TABLE "locations" ADD CONSTRAINT "locations_city_id_fkey" FOREIGN KEY ("city_id") REFERENCES "cities"("city_id") ON DELETE NO ACTION ON UPDATE NO ACTION;
-
--- AddForeignKey
-ALTER TABLE "services" ADD CONSTRAINT "services_community_id_fkey" FOREIGN KEY ("community_id") REFERENCES "communities"("community_id") ON DELETE NO ACTION ON UPDATE NO ACTION;
+ALTER TABLE "timeslot" ADD CONSTRAINT "fk_activity" FOREIGN KEY ("activity_id") REFERENCES "activity"("activity_id") ON DELETE CASCADE ON UPDATE NO ACTION;
 

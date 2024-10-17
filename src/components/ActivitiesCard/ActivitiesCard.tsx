@@ -1,20 +1,23 @@
-import { prisma } from '@/lib/prisma';
-import styles from './ServiceCard.module.scss';
+import { prisma } from '@/lib/client';
+import styles from './ActivitiesCard.module.scss';
 import Image from 'next/image';
+import Button from '../Button';
+// import Image from 'next/image';
 
-type Services = {
-  service_id: number;
+type Activities = {
+  activity_id: number;
   name: string;
   category: string | null;
+  description: string | null;
 };
 
-const ServiceCard = async () => {
-  const services: Services[] = await prisma.services.findMany();
+export default async function ActivitiesCard() {
+  const activities: Activities[] = await prisma.activity.findMany();
 
   return (
     <div className={styles.cardGrid}>
-      {services.map(({ service_id, name, category }) => (
-        <div key={service_id} className={styles.card}>
+      {activities.map(({ activity_id, name, category, description }) => (
+        <div key={activity_id} className={styles.card}>
           <div className={styles.imageWrapper}>
             <Image
               src="/placeholder-image.jpg"
@@ -25,13 +28,12 @@ const ServiceCard = async () => {
           </div>
           <div className={styles.cardContent}>
             <h2 className={styles.cardTitle}>{name}</h2>
+            <p>{description}</p>
             <p className={styles.cardCategory}>{category || 'General'}</p>
-            <button className={styles.cardButton}>Learn More</button>
+            <Button className={styles.cardButton}>Learn More</Button>
           </div>
         </div>
       ))}
     </div>
   );
-};
-
-export default ServiceCard;
+}
