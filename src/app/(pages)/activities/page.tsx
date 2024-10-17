@@ -1,46 +1,40 @@
-'use client';
-import { useEffect, useState } from 'react';
+import { prisma } from '@/lib/client';
 import styles from './page.module.scss';
-import ActivitySection from '@components/ActivitySection';
+import ActivityCard from '@/components/ActivityCard';
 
 type Activity = {
+  activity_id: number;
   name: string;
   type: string;
-  category: string;
-  address: string;
+  category: string | null;
+  address: string | null;
   contact: {
-    phone: string;
-    website: string;
+    phone: string | null;
+    website: string | null;
   };
   details: {
     openingTimes: {
-      [day: string]: string;
+      [day: string]: string | null;
     };
-    priceRange: string;
-    bannerImage: string;
-    thumbnailImage: string;
+    priceRange: string | null;
+    bannerImage: string | null;
+    thumbnailImage: string | null;
   };
 };
 
-export default function ActivitiesPage() {
-  const [activities, setActivities] = useState<Activity[]>([]);
+export default async function ActivitiesPage() {
+  const activities: Activity[] = await prisma.activity.findMany();
 
-  useEffect(() => {
-    fetch('/data/activities.json')
-      .then((response) => response.json())
-      .then((data) => setActivities(data.activities))
-      .catch((error) => console.error('Error fetching activities:', error));
-  }, []);
-
+  // Extract categories from the activities
   const categories = Array.from(
-    new Set(activities.map((activity) => activity.category))
+    new Set(activities.map((activity) => activity.category || 'General'))
   );
 
   return (
     <div className={styles.activitiesPage}>
       <h1 className={styles.title}>Activities in Portsmouth</h1>
       {categories.map((category) => (
-        <ActivitySection
+        <ActivityCard
           key={category}
           category={category}
           activities={activities.filter(

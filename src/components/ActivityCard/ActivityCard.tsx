@@ -1,4 +1,4 @@
-import styles from './ActivitySection.module.scss';
+import styles from './ActivityCard.module.scss';
 
 type Activity = {
   name: string;
@@ -23,7 +23,7 @@ type ActivitySectionProps = {
   activities: Activity[];
 };
 
-export default function ActivitySection({
+export default function ActivityCard({
   category,
   activities,
 }: ActivitySectionProps) {
@@ -34,13 +34,13 @@ export default function ActivitySection({
         {activities.map((activity) => (
           <div className={styles.activityCard} key={activity.name}>
             <img
-              src={activity.details.bannerImage}
+              src={'/images/climbing-wall-banner.webp'}
               alt={activity.name}
               className={styles.bannerImage}
             />
             <div className={styles.activityContent}>
               <img
-                src={activity.details.thumbnailImage}
+                src={'/images/climbing-wall-thumb.avif'}
                 alt={activity.name}
                 className={styles.thumbnailImage}
               />
@@ -50,7 +50,7 @@ export default function ActivitySection({
                 <p className={styles.activityAddress}>{activity.address}</p>
                 <p className={styles.link}>
                   <a
-                    href={activity.contact.website}
+                    href={'https://www.portsmouthclimbingwall.co.uk/'}
                     target="_blank"
                     rel="noopener noreferrer"
                     className={styles.link}
