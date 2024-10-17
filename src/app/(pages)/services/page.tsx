@@ -1,16 +1,17 @@
-import ServiceList from '@/components/EventLists/EventLists';
+'use client';
+import Button from '@/components/Button';
+import Link from 'next/link';
+import styles from './page.module.scss';
 
-export const metadata = {
-  title: 'Services',
-  description: 'List of services',
-};
-
-export default function page() {
+export default function ServicesPage() {
   return (
     <main>
-      <h1>Here are the list if services from the database</h1>
-
-      <ServiceList />
+      <h1>Services</h1>
+      <div className={styles.buttonsContainer}>
+        <Link href="/events">
+          <Button variant="secondary">Events</Button>
+        </Link>
+      </div>
     </main>
   );
 }

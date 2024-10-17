@@ -59,7 +59,7 @@
   }
 
   .active {
-    color: black;
+    color: black !important;
     border-bottom: 2px solid white;
   }
 
@@ -76,7 +76,7 @@
       width: auto;
 
       a {
-        color: black;
+        color: #787878;
       }
     }
   }
