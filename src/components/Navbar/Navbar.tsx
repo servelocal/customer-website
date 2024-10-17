@@ -8,6 +8,7 @@ import { LuMenu } from 'react-icons/lu';
 import Button from '../Button';
 
 const itemLinks = [
+  { name: 'Activities', href: '/activities' },
   { name: 'Events', href: '/events' },
   { name: 'Services', href: '/services' },
   { name: 'Testing', href: '/playground' },
