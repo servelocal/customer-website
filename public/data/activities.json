@@ -1,0 +1,86 @@
+{
+  "city": "Portsmouth",
+  "activities": [
+    {
+      "name": "Hollywood Bowl",
+      "type": "Bowling",
+      "category": "Sports",
+      "address": "Gunwharf Quays, Portsmouth PO1 3TU, UK",
+      "contact": {
+        "phone": "+44 844 826 1459",
+        "website": "https://www.hollywoodbowl.co.uk/portsmouth"
+      },
+      "details": {
+        "openingTimes": {
+          "Weekdays": "10:00 AM - 11:00 PM",
+          "Friday": "10:00 AM - 12:00 AM",
+          "Saturday": "9:00 AM - 12:00 AM",
+          "Sunday": "9:00 AM - 10:00 PM"
+        },
+        "priceRange": "$$",
+        "bannerImage": "/images/hollywood-bowl-banner.avif",
+        "thumbnailImage": "/images/hollywood-bowl-thumb.jpg"
+      }
+    },
+    {
+      "name": "Southsea Golf Club",
+      "type": "Golfing",
+      "category": "Sports",
+      "address": "Eastern Rd, Portsmouth PO3 5TU, UK",
+      "contact": {
+        "phone": "+44 23 9266 1250",
+        "website": "http://www.southseagolf.co.uk/"
+      },
+      "details": {
+        "openingTimes": {
+          "Weekdays": "7:00 AM - 8:00 PM",
+          "Weekends": "7:00 AM - 8:00 PM"
+        },
+        "priceRange": "$$$",
+        "bannerImage": "/images/southsea-golf-banner.webp",
+        "thumbnailImage": "/images/southsea-golf-thumb.avif"
+      }
+    },
+    {
+      "name": "Portsmouth Climbing Wall",
+      "type": "Bouldering",
+      "category": "Sports",
+      "address": "The Pyramids Centre, Clarence Esplanade, Portsmouth PO5 3ST, UK",
+      "contact": {
+        "phone": "+44 23 9273 7120",
+        "website": "https://www.portsmouthclimbingwall.co.uk/"
+      },
+      "details": {
+        "openingTimes": {
+          "Weekdays": "10:00 AM - 9:00 PM",
+          "Weekends": "9:00 AM - 7:00 PM"
+        },
+        "priceRange": "$$",
+        "bannerImage": "/images/climbing-wall-banner.webp",
+        "thumbnailImage": "/images/climbing-wall-thumb.avif"
+      }
+    },
+    {
+      "name": "Dice Board Game Lounge",
+      "type": "Boardroom Cafe",
+      "category": "Other",
+      "address": "Albert Rd, Portsmouth PO4 0JR, UK",
+      "contact": {
+        "phone": "+44 23 9287 3020",
+        "website": "https://diceportsmouth.com/"
+      },
+      "details": {
+        "openingTimes": {
+          "Tuesday - Thursday": "12:00 PM - 10:00 PM",
+          "Friday": "12:00 PM - 11:00 PM",
+          "Saturday": "11:00 AM - 11:00 PM",
+          "Sunday": "11:00 AM - 10:00 PM",
+          "Monday": "Closed"
+        },
+        "priceRange": "$",
+        "bannerImage": "/images/dice-lounge-banner.webp",
+        "thumbnailImage": "/images/dice-lounge-thumb.jpg"
+      }
+    }
+  ]
+}
