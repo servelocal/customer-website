@@ -8,18 +8,18 @@ type Activity = {
   type: string;
   category: string | null;
   address: string | null;
-  contact: {
-    phone: string | null;
-    website: string | null;
-  };
-  details: {
-    openingTimes: {
-      [day: string]: string | null;
-    };
-    priceRange: string | null;
-    bannerImage: string | null;
-    thumbnailImage: string | null;
-  };
+  // contact: {
+  //   phone: string | null;
+  //   website: string | null;
+  // };
+  // details: {
+  //   openingTimes: {
+  //     [day: string]: string | null;
+  //   };
+  //   priceRange: string | null;
+  //   bannerImage: string | null;
+  //   thumbnailImage: string | null;
+  // };
 };
 
 export default async function ActivitiesPage() {

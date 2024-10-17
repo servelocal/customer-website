@@ -1,4 +1,6 @@
+import Image from 'next/image';
 import styles from './ActivityCard.module.scss';
+import Link from 'next/link';
 
 type Activity = {
   name: string;
@@ -33,15 +35,21 @@ export default function ActivityCard({
       <div className={styles.activityList}>
         {activities.map((activity) => (
           <div className={styles.activityCard} key={activity.name}>
-            <img
-              src={'/images/climbing-wall-banner.webp'}
+            {/* Dynamically loading banner image */}
+            <Image
+              src={'/images/hollywood-bowl-banner.avif'}
               alt={activity.name}
+              width={1200} // Specify width and height for better performance
+              height={500}
               className={styles.bannerImage}
             />
             <div className={styles.activityContent}>
-              <img
-                src={'/images/climbing-wall-thumb.avif'}
+              {/* Dynamically loading thumbnail image */}
+              <Image
+                src={'/images/hollywood-bowl-thumb.jpg'}
                 alt={activity.name}
+                width={200} // Specify width and height for better performance
+                height={150}
                 className={styles.thumbnailImage}
               />
               <div>
@@ -49,14 +57,10 @@ export default function ActivityCard({
                 <p className={styles.activityType}>{activity.type}</p>
                 <p className={styles.activityAddress}>{activity.address}</p>
                 <p className={styles.link}>
-                  <a
-                    href={'https://www.portsmouthclimbingwall.co.uk/'}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className={styles.link}
-                  >
+                  {/* Dynamically linking to the activity website */}
+                  <Link href={'https://www.portsmouthclimbingwall.co.uk/'}>
                     Visit Website
-                  </a>
+                  </Link>
                 </p>
               </div>
             </div>

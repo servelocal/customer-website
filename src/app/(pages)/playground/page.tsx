@@ -62,8 +62,6 @@ export default async function PlaygroundPage() {
           ariaLabel="close"
         ></Button>
 
-        {/* <ActivitiesCard /> */}
-
         <div className={styles.activitiesPage}>
           <h1 className={styles.title}>Activities in Portsmouth</h1>
           {categories.map((category) => (
