@@ -1,11 +1,40 @@
-'use client';
 import Button from '@/components/Button';
 import Link from 'next/link';
 import styles from './page.module.scss';
 import { FaArrowRightLong, FaArrowLeftLong } from 'react-icons/fa6';
 import { IoClose } from 'react-icons/io5';
+// import ActivitiesCard from '@/components/ActivitiesCard';
+import { prisma } from '@/lib/client';
+import ActivityCard from '@/components/ActivityCard';
 
-export default function PlaygroundPage() {
+type Activity = {
+  activity_id: number;
+  name: string;
+  type: string;
+  category: string | null;
+  address: string | null;
+  contact: {
+    phone: string | null;
+    website: string | null;
+  };
+  details: {
+    openingTimes: {
+      [day: string]: string | null;
+    };
+    priceRange: string | null;
+    bannerImage: string | null;
+    thumbnailImage: string | null;
+  };
+};
+
+export default async function PlaygroundPage() {
+  const activities: Activity[] = await prisma.activity.findMany();
+
+  // Extract categories from the activities
+  const categories = Array.from(
+    new Set(activities.map((activity) => activity.category || 'General'))
+  );
+
   return (
     <main>
       <h1>Play with your components</h1>
@@ -32,6 +61,19 @@ export default function PlaygroundPage() {
           icon={<IoClose />}
           ariaLabel="close"
         ></Button>
+
+        <div className={styles.activitiesPage}>
+          <h1 className={styles.title}>Activities in Portsmouth</h1>
+          {categories.map((category) => (
+            <ActivityCard
+              key={category}
+              category={category}
+              activities={activities.filter(
+                (activity) => activity.category === category
+              )}
+            />
+          ))}
+        </div>
       </div>
     </main>
   );
