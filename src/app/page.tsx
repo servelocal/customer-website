@@ -1,13 +1,15 @@
-import Link from 'next/link';
-import styles from './page.module.scss';
+import Banner from '@/components/Banner/Banner';
 
-export default function Home() {
+export default function HomePage() {
   return (
-    <div className={styles.page}>
-      <main>
-        <h1>This is the Home page</h1>
-        <Link href="/playground">Go to playground 🤜</Link>
-      </main>
+    <div>
+      <Banner
+        title="Welcome to Sidequest"
+        subtitle="Discover amazing services and activities in your area"
+        buttonText="Get Started"
+        buttonLink="/activities"
+        backgroundImage="https://img.freepik.com/premium-vector/yellow-background-with-dynamic-abstract-shapes_580167-286.jpg"
+      />
     </div>
   );
 }

@@ -2,50 +2,69 @@
 
 import Link from 'next/link';
 import { useState } from 'react';
-import styles from './Navbar.module.scss';
-import NavLinks from './NavLinks';
-import { LuMenu } from 'react-icons/lu';
-import Button from '../Button';
+import { usePathname } from 'next/navigation';
 
-const itemLinks = [
-  { name: 'Activities', href: '/activities' },
-  { name: 'Events', href: '/events' },
-  { name: 'Services', href: '/services' },
-  { name: 'Testing', href: '/playground' },
+const navLinks = [
+  { href: '/activities', label: 'Activities' },
+  { href: '/services', label: 'Services' },
+  { href: '/contact', label: 'Contact' },
 ];
 
-const Navbar = () => {
-  const [menuOpen, setMenuOpen] = useState(false);
-
-  const toggleMenu = () => {
-    setMenuOpen(!menuOpen);
-  };
+export default function Navbar() {
+  const [isOpen, setIsOpen] = useState(false);
+  const pathname = usePathname();
 
   return (
-    <nav className={styles.navbar}>
-      <div>
-        <Link className={styles.logo} href="/">
-          ServeLocal
-        </Link>
+    <nav className="fixed left-0 top-0 z-50 w-full backdrop-blur-lg">
+      <div className="mx-auto flex h-16 max-w-7xl items-center justify-between px-4 sm:px-6 lg:px-8">
+        <div className="flex items-center space-x-10">
+          <Link href="/" className="text-xl font-bold text-gray-900">
+            SideQuest
+          </Link>
+          <div className="hidden space-x-4 md:flex">
+            {navLinks.map((link) => (
+              <Link
+                key={link.href}
+                href={link.href}
+                className={`rounded-md px-3 py-2 text-sm font-medium ${
+                  pathname === link.href ? 'text-blue-600' : 'text-gray-700 hover:text-gray-900'
+                }`}
+              >
+                {link.label}
+              </Link>
+            ))}
+          </div>
+        </div>
+        <button
+          onClick={() => setIsOpen(!isOpen)}
+          className="rounded-md p-2 text-gray-700 hover:text-gray-900 focus:outline-none md:hidden"
+        >
+          <svg className="h-6 w-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path
+              strokeLinecap="round"
+              strokeLinejoin="round"
+              strokeWidth="2"
+              d={isOpen ? 'M6 18L18 6M6 6l12 12' : 'M4 6h16M4 12h16M4 18h16'}
+            />
+          </svg>
+        </button>
       </div>
 
-      <Button
-        ariaLabel="Navbar toggle"
-        className={styles.menuToggle}
-        onClick={toggleMenu}
-      >
-        <span className={styles.icon}>
-          <LuMenu />
-        </span>
-      </Button>
-
-      <ul className={`${styles.navLinks} ${menuOpen ? styles.open : ''}`}>
-        {itemLinks.map(({ name, href }) => (
-          <NavLinks key={name} name={name} href={href} />
-        ))}
-      </ul>
+      {isOpen && (
+        <div className="space-y-1 px-2 pb-3 pt-2 md:hidden">
+          {navLinks.map((link) => (
+            <Link
+              key={link.href}
+              href={link.href}
+              className={`block rounded-md px-3 py-2 text-base font-medium ${
+                pathname === link.href ? 'text-blue-600' : 'text-gray-700 hover:text-gray-900'
+              }`}
+            >
+              {link.label}
+            </Link>
+          ))}
+        </div>
+      )}
     </nav>
   );
-};
-
-export default Navbar;
+}
