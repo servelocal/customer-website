@@ -5,9 +5,9 @@ import { useState } from 'react';
 import { usePathname } from 'next/navigation';
 
 const navLinks = [
-  { href: '/activities', label: 'Activities' },
-  { href: '/services', label: 'Services' },
-  { href: '/contact', label: 'Contact' },
+  { href: '/city/portsmouth/activities', label: 'Activities' },
+  { href: '/events', label: 'Events' },
+  { href: '/communities', label: 'Communities' },
 ];
 
 export default function Navbar() {
@@ -15,7 +15,7 @@ export default function Navbar() {
   const pathname = usePathname();
 
   return (
-    <nav className="fixed left-0 top-0 z-50 w-full backdrop-blur-lg">
+    <nav className="fixed left-0 top-0 z-50 w-full backdrop-blur-3xl">
       <div className="mx-auto flex h-16 max-w-7xl items-center justify-between px-4 sm:px-6 lg:px-8">
         <div className="flex items-center space-x-10">
           <Link href="/" className="text-xl font-bold text-gray-900">
