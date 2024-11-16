@@ -32,7 +32,7 @@ const ActivitiesPage = ({ params }: { params: { city: string } }) => {
   return (
     <>
       <Banner
-        title={`Activities in ${params.city}`}
+        title={`Activities in ${params.city.charAt(0).toUpperCase() + params.city.slice(1)}`}
         subtitle="Discover amazing services and activities in your area"
         backgroundImage="https://img.freepik.com/premium-vector/yellow-background-with-dynamic-abstract-shapes_580167-286.jpg"
       />
