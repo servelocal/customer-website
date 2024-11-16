@@ -37,8 +37,8 @@
     {
       "activity_id": 2,
       "name": "Southsea Golf Club",
-      "type": "Golfing",
       "category": "Sports",
+      "sub_category": "Golfing",
       "description": "Southsea Golf Club is a welcoming club located in Portsmouth, offering an enjoyable golfing experience for both beginners and seasoned players. The club features a well-maintained course with scenic views and a friendly community atmosphere. With on-site facilities including a clubhouse and dining options, Southsea Golf Club is a great spot for a relaxing day of golf or to improve your game. Available for casual games and membership.",
       "tags": [
         "Outdoor",
@@ -68,8 +68,8 @@
     {
       "activity_id": 3,
       "name": "Portsmouth Climbing Wall",
-      "type": "Bouldering",
       "category": "Sports",
+      "sub_category": "Bouldering",
       "description": "Portsmouth Climbing Wall, located in The Pyramids Centre, offers an exciting bouldering experience for climbers of all skill levels. Featuring a variety of routes and bouldering challenges, this indoor climbing centre provides a safe and fun environment to improve your technique or try climbing for the first time. With trained staff, equipment rentals, and a supportive community, it’s ideal for individuals, groups, and families.",
       "tags": [
         "Indoor",
@@ -98,8 +98,8 @@
     {
       "activity_id": 4,
       "name": "Dice Board Game Lounge",
-      "type": "Boardroom Cafe",
       "category": "Other",
+      "sub_category": "Boardroom Cafe",
       "description": "Dice Board Game Lounge in Portsmouth offers a unique experience where board game enthusiasts can relax and enjoy a wide selection of games with friends and family. Located on Albert Road, this board game cafe provides a welcoming atmosphere with a diverse game library and a menu of snacks and beverages. Ideal for casual gamers or groups looking for a fun and interactive experience in a cosy setting.",
       "tags": [
         "Indoor",
@@ -132,8 +132,8 @@
     {
       "activity_id": 5,
       "name": "Blue Reef Aquarium",
-      "type": "Aquarium",
       "category": "Attraction",
+      "sub_category": "Aquarium",
       "description": "Blue Reef Aquarium in Portsmouth offers an immersive underwater experience, showcasing marine life from tropical oceans, native coastal waters, and local habitats. With a variety of displays, including an underwater tunnel, you can see everything from exotic fish to sharks and turtles. Ideal for families and nature lovers, the aquarium also hosts daily feeding shows and talks.",
       "tags": [
         "Indoor",
@@ -155,14 +155,14 @@
         },
         "priceRange": "££",
         "bannerImage": "/images/blue-reef-aquarium-banner.jpg",
-        "thumbnailImage": "/images/blue-reef-aquarium-thumb.png"
+        "thumbnailImage": "/images/blue-reef-aquarium-thumb.jpg"
       }
     },
     {
       "activity_id": 6,
       "name": "Spinnaker Tower",
-      "type": "Observation Deck",
       "category": "Attraction",
+      "sub_category": "Observation Deck",
       "description": "Experience breathtaking views of Portsmouth and beyond from the iconic Spinnaker Tower. Standing 170 metres tall, the tower offers panoramic views across the South Coast, with a glass floor Sky Walk and an open-air deck. Visitors can enjoy the cafe with a view, or for a unique experience, try the abseiling activity from the top!",
       "tags": [
         "Scenic",
@@ -190,8 +190,8 @@
     {
       "activity_id": 7,
       "name": "Portsmouth Historic Dockyard",
-      "type": "Museum",
       "category": "History",
+      "sub_category": "Museum",
       "description": "Portsmouth Historic Dockyard brings history to life with exhibitions on Britain’s naval heritage. Home to historic ships like HMS Victory and the Mary Rose, this attraction offers interactive displays, museums, and harbour tours, ideal for history enthusiasts and families. Visitors can enjoy a full day exploring the site and learning about maritime history.",
       "tags": [
         "Outdoor",
@@ -212,16 +212,16 @@
           "Daily": "10:00 AM - 5:30 PM"
         },
         "priceRange": "£££",
-        "bannerImage": "/images/historic-dockyard-banner.avif",
-        "thumbnailImage": "/images/historic-dockyard-thumb.jpg"
+        "bannerImage": "/images/historic-dockyard-banner.jpg",
+        "thumbnailImage": "/images/historic-dockyard-thumb.png"
       }
     },
     {
       "activity_id": 8,
-      "name": "Portsmouth Watersports Centre",
-      "type": "Watersports",
-      "category": "Adventure",
-      "description": "Portsmouth Watersports Centre offers a variety of exciting water-based activities including kayaking, paddleboarding, windsurfing, and sailing. Located on the beautiful Langstone Harbour, this centre is perfect for beginners and experienced participants alike. Enjoy a safe and thrilling experience with professional instruction and equipment provided.",
+      "name": "Andrew Simpson Centres",
+      "category": "Sports",
+      "sub_category": "Adventure",
+      "description": "Andrew Simpson Centres offers a variety of exciting water-based activities including kayaking, paddleboarding, windsurfing, and sailing. Located on the beautiful Langstone Harbour, this centre is perfect for beginners and experienced participants alike. Enjoy a safe and thrilling experience with professional instruction and equipment provided.",
       "tags": [
         "Outdoor",
         "Adventure",
@@ -243,39 +243,8 @@
           "Sunday": "10:00 AM - 4:00 PM"
         },
         "priceRange": "££",
-        "bannerImage": "/images/watersports-centre-banner.avif",
-        "thumbnailImage": "/images/watersports-centre-thumb.jpg"
-      }
-    },
-    {
-      "activity_id": 9,
-      "name": "Playland Indoor Soft Play",
-      "type": "Soft Play Area",
-      "category": "Family",
-      "description": "Playland Indoor Soft Play in Portsmouth provides a safe and fun environment for children to explore, climb, and play. The facility includes multi-level play structures, slides, and interactive areas, making it a great spot for kids' activities. Parents can relax with refreshments in the seating area while watching their children play.",
-      "tags": [
-        "Indoor",
-        "Family-friendly",
-        "Children's Activities",
-        "Play Area",
-        "Casual",
-        "Relaxing",
-        "Cafeteria"
-      ],
-      "address": "Cascades Shopping Centre, Portsmouth PO1 4RL, UK",
-      "contact": {
-        "phone": "+44 23 9286 3331",
-        "website": "https://www.playlandsoftplay.co.uk/"
-      },
-      "details": {
-        "openingTimes": {
-          "Monday - Friday": "10:00 AM - 6:00 PM",
-          "Saturday": "10:00 AM - 5:00 PM",
-          "Sunday": "11:00 AM - 4:00 PM"
-        },
-        "priceRange": "£",
-        "bannerImage": "/images/playland-banner.avif",
-        "thumbnailImage": "/images/playland-thumb.jpg"
+        "bannerImage": "/images/andrew-simpson-centre-banner.jpg",
+        "thumbnailImage": "/images/andrew-simpson-centre-thumb.png"
       }
     }
   ]
