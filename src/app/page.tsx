@@ -1,14 +1,14 @@
-import Banner from '@/components/Banner/Banner';
+import Banner from '@/components/Banner';
 
 export default function HomePage() {
   return (
     <div>
       <Banner
-        title="Welcome to Sidequest"
+        title="Welcome to SideQuest"
         subtitle="Discover amazing services and activities in your area"
         buttonText="Portsmouth"
         buttonLink="/city/portsmouth/activities"
-        backgroundImage="https://img.freepik.com/premium-vector/yellow-background-with-dynamic-abstract-shapes_580167-286.jpg"
+        backgroundImage="/images/bg2.svg"
       />
     </div>
   );

@@ -30,7 +30,7 @@
           "Sunday": "9:00 AM - 10:00 PM"
         },
         "priceRange": "££",
-        "bannerImage": "/images/hollywood-bowl-banner.avif",
+        "bannerImage": "/images/hollywood-bowl-banner.webp",
         "thumbnailImage": "/images/hollywood-bowl-thumb.jpg"
       }
     },
@@ -61,8 +61,8 @@
           "Weekends": "7:00 AM - 8:00 PM"
         },
         "priceRange": "£££",
-        "bannerImage": "/images/southsea-golf-banner.webp",
-        "thumbnailImage": "/images/southsea-golf-thumb.avif"
+        "bannerImage": "/images/southsea-golf-banner.jpg",
+        "thumbnailImage": "/images/southsea-golf-thumb.jpg"
       }
     },
     {
@@ -98,7 +98,7 @@
     {
       "activity_id": 4,
       "name": "Dice Board Game Lounge",
-      "category": "Other",
+      "category": "Games",
       "sub_category": "Boardroom Cafe",
       "description": "Dice Board Game Lounge in Portsmouth offers a unique experience where board game enthusiasts can relax and enjoy a wide selection of games with friends and family. Located on Albert Road, this board game cafe provides a welcoming atmosphere with a diverse game library and a menu of snacks and beverages. Ideal for casual gamers or groups looking for a fun and interactive experience in a cosy setting.",
       "tags": [

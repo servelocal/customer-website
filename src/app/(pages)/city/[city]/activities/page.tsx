@@ -14,7 +14,7 @@ interface Activity {
 
 const ActivitiesPage = () => {
   const [activities, setActivities] = useState<Record<string, Activity[]>>({});
-  const params: { city?: string | undefined } = useParams(); // Use the useParams hook
+  const params: { city?: string | undefined } = useParams();
   console.log(params.city);
   useEffect(() => {
     const fetchActivities = async () => {
@@ -25,7 +25,6 @@ const ActivitiesPage = () => {
       console.log(params.city);
 
       const cityData = data.city.toLowerCase() === params.city ? data.activities : [];
-      console.log(cityData);
       const categorized = cityData.reduce((acc: Record<string, Activity[]>, activity: Activity) => {
         acc[activity.category] = acc[activity.category] || [];
         acc[activity.category].push(activity);
@@ -41,7 +40,7 @@ const ActivitiesPage = () => {
       <Banner
         title={`Activities in ${capitalise(params.city)}`}
         subtitle="Discover amazing services and activities in your area"
-        backgroundImage="https://img.freepik.com/premium-vector/yellow-background-with-dynamic-abstract-shapes_580167-286.jpg"
+        backgroundImage="/images/bg.svg"
       />
       <div className="container mx-auto p-4">
         {Object.entries(activities).map(([category, activities]) => (

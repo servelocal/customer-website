@@ -1,6 +1,7 @@
 'use client';
 import { useEffect, useState } from 'react';
 import { useParams } from 'next/navigation';
+import Image from 'next/image';
 
 interface Activity {
   name: string;
@@ -38,17 +39,21 @@ const ActivityDetailPage = () => {
   if (!activity) return <p>Loading...</p>;
 
   return (
-    <div className="container mx-auto p-4">
+    <div className="container mx-auto mt-12 p-4">
       <div className="relative mb-6">
-        <img
+        <Image
           src={activity.details.bannerImage}
           alt={activity.name}
+          width={1200}
+          height={600}
           className="h-96 w-full rounded-lg object-cover"
         />
         <div className="absolute bottom-6 left-6 flex items-center gap-4 rounded-lg bg-white p-5 shadow-md">
-          <img
+          <Image
             src={activity.details.thumbnailImage}
             alt={`${activity.name} thumbnail`}
+            width={96}
+            height={96}
             className="h-24 w-24 rounded-full object-cover"
           />
           <div>
@@ -76,13 +81,11 @@ const ActivityDetailPage = () => {
         <p className="text-gray-700">{activity.description}</p>
       </div>
 
-      {/* Address */}
       <div className="mb-6">
         <h2 className="mb-2 text-xl font-semibold">Address</h2>
         <p className="text-gray-700">{activity.address}</p>
       </div>
 
-      {/* Contact */}
       <div className="mb-6">
         <h2 className="mb-2 text-xl font-semibold">Contact</h2>
         <p className="text-gray-700">Phone: {activity.contact.phone}</p>
@@ -96,7 +99,6 @@ const ActivityDetailPage = () => {
         </a>
       </div>
 
-      {/* Opening Times */}
       <div className="mb-6">
         <h2 className="mb-2 text-xl font-semibold">Opening Times</h2>
         <ul className="ml-6 list-disc">
@@ -108,7 +110,6 @@ const ActivityDetailPage = () => {
         </ul>
       </div>
 
-      {/* Price Range */}
       <div className="mb-6">
         <h2 className="mb-2 text-xl font-semibold">Price Range</h2>
         <p className="text-gray-700">{activity.details.priceRange}</p>
