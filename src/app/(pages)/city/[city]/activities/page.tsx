@@ -15,14 +15,10 @@ interface Activity {
 const ActivitiesPage = () => {
   const [activities, setActivities] = useState<Record<string, Activity[]>>({});
   const params: { city?: string | undefined } = useParams();
-  console.log(params.city);
   useEffect(() => {
     const fetchActivities = async () => {
       const response = await fetch('/api/activities');
       const data = await response.json();
-      console.log(data.activities);
-      console.log(data.city.toLowerCase());
-      console.log(params.city);
 
       const cityData = data.city.toLowerCase() === params.city ? data.activities : [];
       const categorized = cityData.reduce((acc: Record<string, Activity[]>, activity: Activity) => {
