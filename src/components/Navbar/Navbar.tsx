@@ -29,7 +29,7 @@ export default function Navbar() {
 
   return (
     <nav
-      className={`transition-backdrop fixed left-0 top-0 z-50 w-full transition-colors duration-500 ease-in-out ${
+      className={`transition-backdrop fixed left-0 top-0 z-50 w-full transition-colors duration-300 ease-in-out ${
         isScrolled ? 'bg-white/40 backdrop-blur-3xl' : 'bg-transparent'
       }`}
     >
