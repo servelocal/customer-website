@@ -1,0 +1,87 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+/// This table contains check constraints and requires additional setup for migrations. Visit https://pris.ly/d/check-constraints for more info.
+model activity {
+  activity_id  String         @id @default(dbgenerated("uuid_generate_v4()")) @db.Uuid
+  name         String
+  description  String?
+  category     String?
+  sub_category String?
+  rating       Decimal?       @db.Decimal(3, 1)
+  tags         String[]
+  price        Decimal?       @db.Decimal(7, 2)
+  location_id  String         @db.Uuid
+  contact_id   String         @db.Uuid
+  contact      contact        @relation(fields: [contact_id], references: [contact_id], onDelete: Cascade, onUpdate: NoAction, map: "fk_contact")
+  location     location       @relation(fields: [location_id], references: [location_id], onDelete: Cascade, onUpdate: NoAction, map: "fk_location")
+  special_days special_days[]
+  timeslot     timeslot[]
+
+  @@index([category], map: "idx_activity_category")
+  @@index([name], map: "idx_activity_name")
+  @@index([tags], map: "idx_activity_tags", type: Gin)
+}
+
+model city {
+  city_id   String     @id @default(dbgenerated("uuid_generate_v4()")) @db.Uuid
+  city_name String
+  county_id String     @db.Uuid
+  county    county     @relation(fields: [county_id], references: [county_id], onDelete: Cascade, onUpdate: NoAction, map: "fk_county")
+  location  location[]
+
+  @@unique([city_name, county_id], map: "uq_city_county")
+  @@index([county_id], map: "idx_city_county_id")
+}
+
+model contact {
+  contact_id    String     @id @default(dbgenerated("uuid_generate_v4()")) @db.Uuid
+  phone_number  String     @db.VarChar(15)
+  website       String?
+  email_address String?
+  activity      activity[]
+}
+
+model county {
+  county_id   String @id @default(dbgenerated("uuid_generate_v4()")) @db.Uuid
+  county_name String @unique
+  city        city[]
+}
+
+model location {
+  location_id    String     @id @default(dbgenerated("uuid_generate_v4()")) @db.Uuid
+  street_address String
+  post_code      String?    @db.VarChar(20)
+  city_id        String     @db.Uuid
+  activity       activity[]
+  city           city       @relation(fields: [city_id], references: [city_id], onDelete: Cascade, onUpdate: NoAction, map: "fk_city")
+
+  @@index([city_id], map: "idx_location_city_id")
+}
+
+model special_days {
+  special_day_id String   @id @default(dbgenerated("uuid_generate_v4()")) @db.Uuid
+  special_date   DateTime @db.Date
+  opening_time   DateTime @db.Time(6)
+  closing_time   DateTime @db.Time(6)
+  activity_id    String   @db.Uuid
+  activity       activity @relation(fields: [activity_id], references: [activity_id], onDelete: Cascade, onUpdate: NoAction, map: "fk_activity_special_days")
+}
+
+/// This table contains check constraints and requires additional setup for migrations. Visit https://pris.ly/d/check-constraints for more info.
+model timeslot {
+  timeslot_id  String   @id @default(dbgenerated("uuid_generate_v4()")) @db.Uuid
+  day_of_week  Int
+  opening_time DateTime @db.Time(6)
+  closing_time DateTime @db.Time(6)
+  activity_id  String   @db.Uuid
+  activity     activity @relation(fields: [activity_id], references: [activity_id], onDelete: Cascade, onUpdate: NoAction, map: "fk_activity")
+
+  @@index([activity_id], map: "idx_timeslot_activity_id")
+}
