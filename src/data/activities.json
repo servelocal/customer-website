@@ -1,0 +1,251 @@
+{
+  "city": "Portsmouth",
+  "activities": [
+    {
+      "activity_id": 1,
+      "name": "Hollywood Bowl",
+      "category": "Sports",
+      "sub_category": "Bowling",
+      "description": "Hollywood Bowl in Portsmouth offers a fun-filled bowling experience for all ages. Located at the popular Gunwharf Quays, this venue is perfect for family outings, casual hangouts, or friendly competitions. With modern lanes, arcade games, and a bar, it's an ideal spot for entertainment. Enjoy delicious food and drink options while you play, and experience special offers during peak times. Hollywood Bowl is a go-to choice for an enjoyable day or night out with friends and family.",
+      "tags": [
+        "Indoor",
+        "Family-friendly",
+        "Group Activities",
+        "Casual",
+        "Entertainment",
+        "Arcade Games",
+        "Food and Drink",
+        "Bowling"
+      ],
+      "address": "Gunwharf Quays, Portsmouth PO1 3TU, UK",
+      "contact": {
+        "phone": "+44 844 826 1459",
+        "website": "https://www.hollywoodbowl.co.uk/portsmouth"
+      },
+      "details": {
+        "openingTimes": {
+          "Weekdays": "10:00 AM - 11:00 PM",
+          "Friday": "10:00 AM - 12:00 AM",
+          "Saturday": "9:00 AM - 12:00 AM",
+          "Sunday": "9:00 AM - 10:00 PM"
+        },
+        "priceRange": "££",
+        "bannerImage": "/images/hollywood-bowl-banner.webp",
+        "thumbnailImage": "/images/hollywood-bowl-thumb.jpg"
+      }
+    },
+    {
+      "activity_id": 2,
+      "name": "Southsea Golf Club",
+      "category": "Sports",
+      "sub_category": "Golfing",
+      "description": "Southsea Golf Club is a welcoming club located in Portsmouth, offering an enjoyable golfing experience for both beginners and seasoned players. The club features a well-maintained course with scenic views and a friendly community atmosphere. With on-site facilities including a clubhouse and dining options, Southsea Golf Club is a great spot for a relaxing day of golf or to improve your game. Available for casual games and membership.",
+      "tags": [
+        "Outdoor",
+        "Golf",
+        "Scenic",
+        "Clubhouse",
+        "Membership Available",
+        "Social",
+        "Leisure",
+        "Relaxing"
+      ],
+      "address": "Eastern Rd, Portsmouth PO3 5TU, UK",
+      "contact": {
+        "phone": "+44 23 9266 1250",
+        "website": "http://www.southseagolf.co.uk/"
+      },
+      "details": {
+        "openingTimes": {
+          "Weekdays": "7:00 AM - 8:00 PM",
+          "Weekends": "7:00 AM - 8:00 PM"
+        },
+        "priceRange": "£££",
+        "bannerImage": "/images/southsea-golf-banner.jpg",
+        "thumbnailImage": "/images/southsea-golf-thumb.jpg"
+      }
+    },
+    {
+      "activity_id": 3,
+      "name": "Portsmouth Climbing Wall",
+      "category": "Sports",
+      "sub_category": "Bouldering",
+      "description": "Portsmouth Climbing Wall, located in The Pyramids Centre, offers an exciting bouldering experience for climbers of all skill levels. Featuring a variety of routes and bouldering challenges, this indoor climbing centre provides a safe and fun environment to improve your technique or try climbing for the first time. With trained staff, equipment rentals, and a supportive community, it’s ideal for individuals, groups, and families.",
+      "tags": [
+        "Indoor",
+        "Bouldering",
+        "Adventure",
+        "Fitness",
+        "Equipment Rental",
+        "Group-friendly",
+        "Skill Development"
+      ],
+      "address": "The Pyramids Centre, Clarence Esplanade, Portsmouth PO5 3ST, UK",
+      "contact": {
+        "phone": "+44 23 9273 7120",
+        "website": "https://www.portsmouthclimbingwall.co.uk/"
+      },
+      "details": {
+        "openingTimes": {
+          "Weekdays": "10:00 AM - 9:00 PM",
+          "Weekends": "9:00 AM - 7:00 PM"
+        },
+        "priceRange": "££",
+        "bannerImage": "/images/climbing-wall-banner.webp",
+        "thumbnailImage": "/images/climbing-wall-thumb.avif"
+      }
+    },
+    {
+      "activity_id": 4,
+      "name": "Dice Board Game Lounge",
+      "category": "Games",
+      "sub_category": "Boardroom Cafe",
+      "description": "Dice Board Game Lounge in Portsmouth offers a unique experience where board game enthusiasts can relax and enjoy a wide selection of games with friends and family. Located on Albert Road, this board game cafe provides a welcoming atmosphere with a diverse game library and a menu of snacks and beverages. Ideal for casual gamers or groups looking for a fun and interactive experience in a cosy setting.",
+      "tags": [
+        "Indoor",
+        "Board Games",
+        "Cafe",
+        "Group-friendly",
+        "Casual",
+        "Social",
+        "Relaxing",
+        "Snacks and Beverages"
+      ],
+      "address": "Albert Rd, Portsmouth PO4 0JR, UK",
+      "contact": {
+        "phone": "+44 23 9287 3020",
+        "website": "https://diceportsmouth.com/"
+      },
+      "details": {
+        "openingTimes": {
+          "Tuesday - Thursday": "12:00 PM - 10:00 PM",
+          "Friday": "12:00 PM - 11:00 PM",
+          "Saturday": "11:00 AM - 11:00 PM",
+          "Sunday": "11:00 AM - 10:00 PM",
+          "Monday": "Closed"
+        },
+        "priceRange": "£",
+        "bannerImage": "/images/dice-lounge-banner.webp",
+        "thumbnailImage": "/images/dice-lounge-thumb.jpg"
+      }
+    },
+    {
+      "activity_id": 5,
+      "name": "Blue Reef Aquarium",
+      "category": "Attraction",
+      "sub_category": "Aquarium",
+      "description": "Blue Reef Aquarium in Portsmouth offers an immersive underwater experience, showcasing marine life from tropical oceans, native coastal waters, and local habitats. With a variety of displays, including an underwater tunnel, you can see everything from exotic fish to sharks and turtles. Ideal for families and nature lovers, the aquarium also hosts daily feeding shows and talks.",
+      "tags": [
+        "Indoor",
+        "Family-friendly",
+        "Educational",
+        "Marine Life",
+        "Aquarium",
+        "Interactive",
+        "Exhibitions"
+      ],
+      "address": "Clarence Esplanade, Southsea, Portsmouth PO5 3PB, UK",
+      "contact": {
+        "phone": "+44 23 9287 5222",
+        "website": "https://www.bluereefaquarium.co.uk/portsmouth/"
+      },
+      "details": {
+        "openingTimes": {
+          "Daily": "10:00 AM - 5:00 PM"
+        },
+        "priceRange": "££",
+        "bannerImage": "/images/blue-reef-aquarium-banner.jpg",
+        "thumbnailImage": "/images/blue-reef-aquarium-thumb.jpg"
+      }
+    },
+    {
+      "activity_id": 6,
+      "name": "Spinnaker Tower",
+      "category": "Attraction",
+      "sub_category": "Observation Deck",
+      "description": "Experience breathtaking views of Portsmouth and beyond from the iconic Spinnaker Tower. Standing 170 metres tall, the tower offers panoramic views across the South Coast, with a glass floor Sky Walk and an open-air deck. Visitors can enjoy the cafe with a view, or for a unique experience, try the abseiling activity from the top!",
+      "tags": [
+        "Scenic",
+        "Landmark",
+        "Observation Deck",
+        "Family-friendly",
+        "Adventure",
+        "City Views",
+        "Glass Floor"
+      ],
+      "address": "Gunwharf Quays, Portsmouth PO1 3TT, UK",
+      "contact": {
+        "phone": "+44 23 9285 7520",
+        "website": "https://www.spinnakertower.co.uk/"
+      },
+      "details": {
+        "openingTimes": {
+          "Daily": "10:00 AM - 6:00 PM"
+        },
+        "priceRange": "£££",
+        "bannerImage": "/images/spinnaker-tower-banner.jpg",
+        "thumbnailImage": "/images/spinnaker-tower-thumb.png"
+      }
+    },
+    {
+      "activity_id": 7,
+      "name": "Portsmouth Historic Dockyard",
+      "category": "History",
+      "sub_category": "Museum",
+      "description": "Portsmouth Historic Dockyard brings history to life with exhibitions on Britain’s naval heritage. Home to historic ships like HMS Victory and the Mary Rose, this attraction offers interactive displays, museums, and harbour tours, ideal for history enthusiasts and families. Visitors can enjoy a full day exploring the site and learning about maritime history.",
+      "tags": [
+        "Outdoor",
+        "Indoor",
+        "Historic",
+        "Museum",
+        "Family-friendly",
+        "Educational",
+        "Landmark"
+      ],
+      "address": "Victory Gate, HM Naval Base, Portsmouth PO1 3LJ, UK",
+      "contact": {
+        "phone": "+44 23 9283 9766",
+        "website": "https://www.historicdockyard.co.uk/"
+      },
+      "details": {
+        "openingTimes": {
+          "Daily": "10:00 AM - 5:30 PM"
+        },
+        "priceRange": "£££",
+        "bannerImage": "/images/historic-dockyard-banner.jpg",
+        "thumbnailImage": "/images/historic-dockyard-thumb.png"
+      }
+    },
+    {
+      "activity_id": 8,
+      "name": "Andrew Simpson Centres",
+      "category": "Sports",
+      "sub_category": "Adventure",
+      "description": "Andrew Simpson Centres offers a variety of exciting water-based activities including kayaking, paddleboarding, windsurfing, and sailing. Located on the beautiful Langstone Harbour, this centre is perfect for beginners and experienced participants alike. Enjoy a safe and thrilling experience with professional instruction and equipment provided.",
+      "tags": [
+        "Outdoor",
+        "Adventure",
+        "Water Activities",
+        "Kayaking",
+        "Paddleboarding",
+        "Family-friendly",
+        "Scenic"
+      ],
+      "address": "Eastern Rd, Portsmouth PO3 5LY, UK",
+      "contact": {
+        "phone": "+44 23 9266 3873",
+        "website": "https://www.portsmouthwatersports.com/"
+      },
+      "details": {
+        "openingTimes": {
+          "Weekdays": "9:00 AM - 5:00 PM",
+          "Saturday": "9:00 AM - 6:00 PM",
+          "Sunday": "10:00 AM - 4:00 PM"
+        },
+        "priceRange": "££",
+        "bannerImage": "/images/andrew-simpson-centre-banner.jpg",
+        "thumbnailImage": "/images/andrew-simpson-centre-thumb.png"
+      }
+    }
+  ]
+}
