@@ -1,35 +1,22 @@
-'use client';
-
-import { useEffect, useState } from 'react';
-import { useParams } from 'next/navigation';
+import { notFound } from 'next/navigation';
 import Image from 'next/image';
 import activitiesData from '@/data/activities.json';
 import { Activity } from '@/types';
 
-const ActivityDetailPage = () => {
-  const { activity_id: activityId }: { activity_id?: string } = useParams();
-  const [activity, setActivity] = useState<Activity | null>(null);
-  const [error, setError] = useState<string | null>(null);
+interface ActivityDetailPageProps {
+  params: Promise<{ activity_id: string }>;
+}
 
-  useEffect(() => {
-    if (!activityId) {
-      setError('Invalid activity ID.');
-      return;
-    }
+const ActivityDetailPage = async ({ params }: ActivityDetailPageProps) => {
+  const { activity_id: activityId } = await params;
 
-    const foundActivity = activitiesData.activities.find(
-      (act: Activity) => act.activity_id.toString() === activityId
-    );
+  const activity = activitiesData.activities.find(
+    (act: Activity) => act.activity_id.toString() === activityId
+  );
 
-    if (foundActivity) {
-      setActivity(foundActivity);
-    } else {
-      setError('Activity not found.');
-    }
-  }, [activityId]);
-
-  if (error) return <p className="text-center text-red-500">{error}</p>;
-  if (!activity) return <p className="text-center text-gray-500">Loading activity details...</p>;
+  if (!activity) {
+    notFound();
+  }
 
   return (
     <div className="container mx-auto mt-12 p-4">
