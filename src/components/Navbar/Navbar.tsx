@@ -31,7 +31,7 @@ export default function Navbar() {
   return (
     <nav
       className={`fixed left-0 top-0 z-50 w-full transition-colors duration-300 ease-in-out ${
-        isScrolled ? 'bg-white/90 shadow-md' : 'bg-transparent'
+        isScrolled ? 'bg-white/40 backdrop-blur-3xl' : 'bg-transparent'
       }`}
     >
       <div className="flex h-16 items-center justify-between px-6">
