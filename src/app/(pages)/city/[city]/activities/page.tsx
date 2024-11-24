@@ -1,47 +1,58 @@
 'use client';
+
 import { useEffect, useState } from 'react';
 import { useParams } from 'next/navigation';
 import Banner from '@/components/Banner';
 import CategorySection from '@/components/CategorySection';
 import { capitalise } from '@/utils/capitalise';
+import data from '@/data/activities.json';
+import { Activity } from '@/types';
 
-interface Activity {
-  activity_id: number;
-  name: string;
-  category: string;
-  details: { bannerImage: string; thumbnailImage: string; priceRange: string };
-}
+const DEFAULT_BACKGROUND_IMAGE = '/images/bg.svg';
+
+const categoriseActivities = (activities: Activity[]): Record<string, Activity[]> => {
+  return activities.reduce((acc: Record<string, Activity[]>, activity) => {
+    acc[activity.category] = acc[activity.category] || [];
+    acc[activity.category].push(activity);
+    return acc;
+  }, {});
+};
 
 const ActivitiesPage = () => {
   const [activities, setActivities] = useState<Record<string, Activity[]>>({});
-  const params: { city?: string | undefined } = useParams();
+  const { city }: { city?: string } = useParams();
+
   useEffect(() => {
     const fetchActivities = async () => {
-      const response = await fetch('/api/activities');
-      const data = await response.json();
+      if (!city) {
+        setActivities({});
+        return;
+      }
 
-      const cityData = data.city.toLowerCase() === params.city ? data.activities : [];
-      const categorized = cityData.reduce((acc: Record<string, Activity[]>, activity: Activity) => {
-        acc[activity.category] = acc[activity.category] || [];
-        acc[activity.category].push(activity);
-        return acc;
-      }, {});
+      const lowercasedCity = city.toLowerCase();
+      const cityActivities = data.city.toLowerCase() === lowercasedCity ? data.activities : [];
+      const categorized = categoriseActivities(cityActivities);
       setActivities(categorized);
     };
+
     fetchActivities();
-  }, [params.city]);
+  }, [city]);
 
   return (
     <>
       <Banner
-        title={`Activities in ${capitalise(params.city)}`}
+        title={`Activities in ${capitalise(city || 'your area')}`}
         subtitle="Discover amazing services and activities in your area"
-        backgroundImage="/images/bg.svg"
+        backgroundImage={DEFAULT_BACKGROUND_IMAGE}
       />
       <div className="container mx-auto p-4">
-        {Object.entries(activities).map(([category, activities]) => (
-          <CategorySection key={category} category={category} activities={activities} />
-        ))}
+        {Object.entries(activities).length > 0 ? (
+          Object.entries(activities).map(([category, activities]) => (
+            <CategorySection key={category} category={category} activities={activities} />
+          ))
+        ) : (
+          <p className="text-center text-gray-500">No activities found for this city.</p>
+        )}
       </div>
     </>
   );
