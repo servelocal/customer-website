@@ -1,6 +1,3 @@
-// app/activities/[city]/page.tsx
-import { use } from 'react';
-import { notFound } from 'next/navigation';
 import Banner from '@/components/Banner';
 import CategorySection from '@/components/CategorySection';
 import { capitalise } from '@/utils/capitalise';
@@ -26,8 +23,9 @@ const fetchActivities = async (city: string): Promise<Record<string, Activity[]>
 };
 
 const ActivitiesPage = async ({ params }: { params: { city: string } }) => {
-  const { city } = params;
+  const { city } = await params;
 
+  // Fetch and categorize activities
   const activities = await fetchActivities(city);
 
   return (
