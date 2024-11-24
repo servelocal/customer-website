@@ -9,6 +9,7 @@ export default function Location() {
   const [searchQuery, setSearchQuery] = useState('');
   const [cities, setCities] = useState<string[]>([]);
   const [isDropdownOpen, setIsDropdownOpen] = useState(false);
+  const [selectedIndex, setSelectedIndex] = useState(0);
 
   const dropdownRef = useRef<HTMLDivElement>(null);
 
@@ -86,11 +87,29 @@ export default function Location() {
     setLocation(city);
     setSearchQuery('');
     setIsDropdownOpen(false);
+    setSelectedIndex(0); // Reset selected index
   };
 
   const handleInputChange = (value: string) => {
-    setLocation('');
     setSearchQuery(value);
+    setLocation('');
+    setSelectedIndex(0); // Reset to the first city in the filtered list
+    setIsDropdownOpen(true);
+  };
+
+  const handleKeyDown = (e: React.KeyboardEvent<HTMLInputElement>) => {
+    if (!filteredCities.length) return;
+
+    if (e.key === 'ArrowDown') {
+      // Navigate down the list
+      setSelectedIndex((prev) => Math.min(prev + 1, filteredCities.length - 1));
+    } else if (e.key === 'ArrowUp') {
+      // Navigate up the list
+      setSelectedIndex((prev) => Math.max(prev - 1, 0));
+    } else if (e.key === 'Enter') {
+      // Select the highlighted city
+      handleCitySelect(filteredCities[selectedIndex]);
+    }
   };
 
   const filteredCities = searchQuery
@@ -106,6 +125,7 @@ export default function Location() {
           value={searchQuery || location}
           onClick={() => setIsDropdownOpen(true)}
           onChange={(e) => handleInputChange(e.target.value)}
+          onKeyDown={handleKeyDown}
           className="w-full rounded-lg border-none bg-transparent p-1 text-gray-800 focus:outline-none"
         />
         <button onClick={detectLocation} className="ml-2 flex items-center justify-center">
@@ -118,11 +138,13 @@ export default function Location() {
       </div>
       {isDropdownOpen && (
         <div className="absolute z-10 mt-1 max-h-48 w-full overflow-y-auto rounded-lg border border-gray-300 bg-white shadow-lg">
-          {filteredCities.map((city) => (
+          {filteredCities.map((city, index) => (
             <div
               key={city}
               onClick={() => handleCitySelect(city)}
-              className="cursor-pointer px-4 py-2 text-gray-700 hover:bg-gray-100"
+              className={`cursor-pointer px-4 py-2 text-gray-700 hover:bg-gray-100 ${
+                index === selectedIndex ? 'bg-gray-100' : ''
+              }`}
             >
               {city}
             </div>
