@@ -25,7 +25,6 @@ const fetchActivities = async (city: string): Promise<Record<string, Activity[]>
 const ActivitiesPage = async ({ params }: { params: { city: string } }) => {
   const { city } = await params;
 
-  // Fetch and categorize activities
   const activities = await fetchActivities(city);
 
   return (

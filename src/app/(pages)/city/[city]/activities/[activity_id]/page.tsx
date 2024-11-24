@@ -4,19 +4,18 @@ import activitiesData from '@/data/activities.json';
 import { Activity } from '@/types';
 
 interface ActivityDetailPageProps {
-  params: Promise<{ activity_id: string }>; // Define `params` as a Promise, as it can be awaited
+  params: Promise<{ activity_id: string }>;
 }
 
 const ActivityDetailPage = async ({ params }: ActivityDetailPageProps) => {
   const { activity_id: activityId } = await params;
 
-  // Find the activity using the activity ID
   const activity = activitiesData.activities.find(
     (act: Activity) => act.activity_id.toString() === activityId
   );
 
   if (!activity) {
-    notFound(); // Automatically render a 404 page if activity not found
+    notFound();
   }
 
   return (
