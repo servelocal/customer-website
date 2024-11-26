@@ -3,41 +3,42 @@
 import { useState, useEffect, useRef } from 'react';
 import { IoLocationSharp } from 'react-icons/io5';
 
+const UK_CITIES = [
+  'London',
+  'Manchester',
+  'Birmingham',
+  'Liverpool',
+  'Edinburgh',
+  'Glasgow',
+  'Bristol',
+  'Leeds',
+  'Cardiff',
+  'Nottingham',
+  'Sheffield',
+  'Leicester',
+  'Coventry',
+  'Bradford',
+  'Stoke-on-Trent',
+  'Wolverhampton',
+  'Middlesbrough',
+  'Hull',
+  'Sunderland',
+  'Portsmouth',
+  'Bournemouth',
+];
+
 export default function Location() {
   const [location, setLocation] = useState('United Kingdom');
   const [loading, setLoading] = useState(false);
   const [searchQuery, setSearchQuery] = useState('');
-  const [cities, setCities] = useState<string[]>([]);
+  const [filteredCities, setFilteredCities] = useState<string[]>([]);
   const [isDropdownOpen, setIsDropdownOpen] = useState(false);
   const [selectedIndex, setSelectedIndex] = useState(0);
 
   const dropdownRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
-    const ukCities = [
-      'London',
-      'Manchester',
-      'Birmingham',
-      'Liverpool',
-      'Edinburgh',
-      'Glasgow',
-      'Bristol',
-      'Leeds',
-      'Cardiff',
-      'Nottingham',
-      'Sheffield',
-      'Leicester',
-      'Coventry',
-      'Bradford',
-      'Stoke-on-Trent',
-      'Wolverhampton',
-      'Middlesbrough',
-      'Hull',
-      'Sunderland',
-      'Portsmouth',
-      'Bournemouth',
-    ];
-    setCities(ukCities.sort());
+    setFilteredCities(UK_CITIES.sort());
   }, []);
 
   useEffect(() => {
@@ -46,54 +47,30 @@ export default function Location() {
         setIsDropdownOpen(false);
       }
     };
+
     document.addEventListener('mousedown', handleClickOutside);
     return () => document.removeEventListener('mousedown', handleClickOutside);
   }, []);
 
-  const detectLocation = () => {
-    if (!navigator.geolocation) {
-      setLocation('Geolocation not supported');
-      return;
-    }
-
+  const resetSelection = () => {
+    setSelectedIndex(0);
     setIsDropdownOpen(false);
-    setLoading(true);
-    navigator.geolocation.getCurrentPosition(
-      async ({ coords }) => {
-        const { latitude, longitude } = coords;
-        try {
-          const response = await fetch(
-            `https://nominatim.openstreetmap.org/reverse?lat=${latitude}&lon=${longitude}&format=json`
-          );
-          const data = await response.json();
-          const city =
-            data.address.city || data.address.town || data.address.village || 'Unknown Location';
-          setLocation(city);
-          setSearchQuery(city);
-        } catch {
-          setLocation('Unable to fetch location');
-        } finally {
-          setLoading(false);
-        }
-      },
-      () => {
-        setLocation('Permission Denied');
-        setLoading(false);
-      }
-    );
   };
 
   const handleCitySelect = (city: string) => {
     setLocation(city);
     setSearchQuery('');
-    setIsDropdownOpen(false);
-    setSelectedIndex(0); // Reset selected index
+    resetSelection();
   };
 
   const handleInputChange = (value: string) => {
     setSearchQuery(value);
-    setLocation('');
-    setSelectedIndex(0); // Reset to the first city in the filtered list
+    setFilteredCities(
+      value
+        ? UK_CITIES.filter((city) => city.toLowerCase().includes(value.toLowerCase()))
+        : UK_CITIES
+    );
+    setSelectedIndex(0);
     setIsDropdownOpen(true);
   };
 
@@ -101,20 +78,49 @@ export default function Location() {
     if (!filteredCities.length) return;
 
     if (e.key === 'ArrowDown') {
-      // Navigate down the list
+      e.preventDefault();
       setSelectedIndex((prev) => Math.min(prev + 1, filteredCities.length - 1));
     } else if (e.key === 'ArrowUp') {
-      // Navigate up the list
+      e.preventDefault();
       setSelectedIndex((prev) => Math.max(prev - 1, 0));
-    } else if (e.key === 'Enter') {
-      // Select the highlighted city
+    } else if (e.key === 'Enter' && isDropdownOpen) {
+      e.preventDefault();
       handleCitySelect(filteredCities[selectedIndex]);
     }
   };
 
-  const filteredCities = searchQuery
-    ? cities.filter((city) => city.toLowerCase().includes(searchQuery.toLowerCase()))
-    : cities;
+  const fetchCityName = async ({ latitude, longitude }: GeolocationCoordinates) => {
+    try {
+      const response = await fetch(
+        `https://nominatim.openstreetmap.org/reverse?lat=${latitude}&lon=${longitude}&format=json`
+      );
+      const data = await response.json();
+      return data.address.city || data.address.town || data.address.village || 'Unknown Location';
+    } catch {
+      return 'Unable to fetch location';
+    } finally {
+      setLoading(false);
+    }
+  };
+
+  const detectLocation = async () => {
+    if (!navigator.geolocation) {
+      setLocation('Geolocation not supported');
+      return;
+    }
+
+    setLoading(true);
+    navigator.geolocation.getCurrentPosition(
+      async ({ coords }) => {
+        const city = await fetchCityName(coords);
+        setLocation(city);
+        setSearchQuery(city);
+      },
+      () => setLocation('Permission Denied'),
+      { enableHighAccuracy: true }
+    );
+    resetSelection();
+  };
 
   return (
     <div className="relative w-56" ref={dropdownRef}>
