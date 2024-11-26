@@ -1,3 +1,4 @@
+import ActivityList from '@/components/ActivityList';
 import Banner from '@/components/Banner';
 
 export default function HomePage() {
@@ -10,6 +11,9 @@ export default function HomePage() {
         buttonLink="/city/portsmouth/activities"
         backgroundImage="/images/bg2.svg"
       />
+
+      <ActivityList />
     </div>
   );
 }
+// }
