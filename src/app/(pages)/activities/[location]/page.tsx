@@ -14,23 +14,23 @@ const categoriseActivities = (activities: Activity[]): Record<string, Activity[]
   }, {});
 };
 
-const fetchActivities = async (city: string): Promise<Record<string, Activity[]>> => {
-  const lowercasedCity = city.toLowerCase();
-  if (data.city.toLowerCase() === lowercasedCity) {
+const fetchActivities = async (location: string): Promise<Record<string, Activity[]>> => {
+  const lowercasedCity = location.toLowerCase();
+  if (data.location.toLowerCase() === lowercasedCity) {
     return categoriseActivities(data.activities);
   }
   return {};
 };
 
-const ActivitiesPage = async ({ params }: { params: { city: string } }) => {
-  const { city } = await params;
+const ActivitiesPage = async ({ params }: { params: { location: string } }) => {
+  const { location } = await params;
 
-  const activities = await fetchActivities(city);
+  const activities = await fetchActivities(location);
 
   return (
     <>
       <Banner
-        title={`Activities in ${capitalise(city)}`}
+        title={`Activities in ${capitalise(location)}`}
         subtitle="Discover amazing services and activities in your area"
         backgroundImage={DEFAULT_BACKGROUND_IMAGE}
       />
@@ -44,7 +44,7 @@ const ActivitiesPage = async ({ params }: { params: { city: string } }) => {
             />
           ))
         ) : (
-          <p className="text-center text-gray-500">No activities found for this city.</p>
+          <p className="text-center text-gray-500">No activities found for this location.</p>
         )}
       </div>
     </>
