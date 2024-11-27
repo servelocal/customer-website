@@ -8,7 +8,7 @@ interface ActivityDetailPageProps {
 }
 
 const ActivityDetailPage = async ({ params }: ActivityDetailPageProps) => {
-  const { activity_id: activityId } = params;
+  const { activity_id: activityId } = await params;
 
   const activity = activitiesData.activities.find(
     (act: Activity) => act.activity_id.toString() === activityId

@@ -133,8 +133,13 @@ export default function Location() {
         <input
           type="text"
           placeholder="Search City..."
-          value={searchQuery || location}
-          onClick={() => setIsDropdownOpen(true)}
+          value={isDropdownOpen || searchQuery ? searchQuery : location}
+          onClick={() => {
+            if (!isDropdownOpen) {
+              setSearchQuery(location);
+              setIsDropdownOpen(true);
+            }
+          }}
           onChange={(e) => handleInputChange(e.target.value)}
           onKeyDown={handleKeyDown}
           className="w-full rounded-lg border-none bg-transparent p-1 text-gray-800 focus:outline-none"
