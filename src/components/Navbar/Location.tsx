@@ -2,6 +2,7 @@
 
 import { useState, useEffect, useRef } from 'react';
 import { IoLocationSharp } from 'react-icons/io5';
+import { useRouter } from 'next/navigation';
 
 const UK_CITIES = [
   'London',
@@ -34,8 +35,9 @@ export default function Location() {
   const [filteredCities, setFilteredCities] = useState<string[]>([]);
   const [isDropdownOpen, setIsDropdownOpen] = useState(false);
   const [selectedIndex, setSelectedIndex] = useState(0);
-
   const dropdownRef = useRef<HTMLDivElement>(null);
+
+  const router = useRouter();
 
   useEffect(() => {
     setFilteredCities(UK_CITIES.sort());
@@ -61,6 +63,8 @@ export default function Location() {
     setLocation(city);
     setSearchQuery('');
     resetSelection();
+
+    router.push(`/${city.toLowerCase()}/activities`);
   };
 
   const handleInputChange = (value: string) => {
@@ -115,6 +119,7 @@ export default function Location() {
         const city = await fetchCityName(coords);
         setLocation(city);
         setSearchQuery(city);
+        router.push(`/${city.toLowerCase()}/activities`);
       },
       () => setLocation('Permission Denied'),
       { enableHighAccuracy: true }
