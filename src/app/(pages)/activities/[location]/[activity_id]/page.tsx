@@ -4,11 +4,11 @@ import activitiesData from '@/data/activities.json';
 import { Activity } from '@/types';
 
 interface ActivityDetailPageProps {
-  params: Promise<{ activity_id: string }>;
+  params: { activity_id: string };
 }
 
 const ActivityDetailPage = async ({ params }: ActivityDetailPageProps) => {
-  const { activity_id: activityId } = await params;
+  const { activity_id: activityId } = params;
 
   const activity = activitiesData.activities.find(
     (act: Activity) => act.activity_id.toString() === activityId

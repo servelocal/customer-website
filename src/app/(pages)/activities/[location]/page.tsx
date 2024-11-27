@@ -23,7 +23,7 @@ const fetchActivities = async (location: string): Promise<Record<string, Activit
 };
 
 const ActivitiesPage = async ({ params }: { params: { location: string } }) => {
-  const { location } = await params;
+  const { location } = params;
 
   const activities = await fetchActivities(location);
 
