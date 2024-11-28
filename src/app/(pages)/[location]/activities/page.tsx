@@ -3,10 +3,9 @@ import CategorySection from '@/components/CategorySection';
 import { capitalise } from '@/utils/capitalise';
 import data from '@/data/activities.json';
 import { Activity } from '@/types';
+import { ActivitiesPageParams } from '@/types/pageParams';
 
 const DEFAULT_BACKGROUND_IMAGE = '/images/bg.svg';
-
-type ActivitiesPageParams = Promise<{ location: string }>;
 
 const categoriseActivities = (activities: Activity[]): Record<string, Activity[]> => {
   return activities.reduce((acc: Record<string, Activity[]>, activity) => {
