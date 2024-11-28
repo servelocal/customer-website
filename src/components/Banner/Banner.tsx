@@ -8,13 +8,7 @@ interface BannerProps {
   backgroundImage: string;
 }
 
-export default function Banner({
-  title,
-  subtitle,
-  buttonText,
-  // buttonLink,
-  backgroundImage,
-}: BannerProps) {
+export default function Banner({ title, subtitle, buttonText, backgroundImage }: BannerProps) {
   return (
     <div className="shadow-inset relative flex h-96 w-full items-center justify-center text-center text-black">
       <Image
