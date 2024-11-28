@@ -6,6 +6,8 @@ import { Activity } from '@/types';
 
 const DEFAULT_BACKGROUND_IMAGE = '/images/bg.svg';
 
+type ActivitiesPageParams = Promise<{ location: string }>;
+
 const categoriseActivities = (activities: Activity[]): Record<string, Activity[]> => {
   return activities.reduce((acc: Record<string, Activity[]>, activity) => {
     acc[activity.category] = acc[activity.category] || [];
@@ -22,7 +24,7 @@ const fetchActivities = async (location: string): Promise<Record<string, Activit
   return {};
 };
 
-const ActivitiesPage = async ({ params }: { params: { location: string } }) => {
+const ActivitiesPage = async ({ params }: { params: ActivitiesPageParams }) => {
   const { location } = await params;
 
   const activities = await fetchActivities(location);

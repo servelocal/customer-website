@@ -21,13 +21,12 @@ export default function Banner({
       <Image
         src={backgroundImage}
         alt={title}
-        layout="fill"
-        objectFit="cover"
-        objectPosition="center"
+        fill
         quality={100}
         priority
-        className="-z-10"
+        className="-z-10 object-cover object-center"
       />
+
       <div className="relative z-10 mx-auto max-w-3xl p-6">
         <h1 className="mb-2 text-5xl font-bold">{title}</h1>
         <p className="mb-8 text-lg text-gray-600">{subtitle}</p>
