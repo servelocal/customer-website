@@ -7,7 +7,7 @@ export default function HomePage() {
         title="Welcome to SideQuest"
         subtitle="Discover amazing services and activities in your area"
         buttonText="Portsmouth"
-        buttonLink="/activities/portsmouth"
+        // buttonLink="/activities/portsmouth"
         backgroundImage="/images/bg2.svg"
       />
     </div>
