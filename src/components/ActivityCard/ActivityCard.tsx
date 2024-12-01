@@ -17,24 +17,17 @@ const ActivityCard = ({
   bannerImage,
 }: ActivityCardProps) => (
   <Link href={`/city/portsmouth/activities/${activity_id}`}>
-    <div className="transform cursor-pointer overflow-hidden rounded-lg shadow-md transition-transform hover:scale-95">
+    <div className="cursor-pointer overflow-hidden rounded-2xl p-3 transition-all hover:shadow-lg">
       <Image
         src={bannerImage}
         alt={name}
         width={800}
         height={400}
-        className="h-48 w-full rounded-t-lg object-cover"
+        className="h-48 w-full rounded-3xl object-cover"
       />
       <div className="flex items-center bg-white p-4">
-        <Image
-          src={thumbnailImage}
-          alt={name}
-          width={80}
-          height={80}
-          className="mr-4 h-20 w-20 rounded-xl border-4 border-white object-cover"
-        />
         <div>
-          <h3 className="text-lg font-bold">{name}</h3>
+          <h3 className="text-xl font-extrabold">{name}</h3>
           <p className="text-sm font-semibold text-gray-700">{priceRange}</p>
         </div>
       </div>
