@@ -6,8 +6,7 @@ export default function HomePage() {
       <Banner
         title="Welcome to SideQuest"
         subtitle="Discover amazing services and activities in your area"
-        buttonText="Portsmouth"
-        buttonLink="/city/portsmouth/activities"
+        buttonText="portsmouth"
         backgroundImage="/images/bg2.svg"
       />
     </div>

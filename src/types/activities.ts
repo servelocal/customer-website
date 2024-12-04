@@ -1,5 +1,5 @@
-export interface CityActivities {
-  city: string;
+export interface LocationActivities {
+  location: string;
   activities: Activity[];
 }
 
