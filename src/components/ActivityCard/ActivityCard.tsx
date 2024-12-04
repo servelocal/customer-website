@@ -16,7 +16,7 @@ const ActivityCard = ({
   thumbnailImage,
   bannerImage,
 }: ActivityCardProps) => (
-  <Link href={`/city/portsmouth/activities/${activity_id}`}>
+  <Link href={`/portsmouth/activities/${activity_id}`}>
     <div className="transform cursor-pointer overflow-hidden rounded-lg shadow-md transition-transform hover:scale-95">
       <Image
         src={bannerImage}

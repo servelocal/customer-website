@@ -2,12 +2,9 @@ import { notFound } from 'next/navigation';
 import Image from 'next/image';
 import activitiesData from '@/data/activities.json';
 import { Activity } from '@/types';
+import { ActivityDetailParams } from '@/types/pageParams';
 
-interface ActivityDetailPageProps {
-  params: Promise<{ activity_id: string }>;
-}
-
-const ActivityDetailPage = async ({ params }: ActivityDetailPageProps) => {
+const ActivityDetailPage = async ({ params }: { params: ActivityDetailParams }) => {
   const { activity_id: activityId } = await params;
 
   const activity = activitiesData.activities.find(
