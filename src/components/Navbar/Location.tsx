@@ -3,6 +3,7 @@
 import { useState, useEffect, useRef } from 'react';
 import { IoLocationSharp } from 'react-icons/io5';
 import { useRouter } from 'next/navigation';
+import { useLocation } from '@/context/LocationContext';
 
 const UK_CITIES = [
   'London',
@@ -29,7 +30,7 @@ const UK_CITIES = [
 ];
 
 export default function Location() {
-  const [location, setLocation] = useState('United Kingdom');
+  const { location, setLocation } = useLocation();
   const [loading, setLoading] = useState(false);
   const [searchQuery, setSearchQuery] = useState('');
   const [filteredCities, setFilteredCities] = useState<string[]>([]);

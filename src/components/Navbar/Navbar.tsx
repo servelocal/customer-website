@@ -4,19 +4,20 @@ import Link from 'next/link';
 import { useState, useEffect } from 'react';
 import { usePathname } from 'next/navigation';
 import Location from './Location';
-
-const navLinks = [
-  { href: '/portsmouth/activities', label: 'Activities' },
-  { href: '/events', label: 'Events' },
-  { href: '/communities', label: 'Communities' },
-  { href: '/restaurants', label: 'Restaurants' },
-];
+import { useLocation } from '@/context/LocationContext';
 
 export default function Navbar() {
   const [isOpen, setIsOpen] = useState(false);
   const [isScrolled, setIsScrolled] = useState(false);
   const pathname = usePathname();
+  const { location } = useLocation();
 
+  const navLinks = [
+    { href: `/${location}/activities`, label: 'Activities' },
+    { href: '/events', label: 'Events' },
+    { href: '/communities', label: 'Communities' },
+    { href: '/restaurants', label: 'Restaurants' },
+  ];
   useEffect(() => {
     const handleScroll = () => {
       setIsScrolled(window.scrollY > 0);
