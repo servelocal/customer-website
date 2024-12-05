@@ -21,7 +21,7 @@ export default function Banner({ title, subtitle, buttonText, backgroundImage }:
       />
 
       <div className="relative z-10 mx-auto max-w-3xl p-6">
-        <h1 className="mb-2 text-5xl font-bold">{title}</h1>
+        <h1 className="mb-2 text-5xl font-bold">{title.replace('-', ' ')}</h1>
         <p className="mb-8 text-lg text-gray-600">{subtitle}</p>
         {buttonText && buttonText && (
           <Link
