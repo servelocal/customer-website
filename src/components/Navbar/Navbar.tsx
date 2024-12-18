@@ -12,8 +12,12 @@ export default function Navbar() {
   const pathname = usePathname();
   const { location } = useLocation();
 
+  const sanitizeLocation = (location: string) => location.toLowerCase().replace(/\s+/g, '-');
+
+  const sanitizedLocation = sanitizeLocation(location);
+
   const navLinks = [
-    { href: `/${location}/activities`, label: 'Activities' },
+    { href: `/${sanitizedLocation}/activities`, label: 'Activities' },
     { href: '/events', label: 'Events' },
     { href: '/communities', label: 'Communities' },
     { href: '/restaurants', label: 'Restaurants' },
