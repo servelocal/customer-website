@@ -9,7 +9,7 @@ interface CategorySectionProps {
 const CategorySection = ({ category, activities }: CategorySectionProps) => (
   <div className="mb-8">
     <h2 className="mb-2 text-2xl font-semibold">{category}</h2>
-    <div className="flex gap-8">
+    <div className="flex gap-4">
       {activities.map(
         ({
           activity_id,
