@@ -15,7 +15,7 @@
     "react-icons": "^5.4.0"
   },
   "devDependencies": {
-    "@types/node": "^20",
+    "@types/node": "^22",
     "@types/react": "19.0.2",
     "@types/react-dom": "19.0.2",
     "autoprefixer": "^10.4.20",
