@@ -2,8 +2,8 @@ import { NextRequest, NextResponse } from 'next/server';
 
 export async function GET(req: NextRequest) {
   // Await retrieval of the location cookie value
-  const location = (await req.cookies.get('location')?.value) || 'default-location';
-  return NextResponse.json({ location });
+  const location = (await req.cookies.get('location')?.value) || 'United Kingdom';
+  return NextResponse.json({ decodeURIComponent(location) });
 }
 
 export async function POST(req: NextRequest) {

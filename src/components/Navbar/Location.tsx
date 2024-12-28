@@ -41,29 +41,8 @@ export default function Location() {
   const router = useRouter();
 
   useEffect(() => {
-    const fetchCookieLocation = async () => {
-      try {
-        const response = await fetch('/api/location');
-        const data = await response.json();
-        const initialLocation =
-          data.location && data.location !== 'default-location' ? data.location : null;
-
-        if (initialLocation) {
-          setLocation(initialLocation);
-          router.push(`/${initialLocation.toLowerCase()}/activities`);
-        } else {
-          // Fallback to geolocation
-          detectLocation();
-        }
-      } catch {
-        // If fetching the cookie fails, fallback to geolocation
-        detectLocation();
-      }
-    };
-
-    fetchCookieLocation();
     setFilteredCities(UK_CITIES.sort());
-  }, [setLocation, router]);
+  }, []);
 
   useEffect(() => {
     const handleClickOutside = (event: MouseEvent) => {
@@ -124,17 +103,18 @@ export default function Location() {
       return data.address.city || data.address.town || data.address.village || 'Unknown Location';
     } catch {
       return 'Unable to fetch location';
+    } finally {
+      setLoading(false);
     }
   };
 
   const detectLocation = async () => {
-    setLoading(true);
     if (!navigator.geolocation) {
       setLocation('Geolocation not supported');
-      setLoading(false);
       return;
     }
 
+    setLoading(true);
     navigator.geolocation.getCurrentPosition(
       async ({ coords }) => {
         const city = await fetchCityName(coords);
@@ -142,15 +122,10 @@ export default function Location() {
         setSearchQuery(city);
         router.push(`/${city.toLowerCase()}/activities`);
       },
-      () => {
-        setLocation('Permission Denied');
-        setLoading(false);
-      },
+      () => setLocation('Permission Denied'),
       { enableHighAccuracy: true }
     );
-
     resetSelection();
-    setLoading(false);
   };
 
   return (
@@ -159,10 +134,10 @@ export default function Location() {
         <input
           type="text"
           placeholder="Search City..."
-          value={isDropdownOpen || searchQuery ? searchQuery : location || 'United Kingdom'}
+          value={isDropdownOpen || searchQuery ? searchQuery : location}
           onClick={() => {
             if (!isDropdownOpen) {
-              setSearchQuery(location || 'United Kingdom');
+              setSearchQuery(location);
               setIsDropdownOpen(true);
             }
           }}
