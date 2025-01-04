@@ -1,96 +1,78 @@
 'use client';
 
-import { createContext, useContext, useState, useEffect, ReactNode } from 'react';
+import CookieConsentBanner from '@/components/CookieConsentBanner/CookieConsentBanner';
+import { createContext, useContext, useReducer, useEffect, ReactNode } from 'react';
+import { getCookie, setCookie } from '@/utils/cookie';
 
-// Utility Functions for Cookies
-const getCookie = (name: string): string | undefined => {
-  const cookieValue = document.cookie
-    .split('; ')
-    .find((row) => row.startsWith(`${name}=`))
-    ?.split('=')[1];
-  return cookieValue ? decodeURIComponent(cookieValue) : undefined;
-};
-
-const setCookie = (
-  name: string,
-  value: string,
-  options: { path?: string; maxAge?: number } = {}
-) => {
-  const { path = '/', maxAge } = options;
-  let cookieString = `${name}=${encodeURIComponent(value)}; path=${path}`;
-  if (maxAge) {
-    cookieString += `; max-age=${maxAge}`;
-  }
-  document.cookie = cookieString;
-};
-
-// Location Context Types
 interface LocationContextType {
   location: string;
   setLocation: (location: string) => void;
 }
 
-// Create Context
-const LocationContext = createContext<LocationContextType | undefined>(undefined);
+interface State {
+  location: string;
+  hasConsented: boolean;
+  showBanner: boolean;
+}
 
-const CookieConsentBanner = ({ onConsent }: { onConsent: (consent: boolean) => void }) => {
-  return (
-    <div className="fixed bottom-0 left-0 right-0 z-50 flex w-full items-center justify-between bg-black p-4 text-white">
-      <p className="text-sm">
-        We use cookies to improve your experience. Do you consent to the use of cookies?
-      </p>
-      <div>
-        <button className="mr-2 rounded-md px-4 py-2 text-white" onClick={() => onConsent(false)}>
-          Decline
-        </button>
-        <button
-          className="rounded-md bg-white px-4 py-2 text-black"
-          onClick={() => onConsent(true)}
-        >
-          Accept
-        </button>
-      </div>
-    </div>
-  );
+type Action =
+  | { type: 'SET_LOCATION'; payload: string }
+  | { type: 'SET_CONSENT'; payload: boolean }
+  | { type: 'HIDE_BANNER' };
+
+const initialState: State = {
+  location: 'United Kingdom',
+  hasConsented: getCookie('cookie-consent') === 'true',
+  showBanner: !getCookie('cookie-consent'),
 };
 
-// Location Provider
+const reducer = (state: State, action: Action): State => {
+  switch (action.type) {
+    case 'SET_LOCATION':
+      return { ...state, location: action.payload };
+    case 'SET_CONSENT':
+      return { ...state, hasConsented: action.payload, showBanner: false };
+    case 'HIDE_BANNER':
+      return { ...state, showBanner: false };
+    default:
+      return state;
+  }
+};
+
+const LocationContext = createContext<LocationContextType | undefined>(undefined);
+
 export const LocationProvider = ({ children }: { children: ReactNode }) => {
-  const [location, setLocationState] = useState('United Kingdom');
-  const [hasConsented, setHasConsented] = useState(() => getCookie('cookie-consent') === 'true');
-  const [showBanner, setShowBanner] = useState(() => !getCookie('cookie-consent'));
+  const [state, dispatch] = useReducer(reducer, initialState);
 
   const setLocation = (newLocation: string) => {
-    if (hasConsented) {
+    if (state.hasConsented) {
       setCookie('location', newLocation, { maxAge: 365 * 24 * 60 * 60 }); // 1 year expiry
     }
-    setLocationState(newLocation);
+    dispatch({ type: 'SET_LOCATION', payload: newLocation });
   };
 
   const handleConsent = (consent: boolean) => {
     setCookie('cookie-consent', consent.toString(), { maxAge: 365 * 24 * 60 * 60 });
-    setHasConsented(consent);
-    setShowBanner(false);
+    dispatch({ type: 'SET_CONSENT', payload: consent });
   };
 
   useEffect(() => {
-    if (hasConsented) {
+    if (state.hasConsented) {
       const savedLocation = getCookie('location');
       if (savedLocation) {
-        setLocationState(savedLocation);
+        dispatch({ type: 'SET_LOCATION', payload: savedLocation });
       }
     }
-  }, [hasConsented]);
+  }, [state.hasConsented]);
 
   return (
-    <LocationContext.Provider value={{ location, setLocation }}>
+    <LocationContext.Provider value={{ location: state.location, setLocation }}>
       {children}
-      {showBanner && <CookieConsentBanner onConsent={handleConsent} />}
+      {state.showBanner && <CookieConsentBanner onConsent={handleConsent} />}
     </LocationContext.Provider>
   );
 };
 
-// Hook for Context
 export const useLocation = (): LocationContextType => {
   const context = useContext(LocationContext);
   if (!context) {

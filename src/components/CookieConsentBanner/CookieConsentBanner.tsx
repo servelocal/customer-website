@@ -11,17 +11,14 @@ const CookieConsentBanner = ({ onConsent }: CookieConsentBannerProps) => {
         We use cookies to improve your experience. Do you consent to the use of cookies?
       </p>
       <div>
+        <button className="mr-2 rounded-md px-4 py-2 text-white" onClick={() => onConsent(false)}>
+          Decline
+        </button>
         <button
-          className="mr-2 rounded-md bg-green-500 px-4 py-2 text-white"
+          className="rounded-md bg-white px-4 py-2 text-black"
           onClick={() => onConsent(true)}
         >
           Accept
-        </button>
-        <button
-          className="rounded-md bg-red-500 px-4 py-2 text-white"
-          onClick={() => onConsent(false)}
-        >
-          Decline
         </button>
       </div>
     </div>
