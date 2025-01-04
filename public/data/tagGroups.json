@@ -1,0 +1,54 @@
+{
+  "tagGroups": [
+    {
+      "id": 1,
+      "title": "It's Cold Outside",
+      "tags": ["Indoor"]
+    },
+    {
+      "id": 2,
+      "title": "Family Favourites",
+      "tags": ["Family-friendly"]
+    },
+    {
+      "id": 3,
+      "title": "Adventure Awaits",
+      "tags": ["Adventure", "Scenic"]
+    },
+    {
+      "id": 4,
+      "title": "Food and Fun",
+      "tags": ["Food and Drink", "Cafe", "Snacks and Beverages"]
+    },
+    {
+      "id": 5,
+      "title": "Learn and Explore",
+      "tags": ["Educational", "Museum", "Interactive"]
+    },
+    {
+      "id": 6,
+      "title": "Group Activities",
+      "tags": ["Group-friendly", "Social"]
+    },
+    {
+      "id": 7,
+      "title": "Outdoor Escapes",
+      "tags": ["Outdoor"]
+    },
+    {
+      "id": 8,
+      "title": "Fitness and Wellness",
+      "tags": ["Fitness", "Skill Development"]
+    },
+    {
+      "id": 9,
+      "title": "Games Galore",
+      "tags": ["Board Games", "Casual"]
+    },
+    {
+      "id": 10,
+      "title": "Thrilling Waters",
+      "tags": ["Water Activities", "Kayaking", "Paddleboarding"]
+    }
+  ]
+}
