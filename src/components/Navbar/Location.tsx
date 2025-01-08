@@ -4,6 +4,7 @@ import { useState, useEffect, useRef } from 'react';
 import { IoLocationSharp } from 'react-icons/io5';
 import { useRouter } from 'next/navigation';
 import { useLocation } from '@/context/LocationContext';
+import { capitalise } from '@/utils/capitalise';
 
 const UK_CITIES = [
   'London',
@@ -30,7 +31,7 @@ const UK_CITIES = [
 ];
 
 export default function Location() {
-  const { location, setLocation } = useLocation();
+  const { location, setLocation, setCoords } = useLocation();
   const [loading, setLoading] = useState(false);
   const [searchQuery, setSearchQuery] = useState('');
   const [filteredCities, setFilteredCities] = useState<string[]>([]);
@@ -118,6 +119,7 @@ export default function Location() {
     navigator.geolocation.getCurrentPosition(
       async ({ coords }) => {
         const city = await fetchCityName(coords);
+        setCoords(coords);
         setLocation(city);
         setSearchQuery(city);
         router.push(`/${city.toLowerCase()}/activities`);
@@ -134,7 +136,7 @@ export default function Location() {
         <input
           type="text"
           placeholder="Search City..."
-          value={isDropdownOpen || searchQuery ? searchQuery : location}
+          value={isDropdownOpen || searchQuery ? searchQuery : capitalise(location)}
           onClick={() => {
             if (!isDropdownOpen) {
               setSearchQuery(location);

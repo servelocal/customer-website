@@ -16,6 +16,7 @@ const CategorySection = ({ category, activities }: CategorySectionProps) => (
           name,
           sub_category,
           details: { bannerImage, thumbnailImage, priceRange },
+          coordinates,
         }) => (
           <ActivityCard
             key={activity_id}
@@ -25,6 +26,7 @@ const CategorySection = ({ category, activities }: CategorySectionProps) => (
             thumbnailImage={thumbnailImage}
             bannerImage={bannerImage}
             subCategory={sub_category}
+            coordinates={coordinates}
           />
         )
       )}

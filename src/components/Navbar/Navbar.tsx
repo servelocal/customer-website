@@ -14,7 +14,7 @@ export default function Navbar() {
 
   const sanitizeLocation = (location: string) => location.toLowerCase().replace(/\s+/g, '-');
 
-  const sanitizedLocation = sanitizeLocation(location);
+  const sanitizedLocation = location ? sanitizeLocation(location) : 'uk';
 
   const navLinks = [
     { href: `/${sanitizedLocation}/activities`, label: 'Activities' },

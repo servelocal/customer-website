@@ -18,6 +18,10 @@
         "Bowling"
       ],
       "address": "Gunwharf Quays, Portsmouth PO1 3TU, UK",
+      "coordinates": {
+        "latitude": 50.796047,
+        "longitude": -1.107077
+      },
       "contact": {
         "phone": "+44 844 826 1459",
         "website": "https://www.hollywoodbowl.co.uk/portsmouth"
@@ -51,6 +55,10 @@
         "Relaxing"
       ],
       "address": "Eastern Rd, Portsmouth PO3 5TU, UK",
+      "coordinates": {
+        "latitude": 50.792915,
+        "longitude": -1.068763
+      },
       "contact": {
         "phone": "+44 23 9266 1250",
         "website": "http://www.southseagolf.co.uk/"
@@ -81,6 +89,10 @@
         "Skill Development"
       ],
       "address": "The Pyramids Centre, Clarence Esplanade, Portsmouth PO5 3ST, UK",
+      "coordinates": {
+        "latitude": 50.777929,
+        "longitude": -1.088129
+      },
       "contact": {
         "phone": "+44 23 9273 7120",
         "website": "https://www.portsmouthclimbingwall.co.uk/"
@@ -112,6 +124,10 @@
         "Snacks and Beverages"
       ],
       "address": "Albert Rd, Portsmouth PO4 0JR, UK",
+      "coordinates": {
+        "latitude": 50.791244,
+        "longitude": -1.064939
+      },
       "contact": {
         "phone": "+44 23 9287 3020",
         "website": "https://diceportsmouth.com/"
@@ -145,6 +161,10 @@
         "Exhibitions"
       ],
       "address": "Clarence Esplanade, Southsea, Portsmouth PO5 3PB, UK",
+      "coordinates": {
+        "latitude": 50.780951,
+        "longitude": -1.086474
+      },
       "contact": {
         "phone": "+44 23 9287 5222",
         "website": "https://www.bluereefaquarium.co.uk/portsmouth/"
@@ -174,6 +194,10 @@
         "Glass Floor"
       ],
       "address": "Gunwharf Quays, Portsmouth PO1 3TT, UK",
+      "coordinates": {
+        "latitude": 50.794801,
+        "longitude": -1.107025
+      },
       "contact": {
         "phone": "+44 23 9285 7520",
         "website": "https://www.spinnakertower.co.uk/"
@@ -203,6 +227,10 @@
         "Landmark"
       ],
       "address": "Victory Gate, HM Naval Base, Portsmouth PO1 3LJ, UK",
+      "coordinates": {
+        "latitude": 50.799504,
+        "longitude": -1.107418
+      },
       "contact": {
         "phone": "+44 23 9283 9766",
         "website": "https://www.historicdockyard.co.uk/"
@@ -232,6 +260,10 @@
         "Scenic"
       ],
       "address": "Eastern Rd, Portsmouth PO3 5LY, UK",
+      "coordinates": {
+        "latitude": 50.790613,
+        "longitude": -1.078046
+      },
       "contact": {
         "phone": "+44 23 9266 3873",
         "website": "https://www.portsmouthwatersports.com/"
