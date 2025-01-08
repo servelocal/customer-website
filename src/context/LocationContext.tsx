@@ -5,15 +5,18 @@ import { createContext, useContext, useState, ReactNode } from 'react';
 interface LocationContextType {
   location: string;
   setLocation: (location: string) => void;
+  coords: { latitude: number; longitude: number };
+  setCoords: (coords: { latitude: number; longitude: number }) => void;
 }
 
 const LocationContext = createContext<LocationContextType | undefined>(undefined);
 
 export const LocationProvider = ({ children }: { children: ReactNode }) => {
-  const [location, setLocation] = useState('United Kingdom');
+  const [location, setLocation] = useState('');
+  const [coords, setCoords] = useState({ latitude: 0, longitude: 0 });
 
   return (
-    <LocationContext.Provider value={{ location, setLocation }}>
+    <LocationContext.Provider value={{ location, setLocation, coords, setCoords }}>
       {children}
     </LocationContext.Provider>
   );

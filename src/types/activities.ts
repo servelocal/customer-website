@@ -13,6 +13,10 @@ export interface Activity {
   address: string;
   contact: Contact;
   details: ActivityDetails;
+  coordinates: {
+    latitude: number;
+    longitude: number;
+  };
 }
 
 export interface Contact {

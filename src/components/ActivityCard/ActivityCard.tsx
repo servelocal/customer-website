@@ -12,6 +12,10 @@ interface ActivityCardProps {
   thumbnailImage: string;
   bannerImage: string;
   subCategory: string;
+  coordinates: {
+    latitude: number;
+    longitude: number;
+  };
 }
 
 const getSubCategoryClasses = (subCategory: string) => {
@@ -26,14 +30,42 @@ const getSubCategoryClasses = (subCategory: string) => {
   return colorClasses[subCategory] || colorClasses.Default;
 };
 
+// Utility to calculate distance using the Haversine formula
+const calculateDistance = (lat1: number, lon1: number, lat2: number, lon2: number): number => {
+  const R = 3958.8; // Radius of Earth in miles
+  const dLat = ((lat2 - lat1) * Math.PI) / 180;
+  const dLon = ((lon2 - lon1) * Math.PI) / 180;
+  const a =
+    Math.sin(dLat / 2) * Math.sin(dLat / 2) +
+    Math.cos((lat1 * Math.PI) / 180) *
+      Math.cos((lat2 * Math.PI) / 180) *
+      Math.sin(dLon / 2) *
+      Math.sin(dLon / 2);
+  const c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1 - a));
+  return R * c; // Distance in miles
+};
+
 const ActivityCard = ({
   activity_id,
   name,
   priceRange,
   bannerImage,
   subCategory,
+  coordinates,
 }: ActivityCardProps) => {
-  const { location } = useLocation();
+  const { coords, location } = useLocation();
+
+  const isValidCoordinate = ({ latitude, longitude }: { latitude: number; longitude: number }) =>
+    latitude !== 0 && longitude !== 0;
+
+  const distance = isValidCoordinate(coords)
+    ? calculateDistance(
+        coords.latitude,
+        coords.longitude,
+        coordinates.latitude,
+        coordinates.longitude
+      )
+    : null;
 
   return (
     <Link href={`/${location.toLocaleLowerCase() || 'default'}/activities/${activity_id}`}>
@@ -51,7 +83,7 @@ const ActivityCard = ({
           </div>
         </div>
         <div className="m-2">
-          <div className="flex items-start justify-between">
+          <div className="flex items-baseline justify-between">
             <div>
               <h3 className="text-lg font-bold">{name}</h3>
               <div
@@ -62,7 +94,12 @@ const ActivityCard = ({
                 {subCategory}
               </div>
             </div>
-            <p className="ml-auto text-sm font-semibold text-gray-700">{priceRange}</p>
+            <div className="text-right">
+              <p className="ml-auto text-sm font-semibold text-gray-700">{priceRange}</p>
+              {distance && (
+                <p className="text-sm text-gray-600">{distance.toFixed(1)} miles away</p>
+              )}
+            </div>
           </div>
         </div>
       </div>
