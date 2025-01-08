@@ -1,27 +1,10 @@
 import Banner from '@/components/Banner';
 import CategorySection from '@/components/CategorySection';
 import { capitalise } from '@/utils/capitalise';
-import data from '@/data/activities.json';
-import { Activity } from '@/types';
+import fetchActivities from '@/utils/fetchActivities';
 import { ActivitiesPageParams } from '@/types/pageParams';
 
 const DEFAULT_BACKGROUND_IMAGE = '/images/bg.svg';
-
-const categoriseActivities = (activities: Activity[]): Record<string, Activity[]> => {
-  return activities.reduce((acc: Record<string, Activity[]>, activity) => {
-    acc[activity.category] = acc[activity.category] || [];
-    acc[activity.category].push(activity);
-    return acc;
-  }, {});
-};
-
-const fetchActivities = async (location: string): Promise<Record<string, Activity[]>> => {
-  const lowercasedCity = location.toLowerCase();
-  if (data.location.toLowerCase() === lowercasedCity) {
-    return categoriseActivities(data.activities);
-  }
-  return {};
-};
 
 const ActivitiesPage = async ({ params }: { params: ActivitiesPageParams }) => {
   const { location } = await params;
@@ -37,10 +20,10 @@ const ActivitiesPage = async ({ params }: { params: ActivitiesPageParams }) => {
       />
       <div className="container mx-auto p-4">
         {Object.entries(activities).length > 0 ? (
-          Object.entries(activities).map(([category, activities]) => (
+          Object.entries(activities).map(([tagGroup, activities]) => (
             <CategorySection
-              key={category}
-              category={capitalise(category)}
+              key={tagGroup}
+              category={capitalise(tagGroup)}
               activities={activities}
             />
           ))
