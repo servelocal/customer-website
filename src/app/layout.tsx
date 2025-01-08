@@ -28,14 +28,15 @@ export default async function RootLayout({
   children: React.ReactNode;
 }>) {
   const cookieStore = await cookies();
-  const hasCookie = cookieStore.has('consent');
+  const hasConsent = cookieStore.has('consent');
+
   return (
     <html lang="en">
       <body className={`${geistSans.variable} ${geistMono.variable} antialiased`}>
         <LocationProvider>
           <Navbar />
           {children}
-          {!hasCookie && <CookieConsentBanner />}
+          {!hasConsent && <CookieConsentBanner />}
         </LocationProvider>
       </body>
     </html>
