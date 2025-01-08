@@ -4,6 +4,7 @@ import { useState, useEffect, useRef } from 'react';
 import { IoLocationSharp } from 'react-icons/io5';
 import { useRouter } from 'next/navigation';
 import { useLocation } from '@/context/LocationContext';
+import { capitalise } from '@/utils/capitalise';
 
 const UK_CITIES = [
   'London',
@@ -135,7 +136,7 @@ export default function Location() {
         <input
           type="text"
           placeholder="Search City..."
-          value={isDropdownOpen || searchQuery ? searchQuery : location}
+          value={isDropdownOpen || searchQuery ? searchQuery : capitalise(location)}
           onClick={() => {
             if (!isDropdownOpen) {
               setSearchQuery(location);
