@@ -3,6 +3,8 @@
 import Link from 'next/link';
 import Image from 'next/image';
 import { BsBookmark } from 'react-icons/bs';
+import { IoLocationSharp } from 'react-icons/io5';
+
 import { useLocation } from '@/context/LocationContext';
 
 interface ActivityCardProps {
@@ -82,24 +84,26 @@ const ActivityCard = ({
             <BsBookmark size={24} />
           </div>
         </div>
-        <div className="m-2">
+        <div className="m-2 flex flex-col">
           <div className="flex items-baseline justify-between">
-            <div>
-              <h3 className="text-lg font-bold">{name}</h3>
-              <div
-                className={`my-1 inline-block rounded-full border px-1.5 py-1 text-xs ${getSubCategoryClasses(
-                  subCategory
-                )}`}
-              >
-                {subCategory}
-              </div>
-            </div>
+            <h3 className="text-lg font-bold">{name}</h3>
             <div className="text-right">
               <p className="ml-auto text-sm font-semibold text-gray-700">{priceRange}</p>
-              {distance && (
-                <p className="text-sm text-gray-600">{distance.toFixed(1)} miles away</p>
-              )}
             </div>
+          </div>
+          <div className="flex items-center justify-between px-1.5">
+            <div
+              className={`my-1 rounded-full border px-1.5 py-1 text-xs ${getSubCategoryClasses(
+                subCategory
+              )}`}
+            >
+              {subCategory}
+            </div>
+            {distance && (
+              <p className="flex items-center text-sm text-gray-600">
+                <IoLocationSharp /> {distance.toFixed(1)} miles
+              </p>
+            )}
           </div>
         </div>
       </div>
