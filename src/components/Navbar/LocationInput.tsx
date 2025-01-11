@@ -30,7 +30,7 @@ const UK_CITIES = [
   'Bournemouth',
 ];
 
-export default function Location() {
+export default function LocationInput() {
   const { location, setLocation, setCoords } = useLocation();
   const [loading, setLoading] = useState(false);
   const [searchQuery, setSearchQuery] = useState('');
