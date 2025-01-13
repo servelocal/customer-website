@@ -4,19 +4,7 @@ import Link from 'next/link';
 import Image from 'next/image';
 import { BsBookmark } from 'react-icons/bs';
 import { useLocation } from '@/context/LocationContext';
-
-interface ActivityCardProps {
-  activity_id: number;
-  name: string;
-  priceRange: string;
-  thumbnailImage: string;
-  bannerImage: string;
-  subCategory: string;
-  coordinates: {
-    latitude: number;
-    longitude: number;
-  };
-}
+import { ActivityCardProps } from '@/types';
 
 const SUBCATEGORY_CLASSES: Record<string, string> = {
   Bouldering: 'border-blue-500 text-blue-500',
