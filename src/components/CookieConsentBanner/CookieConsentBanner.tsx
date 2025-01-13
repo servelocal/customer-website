@@ -1,8 +1,9 @@
 'use client';
 import { create } from '@/app/actions/cookie';
+import { ConsentValue } from '@/types/consentCookie';
 
 const CookieConsentBanner = () => {
-  const handleConsent = async (consentValue) => {
+  const handleConsent = async (consentValue: ConsentValue) => {
     try {
       await create(consentValue);
       console.log(`Consent ${consentValue === 'true' ? 'accepted' : 'declined'}`);
