@@ -4,6 +4,7 @@ import Link from 'next/link';
 import Image from 'next/image';
 import { BsBookmark } from 'react-icons/bs';
 import { useLocation } from '@/context/LocationContext';
+import { slugify } from '@/utils/slugify';
 
 interface ActivityCardProps {
   activity_id: number;
@@ -50,7 +51,6 @@ const isValidCoordinate = ({
 }): boolean => latitude !== 0 && longitude !== 0;
 
 const ActivityCard: React.FC<ActivityCardProps> = ({
-  activity_id,
   name,
   priceRange,
   bannerImage,
@@ -71,7 +71,7 @@ const ActivityCard: React.FC<ActivityCardProps> = ({
   const locationSlug = location?.toLowerCase() || 'default';
 
   return (
-    <Link href={`/${locationSlug}/activities/${activity_id}`} className="block">
+    <Link href={`/${locationSlug}/activities/${slugify(name)}`} className="block">
       <div className="group relative w-96 cursor-pointer overflow-hidden rounded-2xl p-3 transition-shadow hover:shadow-xl">
         {/* Banner Image */}
         <div className="relative">

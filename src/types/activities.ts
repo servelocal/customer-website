@@ -36,5 +36,5 @@ export interface OpeningTimes {
   Friday?: string;
   Saturday?: string;
   Sunday?: string;
-  [key: string]: string | undefined; // Allows additional days or ranges (like "Weekends" or "Daily")
+  [key: string]: string | undefined;
 }
