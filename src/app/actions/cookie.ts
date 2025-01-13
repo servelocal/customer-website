@@ -5,16 +5,9 @@ import { cookies } from 'next/headers';
 export async function create(consentValue = 'true') {
   const cookieStore = await cookies(); // No need to await cookies in Next.js, they are synchronous.
 
-  if (consentValue === 'false') {
-    cookieStore.set('consent', 'false');
-    console.log('Consent declined');
-    return;
-  }
+  if (consentValue === 'false') cookieStore.set('consent', 'false');
 
-  if (consentValue === 'true') {
-    cookieStore.set('consent', 'true');
-    console.log('Consent accepted');
-  }
+  if (consentValue === 'true') cookieStore.set('consent', 'true');
 
   const consent = cookieStore.get('consent');
   console.log('Current consent value:', consent?.value);
