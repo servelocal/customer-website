@@ -49,14 +49,14 @@ const isValidCoordinate = ({
   longitude: number;
 }): boolean => latitude !== 0 && longitude !== 0;
 
-const ActivityCard: React.FC<ActivityCardProps> = ({
+function ActivityCard({
   activity_id,
   name,
   priceRange,
   bannerImage,
   subCategory,
   coordinates,
-}) => {
+}: ActivityCardProps) {
   const { coords, location } = useLocation();
 
   const distance = isValidCoordinate(coords)
@@ -109,6 +109,6 @@ const ActivityCard: React.FC<ActivityCardProps> = ({
       </div>
     </Link>
   );
-};
+}
 
 export default ActivityCard;
