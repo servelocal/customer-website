@@ -72,7 +72,7 @@ const ActivityCard: React.FC<ActivityCardProps> = ({
 
   return (
     <Link href={`/${locationSlug}/activities/${activity_id}`} className="block">
-      <div className="group relative w-96 cursor-pointer overflow-hidden rounded-2xl p-3 transition-shadow hover:shadow-xl">
+      <div className="group relative w-96 cursor-pointer overflow-hidden rounded-2xl p-4 transition-shadow hover:shadow-xl">
         {/* Banner Image */}
         <div className="relative">
           <Image
@@ -82,6 +82,7 @@ const ActivityCard: React.FC<ActivityCardProps> = ({
             height={400}
             className="h-48 w-full rounded-2xl object-cover"
           />
+          {/* Bookmark Icon */}
           <div className="absolute right-3 top-3 text-white opacity-0 transition-opacity duration-300 group-hover:opacity-100">
             <BsBookmark size={24} />
           </div>

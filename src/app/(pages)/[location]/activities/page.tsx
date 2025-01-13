@@ -21,11 +21,7 @@ const ActivitiesPage = async ({ params }: { params: ActivitiesPageParams }) => {
       <div className="container mx-auto p-4">
         {Object.entries(activities).length > 0 ? (
           Object.entries(activities).map(([tagGroup, activities]) => (
-            <CategorySection
-              key={tagGroup}
-              category={capitalise(tagGroup)}
-              activities={activities}
-            />
+            <CategorySection key={tagGroup} title={capitalise(tagGroup)} activities={activities} />
           ))
         ) : (
           <p className="text-center text-gray-500">No activities found for this location.</p>

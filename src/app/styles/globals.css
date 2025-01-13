@@ -21,3 +21,12 @@ body {
 .shadow-inset {
   box-shadow: inset 0px -20px 11px -7px rgba(0, 0, 0, 0.15);
 }
+
+.hide-scrollbar {
+  scrollbar-width: none; /* Firefox */
+  -ms-overflow-style: none; /* IE and Edge */
+}
+
+.hide-scrollbar::-webkit-scrollbar {
+  display: none; /* Chrome, Safari, and Edge */
+}
