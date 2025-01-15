@@ -21,7 +21,6 @@ const CategorySection = ({ category, activities }: CategorySectionProps) => (
         }) => (
           <ActivityCard
             key={activity_id}
-            activity_id={activity_id}
             slug={slug}
             name={name}
             priceRange={priceRange}

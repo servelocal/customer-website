@@ -3,6 +3,19 @@ export interface LocationActivities {
   activities: Activity[];
 }
 
+export interface ActivityCardProps {
+  slug: string;
+  name: string;
+  priceRange: string;
+  thumbnailImage: string;
+  bannerImage: string;
+  subCategory: string;
+  coordinates: {
+    latitude: number;
+    longitude: number;
+  };
+}
+
 export interface Activity {
   activity_id: number;
   slug: string;
