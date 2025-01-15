@@ -2,7 +2,6 @@
 
 import { getLocationCookie, setLocationCookie } from '@/app/actions/cookie';
 import { createContext, useContext, useState, ReactNode, useEffect } from 'react';
-// import { getLocationCookie, setLocationCookie } from '@/actions/locationActions';
 
 interface LocationContextType {
   location: string;
@@ -23,7 +22,7 @@ export const LocationProvider = ({ children }: { children: ReactNode }) => {
   useEffect(() => {
     // Fetch the location cookie during hydration
     const fetchLocation = async () => {
-      const location = await getLocationCookie(); // Server action
+      const location = await getLocationCookie();
       setLocationState(location);
     };
     fetchLocation();
@@ -31,7 +30,7 @@ export const LocationProvider = ({ children }: { children: ReactNode }) => {
 
   const setLocation = async (newLocation: string) => {
     setLocationState(newLocation);
-    await setLocationCookie(newLocation); // Update the cookie using server action
+    await setLocationCookie(newLocation);
   };
 
   return (
