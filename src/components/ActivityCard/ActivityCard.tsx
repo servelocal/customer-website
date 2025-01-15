@@ -4,19 +4,7 @@ import Link from 'next/link';
 import Image from 'next/image';
 import { BsBookmark } from 'react-icons/bs';
 import { useLocation } from '@/context/LocationContext';
-
-interface ActivityCardProps {
-  activity_id: number;
-  name: string;
-  priceRange: string;
-  thumbnailImage: string;
-  bannerImage: string;
-  subCategory: string;
-  coordinates: {
-    latitude: number;
-    longitude: number;
-  };
-}
+import { ActivityCardProps } from '@/types';
 
 const SUBCATEGORY_CLASSES: Record<string, string> = {
   Bouldering: 'border-blue-500 text-blue-500',
@@ -50,7 +38,7 @@ const isValidCoordinate = ({
 }): boolean => latitude !== 0 && longitude !== 0;
 
 const ActivityCard: React.FC<ActivityCardProps> = ({
-  activity_id,
+  slug,
   name,
   priceRange,
   bannerImage,
@@ -71,8 +59,8 @@ const ActivityCard: React.FC<ActivityCardProps> = ({
   const locationSlug = location?.toLowerCase() || 'default';
 
   return (
-    <Link href={`/${locationSlug}/activities/${activity_id}`} className="block">
-      <div className="group relative w-96 cursor-pointer overflow-hidden rounded-2xl p-4 transition-shadow hover:shadow-xl">
+    <Link href={`/${locationSlug}/activities/${slug}`} className="block">
+      <div className="group relative w-96 cursor-pointer overflow-hidden rounded-2xl p-3 transition-shadow hover:shadow-xl">
         {/* Banner Image */}
         <div className="relative">
           <Image

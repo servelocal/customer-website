@@ -3,8 +3,22 @@ export interface LocationActivities {
   activities: Activity[];
 }
 
+export interface ActivityCardProps {
+  slug: string;
+  name: string;
+  priceRange: string;
+  thumbnailImage: string;
+  bannerImage: string;
+  subCategory: string;
+  coordinates: {
+    latitude: number;
+    longitude: number;
+  };
+}
+
 export interface Activity {
   activity_id: number;
+  slug: string;
   name: string;
   category: string;
   sub_category: string;
@@ -36,5 +50,5 @@ export interface OpeningTimes {
   Friday?: string;
   Saturday?: string;
   Sunday?: string;
-  [key: string]: string | undefined; // Allows additional days or ranges (like "Weekends" or "Daily")
+  [key: string]: string | undefined;
 }

@@ -5,11 +5,9 @@ import { Activity } from '@/types';
 import { ActivityDetailParams } from '@/types/pageParams';
 
 const ActivityDetailPage = async ({ params }: { params: ActivityDetailParams }) => {
-  const { activity_id: activityId } = await params;
+  const { activity_slug } = await params;
 
-  const activity = activitiesData.activities.find(
-    (act: Activity) => act.activity_id.toString() === activityId
-  );
+  const activity = activitiesData.activities.find((act: Activity) => act.slug === activity_slug);
 
   if (!activity) {
     notFound();
