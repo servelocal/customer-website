@@ -5,6 +5,7 @@ export interface LocationActivities {
 
 export interface ActivityCardProps {
   activity_id: number;
+  slug: string;
   name: string;
   priceRange: string;
   thumbnailImage: string;
@@ -18,6 +19,7 @@ export interface ActivityCardProps {
 
 export interface Activity {
   activity_id: number;
+  slug: string;
   name: string;
   category: string;
   sub_category: string;
@@ -49,5 +51,5 @@ export interface OpeningTimes {
   Friday?: string;
   Saturday?: string;
   Sunday?: string;
-  [key: string]: string | undefined; // Allows additional days or ranges (like "Weekends" or "Daily")
+  [key: string]: string | undefined;
 }

@@ -9,6 +9,7 @@ import { getSubCategoryClasses, calculateDistance, isValidCoordinate } from '@/u
 
 function ActivityCard({
   activity_id,
+  slug,
   name,
   priceRange,
   bannerImage,
@@ -29,7 +30,7 @@ function ActivityCard({
   const locationSlug = location?.toLowerCase() || 'default';
 
   return (
-    <Link href={`/${locationSlug}/activities/${activity_id}`} className="block">
+    <Link href={`/${locationSlug}/activities/${slug}`} className="block">
       <div className="group relative w-96 cursor-pointer overflow-hidden rounded-2xl p-3 transition-shadow hover:shadow-xl">
         {/* Banner Image */}
         <div className="relative">
