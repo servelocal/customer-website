@@ -8,7 +8,6 @@ import { ActivityCardProps } from '@/types/activities';
 import { getSubCategoryClasses, calculateDistance, isValidCoordinate } from '@/utils/activityCard';
 
 function ActivityCard({
-  activity_id,
   slug,
   name,
   priceRange,
