@@ -3,6 +3,7 @@
   "activities": [
     {
       "activity_id": 1,
+      "slug": "hollywood-bowl",
       "name": "Hollywood Bowl",
       "category": "Sports",
       "sub_category": "Bowling",
@@ -40,6 +41,7 @@
     },
     {
       "activity_id": 2,
+      "slug": "southsea-golf-club",
       "name": "Southsea Golf Club",
       "category": "Sports",
       "sub_category": "Golfing",
@@ -75,6 +77,7 @@
     },
     {
       "activity_id": 3,
+      "slug": "portsmouth-climbing-wall",
       "name": "Portsmouth Climbing Wall",
       "category": "Sports",
       "sub_category": "Bouldering",
@@ -109,6 +112,7 @@
     },
     {
       "activity_id": 4,
+      "slug": "dice-board-game-lounge",
       "name": "Dice Board Game Lounge",
       "category": "Games",
       "sub_category": "Boardroom Cafe",
@@ -147,6 +151,7 @@
     },
     {
       "activity_id": 5,
+      "slug": "blue-reef-aquarium",
       "name": "Blue Reef Aquarium",
       "category": "Attraction",
       "sub_category": "Aquarium",
@@ -180,6 +185,7 @@
     },
     {
       "activity_id": 6,
+      "slug": "spinnaker-tower",
       "name": "Spinnaker Tower",
       "category": "Attraction",
       "sub_category": "Observation Deck",
@@ -213,6 +219,7 @@
     },
     {
       "activity_id": 7,
+      "slug": "portsmouth-historic-dockyard",
       "name": "Portsmouth Historic Dockyard",
       "category": "History",
       "sub_category": "Museum",
@@ -246,6 +253,7 @@
     },
     {
       "activity_id": 8,
+      "slug": "andrew-simpson-centres",
       "name": "Andrew Simpson Centres",
       "category": "Sports",
       "sub_category": "Adventure",

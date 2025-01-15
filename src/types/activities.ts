@@ -5,6 +5,7 @@ export interface LocationActivities {
 
 export interface Activity {
   activity_id: number;
+  slug: string;
   name: string;
   category: string;
   sub_category: string;

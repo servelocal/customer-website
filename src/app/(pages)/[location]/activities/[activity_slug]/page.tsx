@@ -3,14 +3,11 @@ import Image from 'next/image';
 import activitiesData from '@/data/activities.json';
 import { Activity } from '@/types';
 import { ActivityDetailParams } from '@/types/pageParams';
-import { slugify } from '@/utils/slugify';
 
 const ActivityDetailPage = async ({ params }: { params: ActivityDetailParams }) => {
-  const { activity_id } = await params;
+  const { activity_slug } = await params;
 
-  const activity = activitiesData.activities.find(
-    (act: Activity) => slugify(act.name) === activity_id
-  );
+  const activity = activitiesData.activities.find((act: Activity) => act.slug === activity_slug);
 
   if (!activity) {
     notFound();

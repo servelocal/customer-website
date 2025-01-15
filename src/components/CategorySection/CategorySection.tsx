@@ -13,6 +13,7 @@ const CategorySection = ({ category, activities }: CategorySectionProps) => (
       {activities.map(
         ({
           activity_id,
+          slug,
           name,
           sub_category,
           details: { bannerImage, thumbnailImage, priceRange },
@@ -21,6 +22,7 @@ const CategorySection = ({ category, activities }: CategorySectionProps) => (
           <ActivityCard
             key={activity_id}
             activity_id={activity_id}
+            slug={slug}
             name={name}
             priceRange={priceRange}
             thumbnailImage={thumbnailImage}
