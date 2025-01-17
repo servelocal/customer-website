@@ -1,8 +1,10 @@
 name: "Feature Request"
 description: "Propose a new feature or enhancement for the project."
 labels: 
-  - "feature request"
-  - "enhancement"
+  - "feature"
+projects: ["SideQuest/1"]
+assignees:
+  - amltms
 body:
   - type: markdown
     attributes:
