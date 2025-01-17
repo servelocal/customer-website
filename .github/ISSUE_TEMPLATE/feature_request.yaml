@@ -6,17 +6,6 @@ projects: ["SideQuest/1"]
 assignees:
   - amltms
 body:
-  - type: markdown
-    attributes:
-      value: |
-        ### Thanks for proposing a feature!
-        Please provide as much detail as possible so we can understand your request and consider it for implementation.
-  - type: input
-    id: title
-    attributes:
-      label: "Feature Title"
-      description: "Provide a short and descriptive title for your feature request."
-      placeholder: "Add a concise title"
   - type: textarea
     id: description
     attributes:
