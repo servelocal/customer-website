@@ -2,8 +2,7 @@ name: "Feature Request"
 description: "Propose a new feature or enhancement for the project."
 labels: 
   - "feature"
-type:
-  - "Feature"
+type: "Feature"
 projects: ["SideQuest/1"]
 assignees:
   - amltms
