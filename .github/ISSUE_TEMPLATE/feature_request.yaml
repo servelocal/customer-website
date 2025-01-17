@@ -7,29 +7,26 @@ body:
   - type: markdown
     attributes:
       value: |
-        ### Thanks for taking the time to propose a feature!
-        Please provide as much detail as possible for us to understand your request.
+        ### Thanks for proposing a feature!
+        Please provide as much detail as possible so we can understand your request and consider it for implementation.
   - type: input
     id: title
     attributes:
       label: "Feature Title"
       description: "Provide a short and descriptive title for your feature request."
       placeholder: "Add a concise title"
-      required: true
   - type: textarea
     id: description
     attributes:
       label: "Feature Description"
       description: "Describe the feature in detail. What problem does it solve? How will it improve the project?"
       placeholder: "Describe your feature request"
-      required: true
   - type: textarea
     id: use-case
     attributes:
       label: "Use Case"
       description: "Explain the use case for this feature. Who will use it and how?"
       placeholder: "Explain the use case"
-      required: true
   - type: dropdown
     id: priority
     attributes:
@@ -39,11 +36,9 @@ body:
         - "Low"
         - "Medium"
         - "High"
-      required: true
   - type: textarea
     id: additional-context
     attributes:
       label: "Additional Context"
       description: "Add any other context or screenshots related to your request."
       placeholder: "Provide additional context"
-      required: false
