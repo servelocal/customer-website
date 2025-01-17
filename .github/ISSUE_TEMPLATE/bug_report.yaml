@@ -4,7 +4,7 @@ title: "[Bug]: "
 labels: ["bug", "triage"]
 projects: ["SideQuest/1"]
 assignees:
-  - octocat
+  - amltms
 body:
   - type: markdown
     attributes:
