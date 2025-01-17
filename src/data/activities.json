@@ -7,7 +7,7 @@
       "name": "Hollywood Bowl",
       "category": "Sports",
       "sub_category": "Bowling",
-      "description": "Hollywood Bowl in Portsmouth offers a fun-filled bowling experience for all ages. Located at the popular Gunwharf Quays, this venue is perfect for family outings, casual hangouts, or friendly competitions. With modern lanes, arcade games, and a bar, it's an ideal spot for entertainment. Enjoy delicious food and drink options while you play, and experience special offers during peak times. Hollywood Bowl is a go-to choice for an enjoyable day or night out with friends and family.",
+      "description": "Hollywood Bowl in Portsmouth offers a fun-filled bowling experience for all ages. Located at the popular Gunwharf Quays, this venue is perfect for family outings, casual hangouts, or friendly competitions. With modern lanes, arcade games, and a bar, it's an ideal spot for entertainment. Enjoy delicious food and drink options while you play, and experience special offers during peak times.",
       "tags": [
         "Indoor",
         "Family-friendly",
@@ -18,7 +18,12 @@
         "Food and Drink",
         "Bowling"
       ],
-      "address": "Gunwharf Quays, Portsmouth PO1 3TU, UK",
+      "address": {
+        "street": "Gunwharf Quays",
+        "city": "Portsmouth",
+        "postcode": "PO1 3TU",
+        "country": "UK"
+      },
       "coordinates": {
         "latitude": 50.796047,
         "longitude": -1.107077
@@ -29,12 +34,15 @@
       },
       "details": {
         "openingTimes": {
-          "Weekdays": "10:00 AM - 11:00 PM",
-          "Friday": "10:00 AM - 12:00 AM",
-          "Saturday": "9:00 AM - 12:00 AM",
-          "Sunday": "9:00 AM - 10:00 PM"
+          "weekdays": "10:00 AM - 11:00 PM",
+          "friday": "10:00 AM - 12:00 AM",
+          "saturday": "9:00 AM - 12:00 AM",
+          "sunday": "9:00 AM - 10:00 PM"
         },
-        "priceRange": "££",
+        "price": [
+          { "type": "Adult", "amount": 10, "currency": "GBP" },
+          { "type": "Child", "amount": 7, "currency": "GBP" }
+        ],
         "bannerImage": "/images/hollywood-bowl-banner.webp",
         "thumbnailImage": "/images/hollywood-bowl-thumb.jpg"
       }
@@ -56,7 +64,12 @@
         "Leisure",
         "Relaxing"
       ],
-      "address": "Eastern Rd, Portsmouth PO3 5TU, UK",
+      "address": {
+        "street": "Eastern Rd",
+        "city": "Portsmouth",
+        "postcode": "PO3 5TU",
+        "country": "UK"
+      },
       "coordinates": {
         "latitude": 50.792915,
         "longitude": -1.068763
@@ -67,10 +80,13 @@
       },
       "details": {
         "openingTimes": {
-          "Weekdays": "7:00 AM - 8:00 PM",
-          "Weekends": "7:00 AM - 8:00 PM"
+          "weekdays": "7:00 AM - 8:00 PM",
+          "weekends": "7:00 AM - 8:00 PM"
         },
-        "priceRange": "£££",
+        "price": [
+          { "type": "Adult", "amount": 15, "currency": "GBP" },
+          { "type": "Child", "amount": 7, "currency": "GBP" }
+        ],
         "bannerImage": "/images/southsea-golf-banner.jpg",
         "thumbnailImage": "/images/southsea-golf-thumb.jpg"
       }
@@ -91,7 +107,12 @@
         "Group-friendly",
         "Skill Development"
       ],
-      "address": "The Pyramids Centre, Clarence Esplanade, Portsmouth PO5 3ST, UK",
+      "address": {
+        "street": "The Pyramids Centre, Clarence Esplanade",
+        "city": "Portsmouth",
+        "postcode": "PO5 3ST",
+        "country": "UK"
+      },
       "coordinates": {
         "latitude": 50.777929,
         "longitude": -1.088129
@@ -102,10 +123,13 @@
       },
       "details": {
         "openingTimes": {
-          "Weekdays": "10:00 AM - 9:00 PM",
-          "Weekends": "9:00 AM - 7:00 PM"
+          "weekdays": "10:00 AM - 9:00 PM",
+          "weekends": "9:00 AM - 7:00 PM"
         },
-        "priceRange": "££",
+        "price": [
+          { "type": "Adult", "amount": 12, "currency": "GBP" },
+          { "type": "Child", "amount": 7, "currency": "GBP" }
+        ],
         "bannerImage": "/images/climbing-wall-banner.webp",
         "thumbnailImage": "/images/climbing-wall-thumb.avif"
       }
@@ -127,7 +151,12 @@
         "Relaxing",
         "Snacks and Beverages"
       ],
-      "address": "Albert Rd, Portsmouth PO4 0JR, UK",
+      "address": {
+        "street": "Albert Rd",
+        "city": "Portsmouth",
+        "postcode": "PO4 0JR",
+        "country": "UK"
+      },
       "coordinates": {
         "latitude": 50.791244,
         "longitude": -1.064939
@@ -138,13 +167,13 @@
       },
       "details": {
         "openingTimes": {
-          "Tuesday - Thursday": "12:00 PM - 10:00 PM",
-          "Friday": "12:00 PM - 11:00 PM",
-          "Saturday": "11:00 AM - 11:00 PM",
-          "Sunday": "11:00 AM - 10:00 PM",
-          "Monday": "Closed"
+          "weekdays": "12:00 PM - 10:00 PM",
+          "friday": "12:00 PM - 11:00 PM",
+          "saturday": "11:00 AM - 11:00 PM",
+          "sunday": "11:00 AM - 10:00 PM",
+          "monday": "Closed"
         },
-        "priceRange": "£",
+        "price": [{ "type": "General", "amount": 14, "currency": "GBP" }],
         "bannerImage": "/images/dice-lounge-banner.webp",
         "thumbnailImage": "/images/dice-lounge-thumb.jpg"
       }
@@ -165,7 +194,12 @@
         "Interactive",
         "Exhibitions"
       ],
-      "address": "Clarence Esplanade, Southsea, Portsmouth PO5 3PB, UK",
+      "address": {
+        "street": "Clarence Esplanade",
+        "city": "Portsmouth",
+        "postcode": "PO5 3PB",
+        "country": "UK"
+      },
       "coordinates": {
         "latitude": 50.780951,
         "longitude": -1.086474
@@ -176,9 +210,12 @@
       },
       "details": {
         "openingTimes": {
-          "Daily": "10:00 AM - 5:00 PM"
+          "daily": "10:00 AM - 5:00 PM"
         },
-        "priceRange": "££",
+        "price": [
+          { "type": "Adult", "amount": 15, "currency": "GBP" },
+          { "type": "Child", "amount": 10, "currency": "GBP" }
+        ],
         "bannerImage": "/images/blue-reef-aquarium-banner.jpg",
         "thumbnailImage": "/images/blue-reef-aquarium-thumb.jpg"
       }
@@ -199,7 +236,12 @@
         "City Views",
         "Glass Floor"
       ],
-      "address": "Gunwharf Quays, Portsmouth PO1 3TT, UK",
+      "address": {
+        "street": "Gunwharf Quays",
+        "city": "Portsmouth",
+        "postcode": "PO1 3TT",
+        "country": "UK"
+      },
       "coordinates": {
         "latitude": 50.794801,
         "longitude": -1.107025
@@ -210,9 +252,12 @@
       },
       "details": {
         "openingTimes": {
-          "Daily": "10:00 AM - 6:00 PM"
+          "daily": "10:00 AM - 6:00 PM"
         },
-        "priceRange": "£££",
+        "price": [
+          { "type": "Adult", "amount": 30, "currency": "GBP" },
+          { "type": "Child", "amount": 12, "currency": "GBP" }
+        ],
         "bannerImage": "/images/spinnaker-tower-banner.jpg",
         "thumbnailImage": "/images/spinnaker-tower-thumb.png"
       }
@@ -233,7 +278,12 @@
         "Educational",
         "Landmark"
       ],
-      "address": "Victory Gate, HM Naval Base, Portsmouth PO1 3LJ, UK",
+      "address": {
+        "street": "Victory Gate, HM Naval Base",
+        "city": "Portsmouth",
+        "postcode": "PO1 3LJ",
+        "country": "UK"
+      },
       "coordinates": {
         "latitude": 50.799504,
         "longitude": -1.107418
@@ -244,9 +294,12 @@
       },
       "details": {
         "openingTimes": {
-          "Daily": "10:00 AM - 5:30 PM"
+          "daily": "10:00 AM - 5:30 PM"
         },
-        "priceRange": "£££",
+        "price": [
+          { "type": "Adult", "amount": 20, "currency": "GBP" },
+          { "type": "Child", "amount": 12, "currency": "GBP" }
+        ],
         "bannerImage": "/images/historic-dockyard-banner.jpg",
         "thumbnailImage": "/images/historic-dockyard-thumb.png"
       }
@@ -267,7 +320,12 @@
         "Family-friendly",
         "Scenic"
       ],
-      "address": "Eastern Rd, Portsmouth PO3 5LY, UK",
+      "address": {
+        "street": "Eastern Rd",
+        "city": "Portsmouth",
+        "postcode": "PO3 5LY",
+        "country": "UK"
+      },
       "coordinates": {
         "latitude": 50.790613,
         "longitude": -1.078046
@@ -278,11 +336,14 @@
       },
       "details": {
         "openingTimes": {
-          "Weekdays": "9:00 AM - 5:00 PM",
-          "Saturday": "9:00 AM - 6:00 PM",
-          "Sunday": "10:00 AM - 4:00 PM"
+          "weekdays": "9:00 AM - 5:00 PM",
+          "saturday": "9:00 AM - 6:00 PM",
+          "sunday": "10:00 AM - 4:00 PM"
         },
-        "priceRange": "££",
+        "price": [
+          { "type": "Adult", "amount": 18, "currency": "GBP" },
+          { "type": "Child", "amount": 12, "currency": "GBP" }
+        ],
         "bannerImage": "/images/andrew-simpson-centre-banner.jpg",
         "thumbnailImage": "/images/andrew-simpson-centre-thumb.png"
       }

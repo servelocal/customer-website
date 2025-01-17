@@ -16,14 +16,14 @@ const CategorySection = ({ category, activities }: CategorySectionProps) => (
           slug,
           name,
           sub_category,
-          details: { bannerImage, thumbnailImage, priceRange },
+          details: { bannerImage, thumbnailImage, price },
           coordinates,
         }) => (
           <ActivityCard
             key={activity_id}
             slug={slug}
             name={name}
-            priceRange={priceRange}
+            price={price}
             thumbnailImage={thumbnailImage}
             bannerImage={bannerImage}
             subCategory={sub_category}
