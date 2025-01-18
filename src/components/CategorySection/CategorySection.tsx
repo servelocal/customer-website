@@ -63,7 +63,7 @@ const CategorySection = ({ title, tags, activities }: CategorySectionProps) => {
 
   return (
     <div
-      className="group/title relative mb-8"
+      className="group/title relative"
       onMouseEnter={() => setShowButtons(true)}
       onMouseLeave={() => setShowButtons(false)}
     >
