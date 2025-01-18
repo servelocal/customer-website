@@ -6,7 +6,7 @@ export interface LocationActivities {
 export interface ActivityCardProps {
   slug: string;
   name: string;
-  priceRange: string;
+  price: Price[];
   thumbnailImage: string;
   bannerImage: string;
   subCategory: string;
@@ -24,7 +24,7 @@ export interface Activity {
   sub_category: string;
   description: string;
   tags: string[];
-  address: string;
+  address: Address;
   contact: Contact;
   details: ActivityDetails;
   coordinates: {
@@ -33,16 +33,29 @@ export interface Activity {
   };
 }
 
+export interface ActivityDetails {
+  openingTimes: OpeningTimes;
+  price: Price[];
+  bannerImage: string;
+  thumbnailImage: string;
+}
+
+export interface Address {
+  street: string;
+  city: string;
+  postcode: string;
+  country: string;
+}
+
+export interface Price {
+  type: string;
+  amount: number;
+  currency: string;
+}
+
 export interface Contact {
   phone: string;
   website: string;
-}
-
-export interface ActivityDetails {
-  openingTimes: OpeningTimes;
-  priceRange: string;
-  bannerImage: string;
-  thumbnailImage: string;
 }
 
 export interface OpeningTimes {
