@@ -1,7 +1,7 @@
 import { notFound } from 'next/navigation';
 import Image from 'next/image';
 import activitiesData from '@/data/activities.json';
-import { Activity } from '@/types';
+import { Activity, Price } from '@/types';
 import { ActivityDetailParams } from '@/types/pageParams';
 
 const ActivityDetailPage = async ({ params }: { params: ActivityDetailParams }) => {
@@ -18,10 +18,16 @@ const ActivityDetailPage = async ({ params }: { params: ActivityDetailParams }) 
       <HeaderSection activity={activity} />
       <TagsSection tags={activity.tags} />
       <DetailSection title="Description" content={activity.description} />
-      <DetailSection title="Address" content={activity.address} />
+      <DetailSection
+        title="Address"
+        content={`${activity.address.street}, ${activity.address.city}, ${activity.address.postcode}, ${activity.address.country}`}
+      />
       <ContactSection contact={activity.contact} />
       <OpeningTimesSection openingTimes={activity.details.openingTimes} />
-      <DetailSection title="Price Range" content={activity.details.priceRange} />
+      <h2 className="mb-2 text-xl font-semibold">Price</h2>
+      {activity.details.price.map((price: Price, index: number) => (
+        <PriceSection key={index} price={price} />
+      ))}
     </div>
   );
 };
@@ -89,7 +95,7 @@ const ContactSection = ({ contact }: { contact: Activity['contact'] }) => (
 const OpeningTimesSection = ({
   openingTimes,
 }: {
-  openingTimes: Record<string, string | undefined>;
+  openingTimes: Activity['details']['openingTimes'];
 }) => {
   const filteredOpeningTimes = Object.entries(openingTimes).filter(
     ([, time]) => time !== undefined
@@ -112,5 +118,13 @@ const OpeningTimesSection = ({
     </div>
   );
 };
+
+const PriceSection = ({ price }: { price: Price }) => (
+  <div className="mb-1">
+    <p className="text-gray-700">
+      {price.type}: {price.amount} {price.currency}
+    </p>
+  </div>
+);
 
 export default ActivityDetailPage;

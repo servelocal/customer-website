@@ -13,18 +13,22 @@ const ActivitiesPage = async ({ params }: { params: ActivitiesPageParams }) => {
 
   return (
     <>
+      {/* Banner Section */}
       <Banner
         title={`Activities in ${capitalise(location)}`}
         subtitle="Discover amazing services and activities in your area"
         backgroundImage={DEFAULT_BACKGROUND_IMAGE}
       />
+
+      {/* Main Content */}
       <div className="container mx-auto p-4">
         {Object.entries(activities).length > 0 ? (
-          Object.entries(activities).map(([tagGroup, activities]) => (
+          Object.entries(activities).map(([tagGroup, { activities: groupActivities, tags }]) => (
             <CategorySection
               key={tagGroup}
               category={capitalise(tagGroup)}
-              activities={activities}
+              tags={tags}
+              activities={groupActivities}
             />
           ))
         ) : (

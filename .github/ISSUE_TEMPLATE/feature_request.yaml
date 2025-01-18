@@ -1,0 +1,22 @@
+name: "Feature Request"
+description: "Propose a new feature or enhancement for the project."
+type: "Feature"
+projects: ["SideQuest"]
+assignees:
+  - amltms
+body:
+  - type: textarea
+    id: description
+    attributes:
+      label: "Feature Description"
+      description: "Describe the feature in detail. What problem does it solve? How will it improve the project?"
+      placeholder: "Describe your feature request"
+  - type: dropdown
+    id: priority
+    attributes:
+      label: "Priority Level"
+      description: "Indicate the importance of this feature."
+      options:
+        - "Low"
+        - "Medium"
+        - "High"

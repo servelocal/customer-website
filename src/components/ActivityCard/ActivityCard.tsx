@@ -4,13 +4,13 @@ import Link from 'next/link';
 import Image from 'next/image';
 import { BsBookmark } from 'react-icons/bs';
 import { useLocation } from '@/context/LocationContext';
-import { ActivityCardProps } from '@/types/activities';
-import { getSubCategoryClasses, calculateDistance, isValidCoordinate } from '@/utils/activityCard';
+import { ActivityCardProps } from '@/types';
+import { getSubCategoryClasses, calculateDistance, isValidCoordinate, createPriceIndicator } from '@/utils/activityCard';
 
 function ActivityCard({
   slug,
   name,
-  priceRange,
+  price,
   bannerImage,
   subCategory,
   coordinates,
@@ -49,7 +49,9 @@ function ActivityCard({
         {/* Title and Price */}
         <div className="mt-2 flex items-end justify-between">
           <h3 className="text-lg font-bold">{name}</h3>
-          <p className="ml-auto text-sm font-semibold text-gray-700">{priceRange}</p>
+          <p className="ml-auto text-sm font-semibold text-gray-700">
+            {createPriceIndicator(price)}
+          </p>
         </div>
 
         {/* Subcategory and Distance */}
