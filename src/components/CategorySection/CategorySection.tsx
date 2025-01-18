@@ -63,7 +63,7 @@ const CategorySection = ({ title, tags, activities }: CategorySectionProps) => {
 
   return (
     <div
-      className="group relative mb-8"
+      className="relative mb-8"
       onMouseEnter={() => setShowButtons(true)}
       onMouseLeave={() => setShowButtons(false)}
     >
@@ -71,19 +71,19 @@ const CategorySection = ({ title, tags, activities }: CategorySectionProps) => {
       <div className="relative inline-block">
         {/* Title Wrapper for Full Hover */}
         <div className="group/title relative inline-block">
-          <h2 className="flex items-center align-baseline text-2xl font-semibold transition-colors duration-300 hover:cursor-pointer">
+          <h2 className="group/title flex items-center align-baseline text-2xl font-semibold transition-colors duration-300 hover:cursor-pointer">
             {title}
 
-            {/* Arrow (visible when hovering over the section) */}
+            {/* Arrow (visible only on title hover) */}
             <span
-              className="ml-2 translate-x-[-10px] transform text-gray-500 opacity-0 transition-all duration-300 group-hover:translate-x-0 group-hover:text-gray-800 group-hover:opacity-100"
+              className="ml-2 translate-x-[-10px] transform text-gray-500 opacity-0 transition-all duration-300 group-hover/title:translate-x-0 group-hover/title:text-gray-800 group-hover/title:opacity-100"
               aria-hidden="true"
             >
               <MdKeyboardArrowRight />
             </span>
           </h2>
 
-          {/* Sliding Tags (visible when hovering over the title) */}
+          {/* Sliding Tags (visible when hovering over any part of the title) */}
           <div className="absolute left-full top-1/2 ml-2 flex translate-x-[-10px] translate-y-[-50%] flex-nowrap gap-2 opacity-0 transition-all duration-500 group-hover/title:translate-x-0 group-hover/title:opacity-100">
             {tags.map((tag) => (
               <span
