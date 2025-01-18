@@ -5,7 +5,8 @@ import Image from 'next/image';
 import { BsBookmark } from 'react-icons/bs';
 import { useLocation } from '@/context/LocationContext';
 import { ActivityCardProps } from '@/types';
-import { getSubCategoryClasses, calculateDistance, isValidCoordinate, createPriceIndicator } from '@/utils/activityCard';
+import { getSubCategoryClasses, calculateDistance, isValidCoordinate } from '@/utils/activityCard';
+import { createPriceIndicator } from '@/utils/priceIndicator';
 
 function ActivityCard({
   slug,
