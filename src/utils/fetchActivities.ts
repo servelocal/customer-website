@@ -5,18 +5,29 @@ import { Activity, TagGroup } from '@/types';
 const categoriseByTagGroups = (
   activities: Activity[],
   tagGroups: TagGroup[]
-): Record<string, Activity[]> => {
-  return tagGroups.reduce((acc: Record<string, Activity[]>, group) => {
-    const matchedActivities = activities.filter((activity) =>
-      activity.tags.some((tag) => group.tags.includes(tag))
-    );
+): Record<string, { activities: Activity[]; tags: string[] }> => {
+  return tagGroups.reduce(
+    (acc: Record<string, { activities: Activity[]; tags: string[] }>, group) => {
+      // Find activities that match the tags in the current group
+      const matchedActivities = activities.filter((activity) =>
+        activity.tags.some((tag) => group.tags.includes(tag))
+      );
 
-    acc[group.title] = matchedActivities;
-    return acc;
-  }, {});
+      // Add activities and tags to the group
+      acc[group.title] = {
+        activities: matchedActivities,
+        tags: group.tags, // Include the tags for the group
+      };
+
+      return acc;
+    },
+    {}
+  );
 };
 
-const fetchActivities = async (location: string): Promise<Record<string, Activity[]>> => {
+const fetchActivities = async (
+  location: string
+): Promise<Record<string, { activities: Activity[]; tags: string[] }>> => {
   const lowercasedCity = location.toLowerCase();
 
   if (
