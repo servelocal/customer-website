@@ -118,8 +118,8 @@ export default function LocationInput() {
     setLoading(true);
     navigator.geolocation.getCurrentPosition(
       async ({ coords }) => {
-        const city = await fetchCityName(coords);
         setCoords(coords);
+        const city = await fetchCityName(coords);
         setLocation(city);
         setSearchQuery(city);
         router.push(`/${city.toLowerCase()}/activities`);

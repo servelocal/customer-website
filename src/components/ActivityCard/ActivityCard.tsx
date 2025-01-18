@@ -7,6 +7,7 @@ import { useLocation } from '@/context/LocationContext';
 import { ActivityCardProps } from '@/types';
 import { getSubCategoryClasses, calculateDistance, isValidCoordinate } from '@/utils/activityCard';
 import { createPriceIndicator } from '@/utils/priceIndicator';
+import { useEffect, useState } from 'react';
 
 function ActivityCard({
   slug,
@@ -17,15 +18,22 @@ function ActivityCard({
   coordinates,
 }: ActivityCardProps) {
   const { coords, location } = useLocation();
+  const [distance, setDistance] = useState<number | null>(null);
 
-  const distance = isValidCoordinate(coords)
-    ? calculateDistance(
-        coords.latitude,
-        coords.longitude,
-        coordinates.latitude,
-        coordinates.longitude
-      )
-    : null;
+  useEffect(() => {
+    if (isValidCoordinate(coords)) {
+      setDistance(
+        calculateDistance(
+          coords.latitude,
+          coords.longitude,
+          coordinates.latitude,
+          coordinates.longitude
+        )
+      );
+    } else {
+      setDistance(null);
+    }
+  }, [coords, coordinates]);
 
   const locationSlug = location?.toLowerCase() || 'default';
 
