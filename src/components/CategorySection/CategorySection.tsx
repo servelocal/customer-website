@@ -73,7 +73,6 @@ const CategorySection = ({ title, tags, activities }: CategorySectionProps) => {
         <div className="group/tag relative inline-block">
           <h2 className="flex items-center align-baseline text-2xl font-semibold transition-colors duration-300 hover:cursor-pointer">
             {title}
-
             {/* Arrow (visible only on title hover) */}
             <span
               className="ml-2 translate-x-[-10px] transform opacity-0 transition-all duration-300 group-hover/title:translate-x-0 group-hover/title:opacity-100"
@@ -88,7 +87,7 @@ const CategorySection = ({ title, tags, activities }: CategorySectionProps) => {
             {tags.map((tag) => (
               <span
                 key={tag}
-                className="shrink-0 whitespace-nowrap rounded-full bg-black/10 px-3 py-1 text-sm font-medium text-black/80"
+                className="shrink-0 whitespace-nowrap rounded-full bg-slate-100 px-3 py-1 text-sm font-medium text-black/80"
               >
                 {tag}
               </span>
