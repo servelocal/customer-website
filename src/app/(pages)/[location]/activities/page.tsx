@@ -26,7 +26,7 @@ const ActivitiesPage = async ({ params }: { params: ActivitiesPageParams }) => {
           Object.entries(activities).map(([tagGroup, { activities: groupActivities, tags }]) => (
             <CategorySection
               key={tagGroup}
-              category={capitalise(tagGroup)}
+              title={capitalise(tagGroup)}
               tags={tags}
               activities={groupActivities}
             />
