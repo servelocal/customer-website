@@ -63,20 +63,20 @@ const CategorySection = ({ title, tags, activities }: CategorySectionProps) => {
 
   return (
     <div
-      className="relative mb-8"
+      className="group/title relative mb-8"
       onMouseEnter={() => setShowButtons(true)}
       onMouseLeave={() => setShowButtons(false)}
     >
       {/* Category Title with Tags */}
       <div className="relative inline-block">
         {/* Title Wrapper for Full Hover */}
-        <div className="group/title relative inline-block">
-          <h2 className="group/title flex items-center align-baseline text-2xl font-semibold transition-colors duration-300 hover:cursor-pointer">
+        <div className="group/tag relative inline-block">
+          <h2 className="flex items-center align-baseline text-2xl font-semibold transition-colors duration-300 hover:cursor-pointer">
             {title}
 
             {/* Arrow (visible only on title hover) */}
             <span
-              className="ml-2 translate-x-[-10px] transform text-gray-500 opacity-0 transition-all duration-300 group-hover/title:translate-x-0 group-hover/title:text-gray-800 group-hover/title:opacity-100"
+              className="ml-2 translate-x-[-10px] transform text-gray-700 opacity-0 transition-all duration-300 group-hover/title:translate-x-0 group-hover/title:opacity-100"
               aria-hidden="true"
             >
               <MdKeyboardArrowRight />
@@ -84,7 +84,7 @@ const CategorySection = ({ title, tags, activities }: CategorySectionProps) => {
           </h2>
 
           {/* Sliding Tags (visible when hovering over any part of the title) */}
-          <div className="absolute left-full top-1/2 ml-2 flex w-screen translate-x-[-10px] translate-y-[-50%] flex-nowrap gap-2 overflow-x-auto opacity-0 transition-all duration-500 group-hover/title:translate-x-0 group-hover/title:opacity-100">
+          <div className="absolute left-full top-1/2 ml-2 flex w-screen translate-x-[-10px] translate-y-[-50%] flex-nowrap gap-2 overflow-x-auto opacity-0 transition-all duration-500 group-hover/tag:translate-x-0 group-hover/tag:opacity-100">
             {tags.map((tag) => (
               <span
                 key={tag}
