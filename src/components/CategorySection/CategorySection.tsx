@@ -76,7 +76,7 @@ const CategorySection = ({ title, tags, activities }: CategorySectionProps) => {
 
             {/* Arrow (visible only on title hover) */}
             <span
-              className="ml-2 translate-x-[-10px] transform text-gray-700 opacity-0 transition-all duration-300 group-hover/title:translate-x-0 group-hover/title:opacity-100"
+              className="ml-2 translate-x-[-10px] transform opacity-0 transition-all duration-300 group-hover/title:translate-x-0 group-hover/title:opacity-100"
               aria-hidden="true"
             >
               <MdKeyboardArrowRight />
@@ -84,7 +84,7 @@ const CategorySection = ({ title, tags, activities }: CategorySectionProps) => {
           </h2>
 
           {/* Sliding Tags (visible when hovering over any part of the title) */}
-          <div className="absolute left-full top-1/2 ml-2 flex w-screen translate-x-[-10px] translate-y-[-50%] flex-nowrap gap-2 overflow-x-auto opacity-0 transition-all duration-500 group-hover/tag:translate-x-0 group-hover/tag:opacity-100">
+          <div className="absolute left-full top-1/2 ml-2 flex w-screen translate-x-[-10px] translate-y-[-50%] flex-nowrap gap-2 overflow-x-auto opacity-0 transition-all duration-300 group-hover/tag:translate-x-0 group-hover/tag:opacity-100">
             {tags.map((tag) => (
               <span
                 key={tag}
