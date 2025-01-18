@@ -4,13 +4,15 @@ import { useRef, useState, useEffect } from 'react';
 import { FiChevronLeft, FiChevronRight } from 'react-icons/fi';
 import { Activity } from '@/types';
 import ActivityCard from '../ActivityCard';
+import { MdKeyboardArrowRight } from 'react-icons/md';
 
 interface CategorySectionProps {
   title: string;
+  tags: string[];
   activities: Activity[];
 }
 
-const CategorySection = ({ title, activities }: CategorySectionProps) => {
+const CategorySection = ({ title, tags, activities }: CategorySectionProps) => {
   const scrollContainerRef = useRef<HTMLDivElement>(null);
   const [showButtons, setShowButtons] = useState(false);
   const [canScrollLeft, setCanScrollLeft] = useState(false);
@@ -61,11 +63,40 @@ const CategorySection = ({ title, activities }: CategorySectionProps) => {
 
   return (
     <div
-      className="relative"
+      className="group relative mb-8"
       onMouseEnter={() => setShowButtons(true)}
       onMouseLeave={() => setShowButtons(false)}
     >
-      <h2 className="mb-2 text-2xl font-semibold">{title}</h2>
+      {/* Category Title with Tags */}
+      <div className="relative inline-block">
+        {/* Title Wrapper for Full Hover */}
+        <div className="group/title relative inline-block">
+          <h2 className="flex items-center align-baseline text-2xl font-semibold transition-colors duration-300 hover:cursor-pointer">
+            {title}
+
+            {/* Arrow (visible when hovering over the section) */}
+            <span
+              className="ml-2 translate-x-[-10px] transform text-gray-500 opacity-0 transition-all duration-300 group-hover:translate-x-0 group-hover:text-gray-800 group-hover:opacity-100"
+              aria-hidden="true"
+            >
+              <MdKeyboardArrowRight />
+            </span>
+          </h2>
+
+          {/* Sliding Tags (visible when hovering over the title) */}
+          <div className="absolute left-full top-1/2 ml-2 flex translate-x-[-10px] translate-y-[-50%] flex-nowrap gap-2 opacity-0 transition-all duration-500 group-hover/title:translate-x-0 group-hover/title:opacity-100">
+            {tags.map((tag) => (
+              <span
+                key={tag}
+                className="shrink-0 whitespace-nowrap rounded-full bg-black/10 px-3 py-1 text-sm font-medium text-black/80"
+              >
+                {tag}
+              </span>
+            ))}
+          </div>
+        </div>
+      </div>
+
       <div className="relative overflow-visible">
         {/* Scroll Buttons */}
         {canScrollLeft && showButtons && (

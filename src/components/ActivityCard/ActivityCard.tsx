@@ -72,7 +72,7 @@ const ActivityCard: React.FC<ActivityCardProps> = ({
             className="h-48 w-full rounded-2xl object-cover"
           />
           {/* Bookmark Icon */}
-          <div className="absolute right-3 top-3 text-white opacity-0 transition-opacity duration-300 group-hover:opacity-100">
+          <div className="pointer-events-none absolute right-3 top-3 text-white opacity-0 transition-opacity duration-300 group-hover:opacity-100">
             <BsBookmark size={24} />
           </div>
         </div>
