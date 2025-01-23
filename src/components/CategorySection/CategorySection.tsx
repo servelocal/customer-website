@@ -8,11 +8,12 @@ import { MdKeyboardArrowRight } from 'react-icons/md';
 
 interface CategorySectionProps {
   title: string;
+  description: string;
   tags: string[];
   activities: Activity[];
 }
 
-const CategorySection = ({ title, tags, activities }: CategorySectionProps) => {
+const CategorySection = ({ title, description, tags, activities }: CategorySectionProps) => {
   const scrollContainerRef = useRef<HTMLDivElement>(null);
   const [showButtons, setShowButtons] = useState(false);
   const [canScrollLeft, setCanScrollLeft] = useState(false);
@@ -68,10 +69,10 @@ const CategorySection = ({ title, tags, activities }: CategorySectionProps) => {
       onMouseLeave={() => setShowButtons(false)}
     >
       {/* Category Title with Tags */}
-      <div className="relative inline-block">
+      <div className="group/tag relative inline-block">
         {/* Title Wrapper for Full Hover */}
-        <div className="group/tag relative inline-block">
-          <h2 className="flex items-center align-baseline text-2xl font-semibold transition-colors duration-300 hover:cursor-pointer">
+        <div className="relative inline-block">
+          <h2 className="flex items-center align-baseline text-3xl font-semibold transition-colors duration-300 hover:cursor-pointer">
             {title}
             {/* Arrow (visible only on title hover) */}
             <span
@@ -83,7 +84,7 @@ const CategorySection = ({ title, tags, activities }: CategorySectionProps) => {
           </h2>
 
           {/* Sliding Tags (visible when hovering over any part of the title) */}
-          <div className="absolute left-full top-1/2 ml-2 flex w-screen translate-x-[-10px] translate-y-[-50%] flex-nowrap gap-2 overflow-x-auto opacity-0 transition-all duration-300 group-hover/tag:translate-x-0 group-hover/tag:opacity-100">
+          <div className="absolute left-full top-0 ml-1 flex w-full translate-x-[-20px] translate-y-[10%] flex-nowrap gap-2 overflow-x-visible opacity-0 transition-all duration-300 group-hover/tag:translate-x-0 group-hover/tag:opacity-100">
             {tags.map((tag) => (
               <span
                 key={tag}
@@ -94,6 +95,7 @@ const CategorySection = ({ title, tags, activities }: CategorySectionProps) => {
             ))}
           </div>
         </div>
+        <p className="text-md text-gray-500">{description}</p>
       </div>
 
       <div className="relative overflow-visible">
@@ -121,7 +123,7 @@ const CategorySection = ({ title, tags, activities }: CategorySectionProps) => {
         <div
           ref={scrollContainerRef}
           onScroll={checkScrollPosition}
-          className="hide-scrollbar relative flex scroll-p-4 gap-4 overflow-x-auto overflow-y-visible px-4 pb-8"
+          className="hide-scrollbar relative flex scroll-p-4 gap-4 overflow-x-auto overflow-y-visible px-4 pb-8 pt-4"
         >
           {activities.map(
             ({

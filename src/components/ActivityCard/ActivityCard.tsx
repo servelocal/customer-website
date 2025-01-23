@@ -2,10 +2,11 @@
 
 import Link from 'next/link';
 import Image from 'next/image';
-import { BsBookmark } from 'react-icons/bs';
+import { FaRegHeart } from 'react-icons/fa';
 import { useLocation } from '@/context/LocationContext';
 import { ActivityCardProps } from '@/types';
 import { createPriceIndicator } from '@/utils/priceIndicator';
+import { calculateDistance } from '@/utils/caculateDistance';
 
 const SUBCATEGORY_CLASSES: Record<string, string> = {
   Bouldering: 'border-blue-500 text-blue-500',
@@ -18,84 +19,58 @@ const SUBCATEGORY_CLASSES: Record<string, string> = {
 const getSubCategoryClasses = (subCategory: string) =>
   SUBCATEGORY_CLASSES[subCategory] || SUBCATEGORY_CLASSES.Default;
 
-// Utility to calculate distance using the Haversine formula
-const calculateDistance = (lat1: number, lon1: number, lat2: number, lon2: number): number => {
-  const R = 3958.8; // Radius of Earth in miles
-  const dLat = ((lat2 - lat1) * Math.PI) / 180;
-  const dLon = ((lon2 - lon1) * Math.PI) / 180;
-  const a =
-    Math.sin(dLat / 2) ** 2 +
-    Math.cos((lat1 * Math.PI) / 180) * Math.cos((lat2 * Math.PI) / 180) * Math.sin(dLon / 2) ** 2;
-  const c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1 - a));
-  return R * c; // Distance in miles
-};
-
-const isValidCoordinate = ({
-  latitude,
-  longitude,
-}: {
-  latitude: number;
-  longitude: number;
-}): boolean => latitude !== 0 && longitude !== 0;
-
-const ActivityCard: React.FC<ActivityCardProps> = ({
+const ActivityCard = ({
   slug,
   name,
   price,
   bannerImage,
   subCategory,
   coordinates,
-}) => {
+}: ActivityCardProps) => {
   const { coords, location } = useLocation();
-
-  const distance = isValidCoordinate(coords)
-    ? calculateDistance(
-        coords.latitude,
-        coords.longitude,
-        coordinates.latitude,
-        coordinates.longitude
-      )
-    : null;
-
-  const locationSlug = location?.toLowerCase() || 'default';
+  const locationSlug = location?.toLowerCase() || 'uk';
+  const distance = calculateDistance(
+    coords.latitude,
+    coords.longitude,
+    coordinates.latitude,
+    coordinates.longitude
+  );
 
   return (
-    <Link href={`/${locationSlug}/activities/${slug}`} className="block">
-      <div className="group relative w-96 cursor-pointer overflow-hidden rounded-2xl p-3 transition-shadow hover:shadow-xl">
-        {/* Banner Image */}
-        <div className="relative">
-          <Image
-            src={bannerImage}
-            alt={`Banner of ${name}`}
-            width={500}
-            height={400}
-            className="h-48 w-full rounded-2xl object-cover"
-          />
-          {/* Bookmark Icon */}
-          <div className="pointer-events-none absolute right-3 top-3 text-white opacity-0 transition-opacity duration-300 group-hover:opacity-100">
-            <BsBookmark size={24} />
-          </div>
+    <Link
+      href={`/${locationSlug}/activities/${slug}`}
+      className="group block w-80 shrink-0 cursor-pointer rounded-2xl p-3 transition-transform duration-300 hover:scale-105 hover:shadow-lg md:w-96"
+    >
+      {/* Banner Image */}
+      <div className="relative">
+        <Image
+          src={bannerImage}
+          alt={`Banner of ${name}`}
+          width={500}
+          height={400}
+          className="h-48 w-full rounded-2xl object-cover"
+        />
+        <div className="absolute right-3 top-3 rounded-full bg-white p-2 text-black opacity-0 shadow-lg transition-opacity group-hover:opacity-100">
+          <FaRegHeart size={16} className="text-black" />
         </div>
+      </div>
 
-        {/* Title and Price */}
-        <div className="mt-2 flex items-end justify-between">
+      {/* Title, Price, Subcategory, and Distance */}
+      <div className="mt-2 space-y-1">
+        <div className="flex items-end justify-between">
           <h3 className="text-lg font-bold">{name}</h3>
-          <p className="ml-auto text-sm font-semibold text-gray-700">
-            {createPriceIndicator(price)}
-          </p>
+          <p className="text-sm font-semibold text-gray-700">{createPriceIndicator(price)}</p>
         </div>
-
-        {/* Subcategory and Distance */}
-        <div className="mt-1 flex items-end justify-between">
-          <div
-            className={`inline-block rounded-full border px-2 py-1 text-xs ${getSubCategoryClasses(
+        <div className="flex items-end justify-between">
+          <span
+            className={`rounded-full border px-2 py-1 text-xs ${getSubCategoryClasses(
               subCategory
             )}`}
           >
             {subCategory}
-          </div>
+          </span>
           {distance !== null && (
-            <p className="ml-2 text-sm text-gray-600">{distance.toFixed(1)} miles</p>
+            <p className="text-sm text-gray-600">{distance.toFixed(1)} miles</p>
           )}
         </div>
       </div>
