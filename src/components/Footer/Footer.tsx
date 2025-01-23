@@ -1,3 +1,5 @@
+import Link from 'next/link';
+
 export default function Footer() {
   const currentYear = new Date().getFullYear();
 
@@ -7,19 +9,19 @@ export default function Footer() {
         <p className="text-sm">&copy; {currentYear} SideQuest. All rights reserved.</p>
         <ul className="mt-4 flex space-x-4 md:mt-0">
           <li>
-            <a href="/privacy-policy" className="text-sm hover:underline">
+            <Link href="/privacy-policy" className="text-sm hover:underline">
               Privacy Policy
-            </a>
+            </Link>
           </li>
           <li>
-            <a href="/terms" className="text-sm hover:underline">
+            <Link href="/terms" className="text-sm hover:underline">
               Terms of Service
-            </a>
+            </Link>
           </li>
           <li>
-            <a href="/contact" className="text-sm hover:underline">
+            <Link href="/contact" className="text-sm hover:underline">
               Contact Us
-            </a>
+            </Link>
           </li>
         </ul>
       </div>
