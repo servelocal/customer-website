@@ -30,7 +30,7 @@ const UK_CITIES = [
   'Bournemouth',
 ];
 
-export default function Location() {
+export default function LocationInput() {
   const { location, setLocation, setCoords } = useLocation();
   const [loading, setLoading] = useState(false);
   const [searchQuery, setSearchQuery] = useState('');
@@ -118,8 +118,8 @@ export default function Location() {
     setLoading(true);
     navigator.geolocation.getCurrentPosition(
       async ({ coords }) => {
-        const city = await fetchCityName(coords);
         setCoords(coords);
+        const city = await fetchCityName(coords);
         setLocation(city);
         setSearchQuery(city);
         router.push(`/${city.toLowerCase()}/activities`);
