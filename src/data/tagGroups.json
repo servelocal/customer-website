@@ -2,12 +2,12 @@
   "tagGroups": [
     {
       "id": 1,
-      "title": "It's Cold Outside",
+      "title": "Its too cold to do anything",
       "tags": ["Indoor"]
     },
     {
       "id": 2,
-      "title": "Family Favourites",
+      "title": "I'm with the family",
       "tags": ["Family-friendly"]
     },
     {
@@ -22,7 +22,7 @@
     },
     {
       "id": 5,
-      "title": "Learn and Explore",
+      "title": "Nerdy time",
       "tags": ["Educational", "Museum", "Interactive"]
     },
     {
@@ -49,6 +49,32 @@
       "id": 10,
       "title": "Thrilling Waters",
       "tags": ["Water Activities", "Kayaking", "Paddleboarding"]
+    },
+    {
+      "id": 11,
+      "title": "All",
+      "tags": [
+        "Water Activities",
+        "Kayaking",
+        "Paddleboarding",
+        "Fitness",
+        "Skill Development",
+        "Board Games",
+        "Casual",
+        "Outdoor",
+        "Group-friendly",
+        "Social",
+        "Educational",
+        "Museum",
+        "Interactive",
+        "Food and Drink",
+        "Cafe",
+        "Snacks and Beverages",
+        "Adventure",
+        "Scenic",
+        "Family-friendly",
+        "Indoor"
+      ]
     }
   ]
 }
