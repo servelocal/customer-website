@@ -41,7 +41,10 @@ export default function Navbar() {
     >
       <div className="flex h-16 items-center justify-between px-6">
         <div className="flex items-center space-x-10">
-          <Link href="/" className="text-2xl font-bold text-gray-900">
+          <Link
+            href="/"
+            className={`text-2xl font-bold ${isScrolled ? 'text-gray-900' : 'text-white'}`}
+          >
             SideQuest
           </Link>
           <div className="hidden space-x-4 md:flex">
@@ -49,10 +52,8 @@ export default function Navbar() {
               <Link
                 key={link.href}
                 href={link.href}
-                className={`rounded-md px-3 py-2 text-base font-medium ${
-                  pathname === link.href
-                    ? 'text-black underline'
-                    : 'text-black/60 hover:text-gray-900'
+                className={`rounded-md px-3 py-2 text-base font-medium ${isScrolled ? 'text-gray-900 hover:text-gray-900' : 'text-white'} ${
+                  pathname === link.href ? 'underline' : ''
                 }`}
               >
                 {link.label}

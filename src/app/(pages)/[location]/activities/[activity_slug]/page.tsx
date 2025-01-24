@@ -40,6 +40,10 @@ const HeaderSection = ({ activity }: { activity: Activity }) => (
       width={1200}
       height={600}
       className="h-96 w-full rounded-lg object-cover"
+      style={{
+        maxWidth: '100%',
+        height: 'auto',
+      }}
     />
     <div className="absolute bottom-6 left-6 flex items-center gap-4 rounded-lg bg-white p-5 shadow-md">
       <Image
@@ -48,6 +52,10 @@ const HeaderSection = ({ activity }: { activity: Activity }) => (
         width={96}
         height={96}
         className="h-24 w-24 rounded-full object-cover"
+        style={{
+          maxWidth: '100%',
+          height: 'auto',
+        }}
       />
       <div>
         <h1 className="text-2xl font-bold">{activity.name}</h1>

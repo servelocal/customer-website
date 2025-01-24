@@ -19,11 +19,10 @@ export default function Banner({ title, subtitle, buttonText, backgroundImage }:
         priority
         className="-z-10 object-cover object-center"
       />
-
       <div className="relative z-10 mx-auto max-w-3xl p-6">
         <h1 className="mb-2 text-5xl font-bold">{title.replace('-', ' ')}</h1>
         <p className="mb-8 text-lg text-gray-600">{subtitle}</p>
-        {buttonText && buttonText && (
+        {buttonText && (
           <Link
             href={`${buttonText}/activities`}
             className="rounded-2xl bg-black p-5 text-lg text-white hover:bg-slate-800"

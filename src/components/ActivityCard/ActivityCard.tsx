@@ -54,10 +54,9 @@ const ActivityCard = ({
           <FaRegHeart size={16} />
         </div>
       </div>
-
       {/* Title, Price, Subcategory, and Distance */}
       <div className="mt-2 space-y-1">
-        <div className="flex items-end justify-between">
+        <div className="flex items-center justify-between">
           <h3 className="text-lg font-bold">{name}</h3>
           <p className="text-sm font-semibold text-gray-700">{createPriceIndicator(price)}</p>
         </div>
