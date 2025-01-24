@@ -1,4 +1,3 @@
-import Banner from '@/components/Banner';
 import CategorySection from '@/components/CategorySection';
 import { capitalise } from '@/utils/capitalise';
 import fetchActivities from '@/utils/fetchActivities';
