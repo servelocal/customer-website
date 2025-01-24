@@ -1,7 +1,7 @@
 'use client';
 
 import { useState, useEffect } from 'react';
-import Image from 'next/image';
+import Image from "next/image";
 import { MdKeyboardArrowLeft, MdKeyboardArrowRight } from 'react-icons/md';
 
 interface Slide {
@@ -38,7 +38,7 @@ export default function Carousel({ slides, interval = 8000, height = '500px' }: 
   }, [currentIndex, interval]);
 
   return (
-    <div
+    (<div
       className="relative w-full overflow-hidden"
       style={{ height }} // Custom height applied
     >
@@ -57,19 +57,20 @@ export default function Carousel({ slides, interval = 8000, height = '500px' }: 
             <Image
               src={slide.src}
               alt={slide.alt}
-              layout="fill"
-              objectFit="cover"
               className="absolute inset-0 h-full w-full"
               priority={index === 0}
-            />
-            <div className="shadow-inset absolute inset-0 flex flex-col items-start justify-center bg-black/20 p-20 text-white">
-              <h2 className="mb-2 text-2xl font-bold md:text-4xl">{slide.title}</h2>
-              <p className="text-base md:text-lg">{slide.description}</p>
+              fill
+              sizes="100vw"
+              style={{
+                objectFit: "cover"
+              }} />
+            <div className="shadow-inset absolute inset-0 flex flex-col items-start justify-end bg-black/70 p-20 text-white">
+              <h2 className="mb-1 text-2xl font-bold md:text-6xl">{slide.title}</h2>
+              <p className="text-base text-gray-300 md:text-xl">{slide.description}</p>
             </div>
           </div>
         ))}
       </div>
-
       {/* Navigation Buttons */}
       <button
         onClick={handlePrev}
@@ -85,7 +86,6 @@ export default function Carousel({ slides, interval = 8000, height = '500px' }: 
       >
         <MdKeyboardArrowRight size={60} />
       </button>
-
       {/* Dots Indicator */}
       <div className="absolute bottom-4 left-1/2 flex -translate-x-1/2 space-x-2">
         {slides.map((_, index) => (
@@ -99,6 +99,6 @@ export default function Carousel({ slides, interval = 8000, height = '500px' }: 
           ></button>
         ))}
       </div>
-    </div>
+    </div>)
   );
 }
