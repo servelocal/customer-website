@@ -65,10 +65,7 @@ export default function Carousel({ slides, interval = 8000, height = '500px' }: 
                 objectFit: 'cover',
               }}
             />
-            <div className="shadow-inset absolute inset-0 flex flex-col items-start justify-end bg-black/70 p-20 text-white">
-              <h2 className="mb-1 text-2xl font-bold md:text-6xl">{slide.title}</h2>
-              <p className="text-base text-gray-300 md:text-xl">{slide.description}</p>
-            </div>
+            <div className="shadow-inset absolute inset-0 flex flex-col items-start justify-end bg-black/70 p-20 text-white"></div>
           </div>
         ))}
       </div>
@@ -87,16 +84,28 @@ export default function Carousel({ slides, interval = 8000, height = '500px' }: 
       >
         <MdKeyboardArrowRight size={60} />
       </button>
+      {/* Content */}
+      <div className="absolute bottom-20 left-20 flex overflow-hidden">
+        <div key={currentIndex} className="animate-slideIn text-white">
+          <h2 className="mb-1 text-2xl font-bold md:text-6xl">{slides[currentIndex].title}</h2>
+          <p className="text-base text-gray-300 md:text-xl">{slides[currentIndex].description}</p>
+        </div>
+      </div>
+
       {/* Dots Indicator */}
       <div className="absolute bottom-4 left-1/2 flex -translate-x-1/2 space-x-2">
-        {slides.map((_, index) => (
-          <button
-            key={index}
-            onClick={() => setCurrentIndex(index)}
-            className={`h-1 w-10 ${index === currentIndex ? 'bg-white' : 'bg-gray-700 opacity-70 hover:bg-gray-400 hover:opacity-50'} `}
-            aria-label={`Go to slide ${index + 1}`}
-          ></button>
-        ))}
+        {slides.length > 1 &&
+          slides.map((_, index) => (
+            <button
+              key={index}
+              onClick={() => setCurrentIndex(index)}
+              className={`relative h-1 w-10 ${index === currentIndex ? 'bg-white' : 'bg-gray-700 opacity-70 hover:bg-gray-400 hover:opacity-50'}`}
+              aria-label={`Go to slide ${index + 1}`}
+            >
+              {/* Larger invisible clickable zone */}
+              <span className="absolute inset-0 -bottom-4 -top-4" aria-hidden="true"></span>
+            </button>
+          ))}
       </div>
     </div>
   );
