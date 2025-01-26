@@ -39,7 +39,7 @@ const ActivityCard = ({
   return (
     <Link
       href={`/${locationSlug}/activities/${slug}`}
-      className="group block w-80 shrink-0 cursor-pointer rounded-2xl p-3 transition-transform duration-300 hover:scale-105 hover:shadow-lg md:w-96"
+      className="group block w-80 shrink-0 cursor-pointer rounded-2xl p-3 transition-all duration-300 hover:scale-105 hover:shadow-lg md:w-96"
     >
       {/* Banner Image */}
       <div className="relative">
@@ -50,7 +50,7 @@ const ActivityCard = ({
           height={400}
           className="h-48 w-full rounded-2xl object-cover"
         />
-        <div className="absolute right-3 top-3 rounded-full bg-white p-2 text-black opacity-0 shadow-lg transition-opacity hover:text-red-600 group-hover:opacity-100">
+        <div className="absolute right-3 top-3 rounded-full bg-white p-2 text-black opacity-0 shadow-lg transition-all hover:text-red-600 group-hover:opacity-100">
           <FaRegHeart size={16} />
         </div>
       </div>
