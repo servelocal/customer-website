@@ -84,11 +84,11 @@ const CategorySection = ({ title, description, tags, activities }: CategorySecti
           </h2>
 
           {/* Sliding Tags (visible when hovering over any part of the title) */}
-          <div className="absolute left-full top-0 ml-1 flex w-full translate-x-[-20px] translate-y-[10%] flex-nowrap gap-2 overflow-x-visible opacity-0 transition-all duration-300 group-hover/tag:translate-x-0 group-hover/tag:opacity-100">
+          <div className="absolute top-0 left-full ml-1 flex w-full translate-x-[-20px] translate-y-[10%] flex-nowrap gap-2 overflow-x-visible opacity-0 transition-all duration-300 group-hover/tag:translate-x-0 group-hover/tag:opacity-100">
             {tags.map((tag) => (
               <span
                 key={tag}
-                className="shrink-0 whitespace-nowrap rounded-full bg-slate-100 px-3 py-1 text-sm font-medium text-black/80"
+                className="shrink-0 rounded-full bg-slate-100 px-3 py-1 text-sm font-medium whitespace-nowrap text-black/80"
               >
                 {tag}
               </span>
@@ -103,7 +103,7 @@ const CategorySection = ({ title, description, tags, activities }: CategorySecti
         {canScrollLeft && showButtons && (
           <button
             onClick={scrollLeft}
-            className="absolute -left-10 top-1/2 z-10 -translate-y-1/2 rounded-full bg-white p-3 text-black shadow-md focus:outline-none"
+            className="absolute top-1/2 -left-10 z-10 -translate-y-1/2 rounded-full bg-white p-3 text-black shadow-md focus:outline-none"
             aria-label="Scroll Left"
           >
             <FiChevronLeft size={40} />
@@ -112,7 +112,7 @@ const CategorySection = ({ title, description, tags, activities }: CategorySecti
         {canScrollRight && showButtons && (
           <button
             onClick={scrollRight}
-            className="absolute -right-10 top-1/2 z-10 -translate-y-1/2 rounded-full bg-white p-3 text-black shadow-md focus:outline-none"
+            className="absolute top-1/2 -right-10 z-10 -translate-y-1/2 rounded-full bg-white p-3 text-black shadow-md focus:outline-none"
             aria-label="Scroll Right"
           >
             <FiChevronRight size={40} />
@@ -123,7 +123,7 @@ const CategorySection = ({ title, description, tags, activities }: CategorySecti
         <div
           ref={scrollContainerRef}
           onScroll={checkScrollPosition}
-          className="hide-scrollbar relative flex scroll-p-4 gap-4 overflow-x-auto overflow-y-visible px-4 pb-8 pt-4"
+          className="hide-scrollbar relative flex scroll-p-4 gap-4 overflow-x-auto overflow-y-visible px-4 pt-4 pb-8"
         >
           {activities.map(
             ({
