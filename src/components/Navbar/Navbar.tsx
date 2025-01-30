@@ -35,7 +35,7 @@ export default function Navbar() {
 
   return (
     <nav
-      className={`fixed left-0 top-0 z-50 w-full transition-colors duration-300 ease-in-out ${
+      className={`fixed top-0 left-0 z-50 w-full transition-colors duration-300 ease-in-out ${
         isScrolled ? 'bg-white/90 backdrop-blur-3xl' : 'bg-transparent'
       }`}
     >
@@ -86,7 +86,7 @@ export default function Navbar() {
       </div>
 
       {isOpen && (
-        <div className="space-y-1 px-2 pb-3 pt-2 md:hidden">
+        <div className="space-y-1 px-2 pt-2 pb-3 md:hidden">
           {navLinks.map((link) => (
             <Link
               key={link.href}
