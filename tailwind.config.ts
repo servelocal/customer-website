@@ -17,6 +17,15 @@ export default {
       boxShadow: {
         'light-100': '0px 2px 13.9px 0px #00000020',
       },
+      keyframes: {
+        slideIn: {
+          '0%': { transform: 'translateY(100%)' },
+          '100%': { transform: 'translateY(0)' },
+        },
+      },
+      animation: {
+        slideIn: 'slideIn 0.5s ease-in-out',
+      },
     },
   },
   plugins: [],

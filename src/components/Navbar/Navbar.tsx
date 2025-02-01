@@ -35,13 +35,16 @@ export default function Navbar() {
 
   return (
     <nav
-      className={`fixed left-0 top-0 z-50 w-full transition-colors duration-300 ease-in-out ${
-        isScrolled ? 'bg-white/40 backdrop-blur-3xl' : 'bg-transparent'
+      className={`fixed top-0 left-0 z-50 w-full transition-colors duration-300 ease-in-out ${
+        isScrolled ? 'bg-white/90 backdrop-blur-3xl' : 'bg-transparent'
       }`}
     >
       <div className="flex h-16 items-center justify-between px-6">
         <div className="flex items-center space-x-10">
-          <Link href="/" className="text-2xl font-bold text-gray-900">
+          <Link
+            href="/"
+            className={`text-2xl font-bold ${isScrolled ? 'text-gray-900' : 'text-white'}`}
+          >
             SideQuest
           </Link>
           <div className="hidden space-x-4 md:flex">
@@ -49,10 +52,8 @@ export default function Navbar() {
               <Link
                 key={link.href}
                 href={link.href}
-                className={`rounded-md px-3 py-2 text-base font-medium ${
-                  pathname === link.href
-                    ? 'text-black underline'
-                    : 'text-black/60 hover:text-gray-900'
+                className={`rounded-md px-3 py-2 text-base font-medium ${isScrolled ? 'text-gray-900 hover:text-gray-900' : 'text-white'} ${
+                  pathname === link.href ? 'underline' : ''
                 }`}
               >
                 {link.label}
@@ -85,7 +86,7 @@ export default function Navbar() {
       </div>
 
       {isOpen && (
-        <div className="space-y-1 px-2 pb-3 pt-2 md:hidden">
+        <div className="space-y-1 px-2 pt-2 pb-3 md:hidden">
           {navLinks.map((link) => (
             <Link
               key={link.href}

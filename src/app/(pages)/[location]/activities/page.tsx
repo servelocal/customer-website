@@ -1,10 +1,9 @@
-import Banner from '@/components/Banner';
 import CategorySection from '@/components/CategorySection';
 import { capitalise } from '@/utils/capitalise';
 import fetchActivities from '@/utils/fetchActivities';
 import { ActivitiesPageParams } from '@/types/pageParams';
-
-const DEFAULT_BACKGROUND_IMAGE = '/images/bg.svg';
+import Carousel from '@/components/Carousel';
+import slidesData from '@/data/carousel.json';
 
 const ActivitiesPage = async ({ params }: { params: ActivitiesPageParams }) => {
   const { location } = await params;
@@ -14,25 +13,24 @@ const ActivitiesPage = async ({ params }: { params: ActivitiesPageParams }) => {
   return (
     <>
       {/* Banner Section */}
-      <Banner
-        title={`Activities in ${capitalise(location)}`}
-        subtitle="Discover amazing services and activities in your area"
-        backgroundImage={DEFAULT_BACKGROUND_IMAGE}
-      />
+      <Carousel slides={slidesData.slides} />
 
       {/* Main Content */}
-      <div className="container mx-auto p-4">
+      <div className="container mx-auto py-8">
         {Object.entries(activities).length > 0 ? (
-          Object.entries(activities).map(([tagGroup, { activities: groupActivities, tags }]) => (
-            <CategorySection
-              key={tagGroup}
-              title={capitalise(tagGroup)}
-              tags={tags}
-              activities={groupActivities}
-            />
-          ))
+          Object.entries(activities).map(
+            ([tagGroup, { activities: groupActivities, tags, description }]) => (
+              <CategorySection
+                key={tagGroup}
+                title={capitalise(tagGroup)}
+                description={description}
+                tags={tags}
+                activities={groupActivities}
+              />
+            )
+          )
         ) : (
-          <p className="text-center text-gray-500">No activities found for this location.</p>
+          <p className="text-center text-gray-600">No activities found for this location.</p>
         )}
       </div>
     </>

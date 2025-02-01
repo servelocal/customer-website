@@ -2,79 +2,63 @@
   "tagGroups": [
     {
       "id": 1,
-      "title": "Its too cold to do anything",
+      "title": "I'm cold",
+      "description": "Indoor activities to keep you warm and entertained",
       "tags": ["Indoor"]
     },
     {
       "id": 2,
       "title": "I'm with the family",
+      "description": "Family-friendly activities for all ages",
       "tags": ["Family-friendly"]
     },
     {
       "id": 3,
       "title": "Adventure Awaits",
+      "description": "Exciting activities for the thrill-seekers",
       "tags": ["Adventure", "Scenic"]
     },
     {
       "id": 4,
       "title": "Food and Fun",
+      "description": "Places to eat and enjoy some entertainment",
       "tags": ["Food and Drink", "Cafe", "Snacks and Beverages"]
     },
     {
       "id": 5,
       "title": "Nerdy time",
+      "description": "Educational and interactive activities",
       "tags": ["Educational", "Museum", "Interactive"]
     },
     {
       "id": 6,
       "title": "Group Activities",
+      "description": "Activities for groups of friends or family",
       "tags": ["Group-friendly", "Social"]
     },
     {
       "id": 7,
       "title": "Outdoor Escapes",
+      "description": "Outdoor activities to enjoy the fresh air",
       "tags": ["Outdoor"]
     },
     {
       "id": 8,
       "title": "Fitness and Wellness",
+      "description": "Activities to keep you active and healthy",
       "tags": ["Fitness", "Skill Development"]
     },
     {
       "id": 9,
       "title": "Games Galore",
+      "description": "Board games and casual activities",
       "tags": ["Board Games", "Casual"]
     },
     {
       "id": 10,
       "title": "Thrilling Waters",
+      "description": "Water activities for the water lovers",
       "tags": ["Water Activities", "Kayaking", "Paddleboarding"]
-    },
-    {
-      "id": 11,
-      "title": "All",
-      "tags": [
-        "Water Activities",
-        "Kayaking",
-        "Paddleboarding",
-        "Fitness",
-        "Skill Development",
-        "Board Games",
-        "Casual",
-        "Outdoor",
-        "Group-friendly",
-        "Social",
-        "Educational",
-        "Museum",
-        "Interactive",
-        "Food and Drink",
-        "Cafe",
-        "Snacks and Beverages",
-        "Adventure",
-        "Scenic",
-        "Family-friendly",
-        "Indoor"
-      ]
     }
   ]
 }
