@@ -25,14 +25,20 @@ export const LocationProvider = ({ children }: { children: ReactNode }) => {
   });
 
   useEffect(() => {
-    // Fetch the location cookie during hydration
-    const fetchLocation = async () => {
-      const { getLocation, getCoords } = await getLocationCookie();
-      if (getLocation) {
-        setLocationState(getLocation);
+    (async () => {
+      try {
+        const { getLocation, getCoords } = await getLocationCookie();
+        if (getLocation) setLocationState(getLocation);
+        if (getCoords) {
+          const parsedCoords = JSON.parse(getCoords);
+          if (parsedCoords.latitude && parsedCoords.longitude) {
+            setCoords(parsedCoords);
+          }
+        }
+      } catch (error) {
+        console.error('Failed to fetch or parse location data:', error);
       }
-    };
-    fetchLocation();
+    })();
   }, []);
 
   const setLocation = async (newLocation: string, newCoords: Coordinates | null) => {

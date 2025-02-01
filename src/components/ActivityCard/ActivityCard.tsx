@@ -28,6 +28,7 @@ const ActivityCard = ({
   coordinates,
 }: ActivityCardProps) => {
   const { coords, location } = useLocation();
+  console.log(coords, location);
   const locationSlug = location?.toLowerCase() || 'uk';
   const distance = calculateDistance(
     coords.latitude,
