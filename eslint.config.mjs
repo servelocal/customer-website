@@ -16,7 +16,7 @@ export default [
       'react/react-in-jsx-scope': 'off', // Not needed for React 17+
     },
   },
-  ...js.configs.recommended,
+  js.configs.recommended,
   ...tseslint.configs.recommended,
   ...react.configs.recommended, // Apply recommended React rules
 ];
