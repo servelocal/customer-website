@@ -1,22 +1,26 @@
-import globals from 'globals';
-import js from '@eslint/js';
-import tseslint from 'typescript-eslint';
-import react from 'eslint-plugin-react';
+import pluginNext from '@next/eslint-plugin-next';
+import parser from '@typescript-eslint/parser'; // optional
 
-/** @type {import('eslint').FlatConfig[]} */
 export default [
   {
-    files: ['**/*.{js,mjs,cjs,ts,jsx,tsx}'],
+    name: 'ESLint Config - nextjs',
     languageOptions: {
-      ecmaVersion: 'latest',
-      sourceType: 'module',
-      globals: globals.browser,
+      parser, // optional
+      parserOptions: {
+        ecmaVersion: 'latest',
+        sourceType: 'module',
+        ecmaFeatures: {
+          jsx: true,
+        },
+      },
     },
+    plugins: {
+      '@next/next': pluginNext,
+    },
+    files: ['**/*.{js,mjs,cjs,ts,jsx,tsx}'],
     rules: {
-      'react/react-in-jsx-scope': 'off', // Not needed for React 17+
+      ...pluginNext.configs.recommended.rules,
+      ...pluginNext.configs['core-web-vitals'].rules,
     },
   },
-  js.configs.recommended,
-  ...tseslint.configs.recommended,
-  ...react.configs.recommended, // Apply recommended React rules
 ];
