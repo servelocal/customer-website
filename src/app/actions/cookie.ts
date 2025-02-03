@@ -14,7 +14,7 @@ export async function create(consentValue = 'true') {
   if (consentValue === 'true') cookieStore.set('consent', 'true');
 
   const consent = cookieStore.get('consent');
-  console.log('Current consent value:', consent?.value);
+  console.info('Current consent value:', consent?.value);
 }
 
 export async function setLocationCookie(location: string, coordinates: Coordinates | null) {
@@ -27,9 +27,9 @@ export async function setLocationCookie(location: string, coordinates: Coordinat
   if (consent?.value === 'true') {
     cookieStore.set('location', location, { path: '/', maxAge: 60 * 60 * 24 * 30 }); // 30 days
     cookieStore.set('coords', JSON.stringify({ latitude, longitude }));
-    console.log(`Location cookie set to: ${location}`);
+    console.info(`Location cookie set to: ${location}`);
   } else {
-    console.log('Consent not given, location cookie not set.');
+    console.info('Consent not given, location cookie not set.');
   }
 }
 
@@ -37,6 +37,5 @@ export async function getLocationCookie() {
   const cookieStore = await cookies();
   const getLocation = cookieStore.get('location')?.value || '';
   const getCoords = cookieStore.get('coords')?.value || '';
-  // console.log('hjsgdf', getLocation, getCoords);
   return { getLocation, getCoords };
 }

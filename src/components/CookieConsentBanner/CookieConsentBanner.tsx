@@ -6,14 +6,14 @@ const CookieConsentBanner = () => {
   const handleConsent = async (consentValue: ConsentValue) => {
     try {
       await create(consentValue);
-      console.log(`Consent ${consentValue === 'true' ? 'accepted' : 'declined'}`);
+      console.info(`Consent ${consentValue === 'true' ? 'accepted' : 'declined'}`);
     } catch (error) {
       console.error('Error handling consent:', error);
     }
   };
 
   return (
-    <div className="fixed bottom-0 left-0 right-0 z-50 flex w-full items-center justify-between bg-black p-4 text-white">
+    <div className="fixed right-0 bottom-0 left-0 z-50 flex w-full items-center justify-between bg-black p-4 text-white">
       <p className="text-sm">
         We use cookies to improve your experience. Do you consent to the use of cookies?
       </p>
