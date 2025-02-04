@@ -1,14 +1,13 @@
 'use client';
 
 import Link from 'next/link';
-import { useState, useEffect } from 'react';
+import { useState } from 'react';
 import { usePathname } from 'next/navigation';
 import Location from './Location';
 import { useLocation } from '@/context/LocationContext';
 
 export default function Navbar() {
   const [isOpen, setIsOpen] = useState(false);
-  const [isScrolled, setIsScrolled] = useState(false);
   const pathname = usePathname();
   const { location } = useLocation();
 
@@ -22,29 +21,14 @@ export default function Navbar() {
     { href: '/communities', label: 'Communities' },
     { href: '/restaurants', label: 'Restaurants' },
   ];
-  useEffect(() => {
-    const handleScroll = () => {
-      setIsScrolled(window.scrollY > 0);
-    };
-
-    window.addEventListener('scroll', handleScroll);
-    return () => {
-      window.removeEventListener('scroll', handleScroll);
-    };
-  }, []);
 
   return (
     <nav
-      className={`fixed top-0 left-0 z-50 w-full transition-colors duration-300 ease-in-out ${
-        isScrolled ? 'bg-white/90 backdrop-blur-3xl' : 'bg-transparent'
-      }`}
+      className={`sticky top-0 left-0 z-50 w-full bg-white transition-colors duration-300 ease-in-out`}
     >
       <div className="flex h-16 items-center justify-between px-6">
         <div className="flex items-center space-x-10">
-          <Link
-            href="/"
-            className={`text-2xl font-bold ${isScrolled ? 'text-gray-900' : 'text-white'}`}
-          >
+          <Link href="/" className={`text-2xl font-bold`}>
             SideQuest
           </Link>
           <div className="hidden space-x-4 md:flex">
@@ -52,7 +36,7 @@ export default function Navbar() {
               <Link
                 key={link.href}
                 href={link.href}
-                className={`rounded-md px-3 py-2 text-base font-medium ${isScrolled ? 'text-gray-900 hover:text-gray-900' : 'text-white'} ${
+                className={`rounded-md px-3 py-2 text-base font-medium ${
                   pathname === link.href ? 'underline' : ''
                 }`}
               >
