@@ -72,14 +72,14 @@ export default function Carousel({ slides, interval = 8000, height = '500px' }: 
       {/* Navigation Buttons */}
       <button
         onClick={handlePrev}
-        className="absolute top-0 h-full p-1 text-white opacity-0 transition-all hover:opacity-100"
+        className="absolute top-0 h-full p-1 text-white opacity-0 transition-all hover:cursor-pointer hover:opacity-100"
         aria-label="Previous Slide"
       >
         <MdKeyboardArrowLeft size={60} />
       </button>
       <button
         onClick={handleNext}
-        className="absolute top-0 right-0 h-full p-1 text-white opacity-0 transition-all hover:opacity-100"
+        className="absolute top-0 right-0 h-full p-1 text-white opacity-0 transition-all hover:cursor-pointer hover:opacity-100"
         aria-label="Next Slide"
       >
         <MdKeyboardArrowRight size={60} />
@@ -103,7 +103,10 @@ export default function Carousel({ slides, interval = 8000, height = '500px' }: 
               aria-label={`Go to slide ${index + 1}`}
             >
               {/* Larger invisible clickable zone */}
-              <span className="absolute inset-0 -top-4 -bottom-4" aria-hidden="true"></span>
+              <span
+                className="absolute inset-0 -top-4 -bottom-4 hover:cursor-pointer"
+                aria-hidden="true"
+              ></span>
             </button>
           ))}
       </div>

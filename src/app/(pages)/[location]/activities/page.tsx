@@ -18,7 +18,7 @@ const ActivitiesPage = async ({ params }: { params: ActivitiesPageParams }) => {
       <Carousel slides={slidesData.slides} />
 
       {/* Main Content */}
-      <div className="container mx-auto py-8">
+      <div className="container mx-auto py-14">
         <CategorySection categories={CategoryData.categories} />
         {Object.entries(activities).length > 0 ? (
           Object.entries(activities).map(
