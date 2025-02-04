@@ -4,6 +4,9 @@ import { IconContext } from 'react-icons';
 import * as Icons from 'react-icons/fa';
 import * as MdIcons from 'react-icons/md';
 import * as GiIcons from 'react-icons/gi';
+import Link from 'next/link';
+import { useLocation } from '@/context/LocationContext';
+import { createSlug } from '@/utils/createSlug';
 
 export type CategoryProps = {
   id?: number;
@@ -12,7 +15,9 @@ export type CategoryProps = {
   icon: string;
 };
 
-const Category = ({ name, description, icon }: CategoryProps) => {
+const Category = ({ name, icon }: CategoryProps) => {
+  const { location } = useLocation();
+  const locationSlug = location?.toLowerCase() || 'uk';
   let IconComponent =
     Icons[icon as keyof typeof Icons] ||
     MdIcons[icon as keyof typeof MdIcons] ||
@@ -24,12 +29,15 @@ const Category = ({ name, description, icon }: CategoryProps) => {
   }
 
   return (
-    <div className="flex w-fit items-center gap-2 rounded-3xl border border-gray-300 px-2 py-1">
+    <Link
+      href={`/${locationSlug}/activities/category/${createSlug(name)}`}
+      className="flex w-fit items-center gap-2 rounded-3xl border border-gray-300 px-3 py-2 hover:cursor-pointer hover:bg-gray-100"
+    >
       <IconContext.Provider value={{ size: '1rem', color: '#000' }}>
         <IconComponent />
       </IconContext.Provider>
       <h3>{name}</h3>
-    </div>
+    </Link>
   );
 };
 

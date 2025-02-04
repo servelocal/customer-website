@@ -72,7 +72,7 @@ const TagGroup = ({ title, description, tags, activities }: TagGroupProps) => {
       <div className="group/tag relative inline-block">
         {/* Title Wrapper for Full Hover */}
         <div className="relative inline-block">
-          <h2 className="flex items-center align-baseline text-3xl font-semibold transition-colors duration-300 hover:cursor-pointer">
+          <h2 className="flex items-center align-baseline text-3xl font-semibold capitalize transition-colors duration-300 hover:cursor-pointer">
             {title}
             {/* Arrow (visible only on title hover) */}
             <span

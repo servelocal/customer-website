@@ -4,11 +4,16 @@ interface CategorySectionProps {
 }
 const CategorySection = ({ categories }: CategorySectionProps) => {
   return (
-    <div className="flex gap-4">
-      <h1>Looking for something</h1>
-      {categories.map((category) => (
-        <Category key={category.id} name={category.name} icon={category.icon} />
-      ))}
+    <div className="mb-8">
+      <h1 className="mb-1 text-3xl font-bold capitalize">Explore popular categories</h1>
+      <p className="mb-6 text-gray-500">
+        See what other travellers like to do, based on ratings and number of bookings.
+      </p>
+      <div className="flex flex-wrap gap-4">
+        {categories.map((category) => (
+          <Category key={category.id} name={category.name} icon={category.icon} />
+        ))}
+      </div>
     </div>
   );
 };
