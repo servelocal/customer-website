@@ -17,7 +17,7 @@ interface CarouselProps {
   height?: string;
 }
 
-export default function Carousel({ slides, interval = 8000, height = '35rem' }: CarouselProps) {
+export default function Carousel({ slides, interval = 8000, height = '30rem' }: CarouselProps) {
   const [currentIndex, setCurrentIndex] = useState(0);
 
   const handlePrev = () => {
