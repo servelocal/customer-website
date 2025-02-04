@@ -6,7 +6,7 @@ import * as MdIcons from 'react-icons/md';
 import * as GiIcons from 'react-icons/gi';
 import Link from 'next/link';
 import { useLocation } from '@/context/LocationContext';
-import { createSlug } from '@/utils/createSlug';
+import { slugify } from '@/utils/slugify';
 
 export type CategoryProps = {
   id?: number;
@@ -30,7 +30,7 @@ const Category = ({ name, icon }: CategoryProps) => {
 
   return (
     <Link
-      href={`/${locationSlug}/activities/category/${createSlug(name)}`}
+      href={`/${locationSlug}/activities/category/${slugify(name)}`}
       className="flex w-fit items-center gap-2 rounded-3xl border border-gray-300 px-3 py-2 hover:cursor-pointer hover:bg-gray-100"
     >
       <IconContext.Provider value={{ size: '1rem', color: '#000' }}>

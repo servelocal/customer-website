@@ -14,6 +14,7 @@ const CategorySection = ({ categories }: CategorySectionProps) => {
           <Category key={category.id} name={category.name} icon={category.icon} />
         ))}
       </div>
+      <hr className="my-14 h-px border-0 bg-gray-900 dark:bg-gray-300" />
     </div>
   );
 };
