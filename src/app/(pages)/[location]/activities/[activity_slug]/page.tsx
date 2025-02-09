@@ -14,7 +14,7 @@ const ActivityDetailPage = async ({ params }: { params: ActivityDetailParams }) 
   }
 
   return (
-    <div className="container mx-auto mt-12 p-4">
+    <div className="container mx-auto p-4">
       <HeaderSection activity={activity} />
       <TagsSection tags={activity.tags} />
       <DetailSection title="Description" content={activity.description} />
@@ -42,7 +42,6 @@ const HeaderSection = ({ activity }: { activity: Activity }) => (
       className="h-96 w-full rounded-lg object-cover"
       style={{
         maxWidth: '100%',
-        height: 'auto',
       }}
     />
     <div className="absolute bottom-6 left-6 flex items-center gap-4 rounded-lg bg-white p-5 shadow-md">
