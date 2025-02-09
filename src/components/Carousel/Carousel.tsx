@@ -38,7 +38,7 @@ export default function Carousel({ slides, interval = 8000, height = '30rem' }: 
   }, [currentIndex, interval]);
 
   return (
-    <div className="px-6 py-4">
+    <div className="px-5 py-2">
       <div
         className="relative w-full overflow-hidden rounded-3xl"
         style={{ height }} // Custom height applied
