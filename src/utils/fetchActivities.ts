@@ -11,18 +11,21 @@ export const categoriseByTagGroups = (
   activities: ActivityCardData[],
   tagGroups: TagGroupData[]
 ): CategorisedActivities => {
+  if (!activities.length) return {};
+
   return tagGroups.reduce<CategorisedActivities>((categories, tagGroup) => {
     const { tag_title, tags, description } = tagGroup;
-
     const filteredActivities = activities.filter((activity) =>
       activity.tags.some((tag) => tags.includes(tag))
     );
 
-    categories[tag_title] = {
-      activities: filteredActivities,
-      tags,
-      description,
-    };
+    if (filteredActivities.length > 0) {
+      categories[tag_title] = {
+        activities: filteredActivities,
+        tags,
+        description,
+      };
+    }
 
     return categories;
   }, {});
