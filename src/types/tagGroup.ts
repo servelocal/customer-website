@@ -1,6 +1,8 @@
+import { Tags } from './activities';
+
 export interface TagGroup {
-  id: number;
-  title: string;
-  description: string;
-  tags: string[];
+  tag_group_id: string;
+  tag_title: string;
+  description?: string | undefined;
+  tags: Tags[];
 }

@@ -1,53 +1,53 @@
 import activitiesData from '@/data/activities.json';
 import tagGroupsData from '@/data/tagGroups.json';
-import { Activity, ActivityCardData, TagGroup } from '@/types';
+import { ActivityCardData, TagGroup, Tags } from '@/types';
+
+type CategorisedActivities = Record<
+  string,
+  { activities: ActivityCardData[]; tags: Tags[]; description: string | undefined }
+>;
 
 export const categoriseByTagGroups = (
   activities: ActivityCardData[],
   tagGroups: TagGroup[]
-): Record<string, { activities: Activity[]; tags: string[]; description: string }> => {
-  return tagGroups.reduce(
-    (
-      acc: Record<string, { activities: Activity[]; tags: string[]; description: string }>,
-      group
-    ) => {
-      // Find activities that match the tags in the current group
-      const matchedActivities = activities.filter((activity) =>
-        activity.tags.some((tag) => group.tags.includes(tag))
-      );
+): CategorisedActivities => {
+  return tagGroups.reduce<CategorisedActivities>((categories, tagGroup) => {
+    const { tag_title, tags, description } = tagGroup;
 
-      // Add activities, tags, and description to the group
-      acc[group.tag_title] = {
-        activities: matchedActivities,
-        tags: group.tags,
-        description: group.description, // Include the description
-      };
+    const filteredActivities = activities.filter((activity) =>
+      activity.tags.some((tag) => tags.includes(tag))
+    );
 
-      return acc;
-    },
-    {}
-  );
+    categories[tag_title] = {
+      activities: filteredActivities,
+      tags,
+      description,
+    };
+
+    console.log('dflgkjdflkgjdlkf', categories);
+    return categories;
+  }, {});
 };
 
-const fetchActivities = async (
-  location: string
-): Promise<Record<string, { activities: Activity[]; tags: string[]; description: string }>> => {
-  const lowercasedCity = location.toLowerCase();
+// const fetchActivities = async (
+//   location: string
+// ): Promise<Record<string, { activities: Activity[]; tags: string[]; description: string }>> => {
+//   const lowercasedCity = location.toLowerCase();
 
-  if (
-    !activitiesData.location ||
-    !activitiesData.activities ||
-    !Array.isArray(tagGroupsData.tagGroups)
-  ) {
-    console.error('Invalid activities or tag groups data structure');
-    return {};
-  }
+//   if (
+//     !activitiesData.location ||
+//     !activitiesData.activities ||
+//     !Array.isArray(tagGroupsData.tagGroups)
+//   ) {
+//     console.error('Invalid activities or tag groups data structure');
+//     return {};
+//   }
 
-  if (activitiesData.location.toLowerCase() === lowercasedCity) {
-    return categoriseByTagGroups(activitiesData.activities, tagGroupsData.tagGroups);
-  }
+//   if (activitiesData.location.toLowerCase() === lowercasedCity) {
+//     return categoriseByTagGroups(activitiesData.activities, tagGroupsData.tagGroups);
+//   }
 
-  return {};
-};
+//   return {};
+// };
 
-export default fetchActivities;
+// export default fetchActivities;

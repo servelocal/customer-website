@@ -2,7 +2,7 @@ import TagGroup from '@/components/TagGroup';
 import CategorySection from '@/components/CategorySection/CategorySection';
 import Carousel from '@/components/Carousel';
 import { capitalise } from '@/utils/capitalise';
-import fetchActivities, { categoriseByTagGroups } from '@/utils/fetchActivities';
+import { categoriseByTagGroups } from '@/utils/fetchActivities';
 import { ActivitiesPageParams } from '@/types/pageParams';
 import slidesData from '@/data/carousel.json';
 import CategoryData from '@/data/categories.json';
