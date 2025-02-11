@@ -35,6 +35,6 @@ export async function fetchActivityCardData(location: string): Promise<ActivityC
     return data as ActivityCardData[];
   } catch (err) {
     console.error('Database Error:', err);
-    throw new Error('Failed to fetch the activities');
+    throw new Error("we couldn't load the activities");
   }
 }

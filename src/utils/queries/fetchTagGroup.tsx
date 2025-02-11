@@ -10,7 +10,7 @@ export async function fetchTagGroups(): Promise<TagGroupData[]> {
     return data as TagGroupData[];
   } catch (err) {
     console.error('Database Error:', err);
-    throw new Error('Failed to fetch from tag_group table');
+    throw new Error("We couldn't load the tag category section");
   }
 }
 

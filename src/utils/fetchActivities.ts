@@ -1,10 +1,10 @@
 import activitiesData from '@/data/activities.json';
 import tagGroupsData from '@/data/tagGroups.json';
-import { ActivityCardData, TagGroupData, Tag } from '@/types';
+import { ActivityCardData, TagGroupData } from '@/types';
 
 type CategorisedActivities = Record<
   string,
-  { activities: ActivityCardData[]; tags: Tag[]; description: string | undefined }
+  { activities: ActivityCardData[]; tags: string[]; description: string | undefined }
 >;
 
 export const categoriseByTagGroups = (
@@ -27,3 +27,26 @@ export const categoriseByTagGroups = (
     return categories;
   }, {});
 };
+
+// const fetchActivities = async (
+//   location: string
+// ): Promise<Record<string, { activities: Activity[]; tags: string[]; description: string }>> => {
+//   const lowercasedCity = location.toLowerCase();
+
+//   if (
+//     !activitiesData.location ||
+//     !activitiesData.activities ||
+//     !Array.isArray(tagGroupsData.tagGroups)
+//   ) {
+//     console.error('Invalid activities or tag groups data structure');
+//     return {};
+//   }
+
+//   if (activitiesData.location.toLowerCase() === lowercasedCity) {
+//     return categoriseByTagGroups(activitiesData.activities, tagGroupsData.tagGroups);
+//   }
+
+//   return {};
+// };
+
+// export default fetchActivities;

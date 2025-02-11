@@ -40,7 +40,6 @@ export default async function RootLayout({
             <main className="flex-grow">{children}</main>
             <Footer />
           </div>
-          {children}
           {!hasConsent && <CookieConsentBanner />}
         </LocationProvider>
       </body>
