@@ -6,7 +6,7 @@ import { useRouter } from 'next/navigation';
 import { useLocation } from '@/context/LocationContext';
 import { capitalise } from '@/utils/capitalise';
 
-const UK_CITIES = [
+const UK_CITIES: string[] = [
   'London',
   'Manchester',
   'Birmingham',
@@ -30,13 +30,23 @@ const UK_CITIES = [
   'Bournemouth',
 ];
 
-export default function Location() {
+type Coordinates = {
+  latitude: number;
+  longitude: number;
+};
+
+type FetchCityNameResult = {
+  city: string;
+  coordinates: Coordinates;
+};
+
+export default function LocationInput() {
   const { location, setLocation, setCoords } = useLocation();
-  const [loading, setLoading] = useState(false);
-  const [searchQuery, setSearchQuery] = useState('');
+  const [loading, setLoading] = useState<boolean>(false);
+  const [searchQuery, setSearchQuery] = useState<string>('');
   const [filteredCities, setFilteredCities] = useState<string[]>([]);
-  const [isDropdownOpen, setIsDropdownOpen] = useState(false);
-  const [selectedIndex, setSelectedIndex] = useState(0);
+  const [isDropdownOpen, setIsDropdownOpen] = useState<boolean>(false);
+  const [selectedIndex, setSelectedIndex] = useState<number>(0);
   const dropdownRef = useRef<HTMLDivElement>(null);
 
   const router = useRouter();
@@ -56,20 +66,20 @@ export default function Location() {
     return () => document.removeEventListener('mousedown', handleClickOutside);
   }, []);
 
-  const resetSelection = () => {
+  const resetSelection = (): void => {
     setSelectedIndex(0);
     setIsDropdownOpen(false);
   };
 
-  const handleCitySelect = (city: string) => {
-    setLocation(city);
+  const handleCitySelect = (city: string): void => {
+    setLocation(city, null); // Pass `null` as the second argument for consistency
     setSearchQuery('');
     resetSelection();
 
     router.push(`/${city.toLowerCase()}/activities`);
   };
 
-  const handleInputChange = (value: string) => {
+  const handleInputChange = (value: string): void => {
     setSearchQuery(value);
     setFilteredCities(
       value
@@ -80,7 +90,7 @@ export default function Location() {
     setIsDropdownOpen(true);
   };
 
-  const handleKeyDown = (e: React.KeyboardEvent<HTMLInputElement>) => {
+  const handleKeyDown = (e: React.KeyboardEvent<HTMLInputElement>): void => {
     if (!filteredCities.length) return;
 
     if (e.key === 'ArrowDown') {
@@ -95,36 +105,44 @@ export default function Location() {
     }
   };
 
-  const fetchCityName = async ({ latitude, longitude }: GeolocationCoordinates) => {
+  const fetchCityName = async ({
+    latitude,
+    longitude,
+  }: Coordinates): Promise<FetchCityNameResult> => {
     try {
       const response = await fetch(
         `https://nominatim.openstreetmap.org/reverse?lat=${latitude}&lon=${longitude}&format=json`
       );
       const data = await response.json();
-      return data.address.city || data.address.town || data.address.village || 'Unknown Location';
+      const city =
+        data.address.city || data.address.town || data.address.village || 'Unknown Location';
+      return { city, coordinates: { latitude, longitude } };
     } catch {
-      return 'Unable to fetch location';
+      return { city: 'Unable to fetch location', coordinates: { latitude, longitude } };
     } finally {
       setLoading(false);
     }
   };
 
-  const detectLocation = async () => {
+  const detectLocation = async (): Promise<void> => {
     if (!navigator.geolocation) {
-      setLocation('Geolocation not supported');
+      setLocation('Geolocation not supported', null); // Pass `null` for coordinates
       return;
     }
 
     setLoading(true);
     navigator.geolocation.getCurrentPosition(
       async ({ coords }) => {
-        const city = await fetchCityName(coords);
-        setCoords(coords);
-        setLocation(city);
-        setSearchQuery(city);
+        const { city, coordinates } = await fetchCityName({
+          latitude: coords.latitude,
+          longitude: coords.longitude,
+        });
+        setCoords(coordinates); // Save the coordinates
+        setLocation(city, coordinates); // Save the city name with coordinates
+        setSearchQuery(city); // Update the input with the city name
         router.push(`/${city.toLowerCase()}/activities`);
       },
-      () => setLocation('Permission Denied'),
+      () => setLocation('Permission Denied', null), // Pass `null` for coordinates in case of permission denial
       { enableHighAccuracy: true }
     );
     resetSelection();
