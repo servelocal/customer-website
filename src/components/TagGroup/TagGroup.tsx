@@ -3,30 +3,19 @@
 import { useRef, useState, useEffect } from 'react';
 import { FiChevronLeft, FiChevronRight } from 'react-icons/fi';
 import { MdKeyboardArrowRight } from 'react-icons/md';
-import { Activity, ActivityCardData, TagGroupData } from '@/types';
+import { ActivityCardData } from '@/types';
 import ActivityCard from '../ActivityCard';
-// import ActivityCard from './DBActivityCard/DBActivityCard';
-// import ActivityCard from '../ActivityCard';
-
-// interface TagGroupProps {
-//   title: string;
-//   description: string;
-//   tags: string[];
-//   activities: Activity[];
-// }
 
 interface TagData {
   tag_title: string;
-  description: string | undefined;
+  description?: string;
   tags: string[];
 }
 
 interface TagGroupProps {
-  tagData: TagData; // Replace `any[]` with the actual type of your tag data
-  activityData: ActivityCardData; // Ensure ActivityCardData type is correctly defined
+  tagData: TagData;
+  activityData: ActivityCardData[];
 }
-
-// const TagGroup = ({ title, description, tags, activities }: TagGroupProps) => {
 
 const TagGroup = ({ tagData, activityData }: TagGroupProps) => {
   const scrollContainerRef = useRef<HTMLDivElement>(null);
@@ -36,7 +25,7 @@ const TagGroup = ({ tagData, activityData }: TagGroupProps) => {
 
   useEffect(() => {
     updateScrollState();
-  }, [activityData]);
+  }, [activityData, scrollContainerRef.current]);
 
   const updateScrollState = () => {
     const container = scrollContainerRef.current;
@@ -58,7 +47,7 @@ const TagGroup = ({ tagData, activityData }: TagGroupProps) => {
       behavior: 'smooth',
     });
   };
-  // console.log('tagdafghfghfghfghfghta', tagData);
+  console.log('tagfdg:', tagData);
   return (
     <div
       className="group/title relative"
@@ -75,17 +64,17 @@ const TagGroup = ({ tagData, activityData }: TagGroupProps) => {
             </span>
           </h2>
           <div className="absolute top-0 left-full ml-1 flex translate-x-[-20px] translate-y-[10%] gap-2 opacity-0 transition-all duration-300 group-hover/tag:translate-x-0 group-hover/tag:opacity-100">
-            {tagData.tags?.map((tag, index) => (
+            {tagData.tags.map((tag, index) => (
               <span
                 key={index}
-                className="rounded-full bg-slate-100 px-3 py-1 text-sm font-medium whitespace-nowrap text-black/80"
+                className="rounded-full bg-slate-100 px-3 py-1 text-sm font-medium text-black/80"
               >
                 {tag}
               </span>
             ))}
           </div>
         </div>
-        <p className="text-md text-gray-500">{tagData.description}</p>
+        {tagData.description && <p className="text-md text-gray-500">{tagData.description}</p>}
       </div>
 
       {/* Scrollable Activities */}
@@ -115,8 +104,7 @@ const TagGroup = ({ tagData, activityData }: TagGroupProps) => {
           onScroll={updateScrollState}
           className="hide-scrollbar relative flex gap-4 overflow-x-auto px-4 pt-4 pb-8"
         >
-          {console.log('jshgdfhjsdfjhsfd', activityData)}
-          {activityData.map((activity, index) => (
+          {activityData.map((activity) => (
             <ActivityCard key={activity.activity_id} activityData={activity} />
           ))}
         </div>

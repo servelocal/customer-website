@@ -14,10 +14,7 @@ const ActivitiesPage = async ({ params }: { params: ActivitiesPageParams }) => {
 
   const activities = await fetchActivityCardData(capitalise(location));
   const tagGroups = await fetchTagGroups();
-
   const groupedActivity = categoriseByTagGroups(activities, tagGroups);
-
-  // console.log('groupedActivity', groupedActivity);
 
   return (
     <>
@@ -31,10 +28,10 @@ const ActivitiesPage = async ({ params }: { params: ActivitiesPageParams }) => {
         <CategorySection categories={CategoryData.categories} />
 
         {Object.keys(groupedActivity).length > 0 ? (
-          Object.entries(groupedActivity).map(([groupTitle, data], index) => (
+          Object.entries(groupedActivity).map(([tag_title, data], index) => (
             <TagGroup
               key={index}
-              tagData={{ groupTitle, tags: data.tags, description: data.description }}
+              tagData={{ tag_title, tags: data.tags, description: data.description }}
               activityData={data.activities}
             />
           ))

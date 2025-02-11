@@ -6,23 +6,23 @@ export interface LocationActivities {
 export interface ActivityCardData {
   activity_id: string;
   activity_name: string;
-  tags: Tag[];
+  tags: string[];
   category_name: string;
-  sub_Category: string;
+  sub_category: string;
   post_code: string;
   latitude: number;
   longitude: number;
-  images: Images[];
+  images: Images;
   slug: string;
 }
 
-export interface Tag {
-  tag_name: string;
-}
+// export type Tag = {
+//   tag_name: string;
+// };
 
 export interface Images {
-  thumbnailImage: string;
-  bannerImage: string;
+  thumbnail_image: string;
+  banner_image: string;
 }
 
 export interface Activity {

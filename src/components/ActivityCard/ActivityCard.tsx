@@ -4,6 +4,7 @@ import Image from 'next/image';
 import { FaRegHeart } from 'react-icons/fa';
 import { useLocation } from '@/context/LocationContext';
 import { calculateDistance } from '@/utils/caculateDistance';
+import { ActivityCardData } from '@/types';
 
 const SUBCATEGORY_CLASSES: Record<string, string> = {
   Bouldering: 'border-blue-500 text-blue-500',
@@ -16,20 +17,14 @@ const SUBCATEGORY_CLASSES: Record<string, string> = {
 const getSubCategoryClasses = (subCategory: string) =>
   SUBCATEGORY_CLASSES[subCategory] || SUBCATEGORY_CLASSES.Default;
 
-const ActivityCard = ({ tagData, activityData }) => {
-  //   const { coords, location } = useLocation();
-  //   const locationSlug = location?.toLowerCase() || 'uk';
+interface ActivityCardProps {
+  activityData: ActivityCardData;
+}
 
-  const {
-    activity_name,
-    sub_category_name,
-    images = {}, // Default empty object to prevent errors
-    latitude,
-    longitude,
-    slug,
-  } = activityData;
+const ActivityCard = ({ activityData }: ActivityCardProps) => {
+  const { activity_name, sub_category, images, latitude, longitude, slug } = activityData;
 
-  const { banner_image } = images; // Destructure safely
+  const { banner_image } = images;
 
   const { coords, location } = useLocation();
   const locationSlug = location?.toLowerCase() || 'uk';
@@ -62,10 +57,10 @@ const ActivityCard = ({ tagData, activityData }) => {
         <div className="flex items-end justify-between">
           <span
             className={`rounded-full border px-2 py-1 text-xs ${getSubCategoryClasses(
-              sub_category_name
+              sub_category
             )}`}
           >
-            {sub_category_name}
+            {sub_category}
           </span>
           {distance !== null && (
             <p className="text-sm text-gray-600">{distance.toFixed(1)} miles</p>

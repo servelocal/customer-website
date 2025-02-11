@@ -1,4 +1,4 @@
-import { TagGroupData, Tags } from '@/types';
+import { TagGroupData } from '@/types';
 import { query } from '../db';
 
 export async function fetchTagGroups(): Promise<TagGroupData[]> {

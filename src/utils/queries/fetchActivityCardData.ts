@@ -32,7 +32,6 @@ export async function fetchActivityCardData(location: string): Promise<ActivityC
       `,
       [location]
     );
-
     return data as ActivityCardData[];
   } catch (err) {
     console.error('Database Error:', err);
