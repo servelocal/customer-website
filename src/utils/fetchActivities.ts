@@ -17,7 +17,7 @@ export const categoriseByTagGroups = (
       );
 
       // Add activities, tags, and description to the group
-      acc[group.title] = {
+      acc[group.tag_title] = {
         activities: matchedActivities,
         tags: group.tags,
         description: group.description, // Include the description

@@ -34,7 +34,7 @@ const ActivitiesPage = async ({ params }: { params: ActivitiesPageParams }) => {
 
         {Object.keys(groupedActivity).length > 0 ? (
           Object.entries(groupedActivity).map(([groupTitle, data], index) => (
-            <DBTagGroup
+            <TagGroup
               key={index}
               tagData={{ groupTitle, tags: data.tags, description: data.description }}
               activityData={data.activities}

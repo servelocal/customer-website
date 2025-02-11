@@ -22,7 +22,7 @@ const TagGroup = ({ tagData, activityData }) => {
   const [showButtons, setShowButtons] = useState(false);
   const [canScrollLeft, setCanScrollLeft] = useState(false);
   const [canScrollRight, setCanScrollRight] = useState(false);
-  // console.log(activityData);
+  console.log(activityData);
 
   useEffect(() => {
     updateScrollState();
@@ -70,7 +70,6 @@ const TagGroup = ({ tagData, activityData }) => {
                 className="rounded-full bg-slate-100 px-3 py-1 text-sm font-medium whitespace-nowrap text-black/80"
               >
                 {tag}
-                jhdfg
               </span>
             ))}
           </div>
@@ -105,9 +104,9 @@ const TagGroup = ({ tagData, activityData }) => {
           onScroll={updateScrollState}
           className="hide-scrollbar relative flex gap-4 overflow-x-auto px-4 pt-4 pb-8"
         >
-          {activityData.map((activity) => (
+          {/* {activityData.map((activity) => (
             <ActivityCard key={activity.activity_id} activityData={activity} />
-          ))}
+          ))} */}
         </div>
       </div>
     </div>
