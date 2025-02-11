@@ -23,7 +23,8 @@ export default [
       ...pluginNext.configs['core-web-vitals'].rules,
     },
   },
-  js.configs.recommended,
-  ...tseslint.configs.recommended,
-  ...react.configs.recommended, // Apply recommended React rules
+  // solution found in git hub https: //github.com/vercel/next.js/issues/71763#issuecomment-2476838298
+  // js.configs.recommended,
+  // ...tseslint.configs.recommended,
+  // ...react.configs.recommended, // Apply recommended React rules
 ];
