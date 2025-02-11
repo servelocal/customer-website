@@ -2,7 +2,7 @@ import activitiesData from '@/data/activities.json';
 import tagGroupsData from '@/data/tagGroups.json';
 import { Activity, TagGroup } from '@/types';
 
-const categoriseByTagGroups = (
+export const categoriseByTagGroups = (
   activities: Activity[],
   tagGroups: TagGroup[]
 ): Record<string, { activities: Activity[]; tags: string[]; description: string }> => {
