@@ -12,7 +12,6 @@ export async function fetchTagGroups() {
       await query(`select tg.tag_group_id, tg.tag_title, tg.description,  ARRAY_AGG(t.tag_name) as tags FROM tag_group tg
                   JOIN tag t on t.tag_group_id  = tg.tag_group_id
                   group by tg.tag_group_id, tg.tag_title, tg.description;`);
-    // console.log(data);
     return data;
   } catch (err) {
     console.error('Database Error:', err);

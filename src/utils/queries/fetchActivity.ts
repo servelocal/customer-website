@@ -32,11 +32,6 @@ GROUP BY a.activity_id, a.activity_name, cat.category_name, sb.sub_category_name
 `,
       [location]
     );
-    // console.log(activity);
-    // console.log(
-    //   '===============check',
-    //   activity.map((act) => act.images)
-    // );
     return activity;
   } catch (err) {
     console.error('Database Error:', err);
