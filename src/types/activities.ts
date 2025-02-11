@@ -4,7 +4,7 @@ export interface LocationActivities {
 }
 
 export interface ActivityCardProps {
-  activity_id: number;
+  activity_id?: number;
   slug: string;
   name: string;
   price: Price[];
