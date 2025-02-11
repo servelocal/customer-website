@@ -6,18 +6,18 @@ import fetchActivities, { categoriseByTagGroups } from '@/utils/fetchActivities'
 import { ActivitiesPageParams } from '@/types/pageParams';
 import slidesData from '@/data/carousel.json';
 import CategoryData from '@/data/categories.json';
-import { fetchActivity } from '@/utils/queries/fetchActivity';
+import { fetchActivityCardData } from '@/utils/queries/fetchActivityCardData';
 import { fetchTagGroups } from '@/utils/queries/fetchTagGroup';
 
 const ActivitiesPage = async ({ params }: { params: ActivitiesPageParams }) => {
   const { location } = await params;
 
-  const activities = await fetchActivity(capitalise(location));
+  const activities = await fetchActivityCardData(capitalise(location));
   const tagGroups = await fetchTagGroups();
 
   const groupedActivity = categoriseByTagGroups(activities, tagGroups);
 
-  console.log('groupedActivity', groupedActivity);
+  // console.log('groupedActivity', groupedActivity);
 
   return (
     <>

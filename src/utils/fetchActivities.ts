@@ -1,9 +1,9 @@
 import activitiesData from '@/data/activities.json';
 import tagGroupsData from '@/data/tagGroups.json';
-import { Activity, TagGroup } from '@/types';
+import { Activity, ActivityCardData, TagGroup } from '@/types';
 
 export const categoriseByTagGroups = (
-  activities: Activity[],
+  activities: ActivityCardData[],
   tagGroups: TagGroup[]
 ): Record<string, { activities: Activity[]; tags: string[]; description: string }> => {
   return tagGroups.reduce(
