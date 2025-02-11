@@ -12,8 +12,11 @@ import { fetchTagGroups } from '@/utils/queries/fetchTagGroup';
 const ActivitiesPage = async ({ params }: { params: ActivitiesPageParams }) => {
   const { location } = await params;
 
-  const activities = await fetchActivityCardData(capitalise(location));
-  const tagGroups = await fetchTagGroups();
+  const [activities, tagGroups] = await Promise.all([
+    fetchActivityCardData(capitalise(location)),
+    fetchTagGroups(),
+  ]);
+
   const groupedActivity = categoriseByTagGroups(activities, tagGroups);
 
   return (

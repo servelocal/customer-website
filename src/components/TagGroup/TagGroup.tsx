@@ -47,7 +47,6 @@ const TagGroup = ({ tagData, activityData }: TagGroupProps) => {
       behavior: 'smooth',
     });
   };
-  console.log('tagfdg:', tagData);
   return (
     <div
       className="group/title relative"

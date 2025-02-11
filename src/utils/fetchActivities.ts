@@ -27,26 +27,3 @@ export const categoriseByTagGroups = (
     return categories;
   }, {});
 };
-
-// const fetchActivities = async (
-//   location: string
-// ): Promise<Record<string, { activities: Activity[]; tags: string[]; description: string }>> => {
-//   const lowercasedCity = location.toLowerCase();
-
-//   if (
-//     !activitiesData.location ||
-//     !activitiesData.activities ||
-//     !Array.isArray(tagGroupsData.tagGroups)
-//   ) {
-//     console.error('Invalid activities or tag groups data structure');
-//     return {};
-//   }
-
-//   if (activitiesData.location.toLowerCase() === lowercasedCity) {
-//     return categoriseByTagGroups(activitiesData.activities, tagGroupsData.tagGroups);
-//   }
-
-//   return {};
-// };
-
-// export default fetchActivities;
