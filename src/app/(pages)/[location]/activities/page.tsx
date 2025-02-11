@@ -8,8 +8,6 @@ import slidesData from '@/data/carousel.json';
 import CategoryData from '@/data/categories.json';
 import { fetchActivity } from '@/utils/queries/fetchActivity';
 import { fetchTagGroups } from '@/utils/queries/fetchTagGroup';
-// import { fetchTagGroups } from '@/utils/queries/fetchTagGroup';
-// import DBTagGroup from '@/components/DBTagGroup';
 
 const ActivitiesPage = async ({ params }: { params: ActivitiesPageParams }) => {
   const { location } = await params;
