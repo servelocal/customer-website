@@ -1,15 +1,15 @@
 import activitiesData from '@/data/activities.json';
 import tagGroupsData from '@/data/tagGroups.json';
-import { ActivityCardData, TagGroup, Tags } from '@/types';
+import { ActivityCardData, TagGroupData, Tag } from '@/types';
 
 type CategorisedActivities = Record<
   string,
-  { activities: ActivityCardData[]; tags: Tags[]; description: string | undefined }
+  { activities: ActivityCardData[]; tags: Tag[]; description: string | undefined }
 >;
 
 export const categoriseByTagGroups = (
   activities: ActivityCardData[],
-  tagGroups: TagGroup[]
+  tagGroups: TagGroupData[]
 ): CategorisedActivities => {
   return tagGroups.reduce<CategorisedActivities>((categories, tagGroup) => {
     const { tag_title, tags, description } = tagGroup;
@@ -24,7 +24,6 @@ export const categoriseByTagGroups = (
       description,
     };
 
-    console.log('dflgkjdflkgjdlkf', categories);
     return categories;
   }, {});
 };

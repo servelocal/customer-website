@@ -6,7 +6,7 @@ export interface LocationActivities {
 export interface ActivityCardData {
   activity_id: string;
   activity_name: string;
-  tags: Tags[];
+  tags: Tag[];
   category_name: string;
   sub_Category: string;
   post_code: string;
@@ -16,7 +16,7 @@ export interface ActivityCardData {
   slug: string;
 }
 
-export interface Tags {
+export interface Tag {
   tag_name: string;
 }
 

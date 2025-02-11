@@ -3,7 +3,7 @@
 import { useRef, useState, useEffect } from 'react';
 import { FiChevronLeft, FiChevronRight } from 'react-icons/fi';
 import { MdKeyboardArrowRight } from 'react-icons/md';
-import { Activity } from '@/types';
+import { Activity, ActivityCardData, TagGroupData } from '@/types';
 import ActivityCard from '../ActivityCard';
 // import ActivityCard from './DBActivityCard/DBActivityCard';
 // import ActivityCard from '../ActivityCard';
@@ -15,9 +15,20 @@ import ActivityCard from '../ActivityCard';
 //   activities: Activity[];
 // }
 
+interface TagData {
+  tag_title: string;
+  description: string | undefined;
+  tags: string[];
+}
+
+interface TagGroupProps {
+  tagData: TagData; // Replace `any[]` with the actual type of your tag data
+  activityData: ActivityCardData; // Ensure ActivityCardData type is correctly defined
+}
+
 // const TagGroup = ({ title, description, tags, activities }: TagGroupProps) => {
 
-const TagGroup = ({ tagData, activityData }) => {
+const TagGroup = ({ tagData, activityData }: TagGroupProps) => {
   const scrollContainerRef = useRef<HTMLDivElement>(null);
   const [showButtons, setShowButtons] = useState(false);
   const [canScrollLeft, setCanScrollLeft] = useState(false);
@@ -47,6 +58,7 @@ const TagGroup = ({ tagData, activityData }) => {
       behavior: 'smooth',
     });
   };
+  // console.log('tagdafghfghfghfghfghta', tagData);
   return (
     <div
       className="group/title relative"
@@ -57,7 +69,7 @@ const TagGroup = ({ tagData, activityData }) => {
       <div className="group/tag relative inline-block">
         <div className="relative inline-block">
           <h2 className="flex cursor-pointer items-center text-3xl font-semibold capitalize transition duration-300">
-            {tagData.groupTitle}
+            {tagData.tag_title}
             <span className="ml-2 translate-x-[-10px] transform opacity-0 transition duration-300 group-hover/title:translate-x-0 group-hover/title:opacity-100">
               <MdKeyboardArrowRight />
             </span>
@@ -103,7 +115,8 @@ const TagGroup = ({ tagData, activityData }) => {
           onScroll={updateScrollState}
           className="hide-scrollbar relative flex gap-4 overflow-x-auto px-4 pt-4 pb-8"
         >
-          {activityData.map((activity) => (
+          {console.log('jshgdfhjsdfjhsfd', activityData)}
+          {activityData.map((activity, index) => (
             <ActivityCard key={activity.activity_id} activityData={activity} />
           ))}
         </div>
