@@ -22,7 +22,7 @@ interface ActivityCardProps {
 }
 
 const ActivityCard = ({ activityData }: ActivityCardProps) => {
-  const { activity_name, sub_category, images, latitude, longitude, slug } = activityData;
+  const { activity_name, sub_category_name, images, latitude, longitude, slug } = activityData;
 
   const { banner_image } = images;
 
@@ -57,10 +57,10 @@ const ActivityCard = ({ activityData }: ActivityCardProps) => {
         <div className="flex items-end justify-between">
           <span
             className={`rounded-full border px-2 py-1 text-xs ${getSubCategoryClasses(
-              sub_category
+              sub_category_name
             )}`}
           >
-            {sub_category}
+            {sub_category_name}
           </span>
           {distance !== null && (
             <p className="text-sm text-gray-600">{distance.toFixed(1)} miles</p>

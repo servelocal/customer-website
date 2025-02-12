@@ -8,7 +8,7 @@ export interface ActivityCardData {
   activity_name: string;
   tags: string[];
   category_name: string;
-  sub_category: string;
+  sub_category_name: string;
   post_code: string;
   latitude: number;
   longitude: number;

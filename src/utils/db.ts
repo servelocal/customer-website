@@ -3,7 +3,7 @@ import { Pool } from 'pg';
 const pool = new Pool({
   user: process.env.PG_USER || 'postgres',
   host: process.env.PG_HOST || 'localhost',
-  database: process.env.PG_DATABASE || 'serverlocal',
+  database: process.env.PG_DATABASE || 'servelocal',
   password: process.env.PG_PASSWORD || 'newpassword',
   port: Number(process.env.PG_PORT) || 5433,
   application_name: 'nextjs-app',
