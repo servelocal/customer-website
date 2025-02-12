@@ -4,7 +4,6 @@ import { ActivitiesPageParams } from '@/types/pageParams';
 import slidesData from '@/data/carousel.json';
 import CategoryData from '@/data/categories.json';
 import { Suspense } from 'react';
-// import { fetchCategoriseByTagGroups } from '@/utils/queries/fetchCategoriseByTagGroups';
 import TagGroup from '@/components/TagGroup';
 import { capitalise } from '@/utils/capitalise';
 import { fetchCategoriesByTagGroups } from '@/utils/queries/fetchCategoriseByTagGroups';

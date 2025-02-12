@@ -1,7 +1,10 @@
+// import { CategoriesByTagGroups } from '@/types';
 import { CategoriesByTagGroups } from '@/types';
 import { query } from '../db';
 
-export async function fetchCategoriesByTagGroups(location: string): Promise<CategoriesByTagGroups> {
+export async function fetchCategoriesByTagGroups(
+  location: string
+): Promise<CategoriesByTagGroups[]> {
   try {
     const data = await query(
       `
@@ -47,8 +50,7 @@ GROUP BY tg.tag_group_id, tg.tag_title, tg.description;
       `,
       [location]
     );
-    // console.log(data);
-    return data as CategoriesByTagGroups;
+    return data as CategoriesByTagGroups[];
   } catch (error) {
     console.error('Database Error:', error);
     throw new Error("We couldn't load the tag category section.");

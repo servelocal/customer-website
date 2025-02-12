@@ -3,12 +3,9 @@
 import { useRef, useState, useEffect } from 'react';
 import { FiChevronLeft, FiChevronRight } from 'react-icons/fi';
 import { MdKeyboardArrowRight } from 'react-icons/md';
-import { TagGroupData } from '@/types'; // Corrected type import
+// import { TagGroupProps } from '@/types'; // Corrected type import
 import ActivityCard from '../ActivityCard';
-
-interface TagGroupProps {
-  groupedData: TagGroupData;
-}
+import { TagGroupProps } from '@/types';
 
 const TagGroup = ({ groupedData }: TagGroupProps) => {
   const scrollContainerRef = useRef<HTMLDivElement>(null);

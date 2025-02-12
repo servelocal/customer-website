@@ -4,7 +4,7 @@ import Image from 'next/image';
 import { FaRegHeart } from 'react-icons/fa';
 import { useLocation } from '@/context/LocationContext';
 import { calculateDistance } from '@/utils/caculateDistance';
-import { ActivityCardData } from '@/types';
+import { ActivityCardProps } from '@/types';
 
 const SUBCATEGORY_CLASSES: Record<string, string> = {
   Bouldering: 'border-blue-500 text-blue-500',
@@ -17,25 +17,19 @@ const SUBCATEGORY_CLASSES: Record<string, string> = {
 const getSubCategoryClasses = (subCategory: string) =>
   SUBCATEGORY_CLASSES[subCategory] || SUBCATEGORY_CLASSES.Default;
 
-interface ActivityCardProps {
-  activityData: ActivityCardData;
-}
-
 const ActivityCard = ({ activityData }: ActivityCardProps) => {
   const { activity_name, sub_category_name, images, latitude, longitude, slug } = activityData;
-
   const { banner_image } = images;
-
   const { coords, location } = useLocation();
   const locationSlug = location?.toLowerCase() || 'uk';
   const distance = calculateDistance(coords.latitude, coords.longitude, latitude, longitude);
+  console.log(activityData);
 
   return (
     <Link
       href={`/${locationSlug}/activities/${slug}`}
       className="group block w-80 shrink-0 cursor-pointer rounded-2xl p-3 transition-all duration-300 hover:scale-105 hover:shadow-lg md:w-96"
     >
-      {/* Banner Image */}
       <div className="relative">
         <Image
           src={banner_image}
@@ -48,11 +42,9 @@ const ActivityCard = ({ activityData }: ActivityCardProps) => {
           <FaRegHeart size={16} />
         </div>
       </div>
-      {/* Title, Price, Subcategory, and Distance */}
       <div className="mt-2 space-y-1">
         <div className="flex items-center justify-between">
           <h3 className="text-lg font-bold">{activity_name}</h3>
-          {/* <p className="text-sm font-semibold text-gray-700">{createPriceIndicator(price)}</p> */}
         </div>
         <div className="flex items-end justify-between">
           <span

@@ -3,7 +3,29 @@ export interface LocationActivities {
   activities: Activity[];
 }
 
-export interface ActivityCardData {
+// export interface ActivityCardData {
+//   activity_id: string;
+//   activity_name: string;
+//   tags: string[];
+//   category_name: string;
+//   sub_category_name: string;
+//   post_code: string;
+//   latitude: number;
+//   longitude: number;
+//   images: Images;
+//   slug: string;
+// }
+
+// export type Tag = {
+//   tag_name: string;
+// };
+
+export interface ImageData {
+  banner_image: string;
+  thumbnail_image: string;
+}
+
+export interface Activity {
   activity_id: string;
   activity_name: string;
   tags: string[];
@@ -12,34 +34,12 @@ export interface ActivityCardData {
   post_code: string;
   latitude: number;
   longitude: number;
-  images: Images;
+  images: ImageData;
   slug: string;
 }
 
-// export type Tag = {
-//   tag_name: string;
-// };
-
-export interface Images {
-  thumbnail_image: string;
-  banner_image: string;
-}
-
-export interface Activity {
-  activity_id: number;
-  slug: string;
-  name: string;
-  category: string;
-  sub_category: string;
-  description: string;
-  tags: string[];
-  address: Address;
-  contact: Contact;
-  details: ActivityDetails;
-  coordinates: {
-    latitude: number;
-    longitude: number;
-  };
+export interface ActivityCardProps {
+  activityData: Activity;
 }
 
 export interface ActivityDetails {
