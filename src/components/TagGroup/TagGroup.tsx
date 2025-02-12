@@ -3,27 +3,20 @@
 import { useRef, useState, useEffect } from 'react';
 import { FiChevronLeft, FiChevronRight } from 'react-icons/fi';
 import { MdKeyboardArrowRight } from 'react-icons/md';
-import { ActivityCardData } from '@/types';
+import { CategoriesByTagGroups } from '@/types';
 import ActivityCard from '../ActivityCard';
 
-interface TagData {
-  tag_title: string;
-  description?: string;
-  tags: string[];
-}
-
 interface TagGroupProps {
-  tagData: TagData;
-  activityData: ActivityCardData[];
+  groupedData: CategoriesByTagGroups;
 }
 
-const TagGroup = ({ groupedData }) => {
+const TagGroup = ({ groupedData }: TagGroupProps) => {
   const scrollContainerRef = useRef<HTMLDivElement>(null);
   const [showButtons, setShowButtons] = useState(false);
   const [canScrollLeft, setCanScrollLeft] = useState(false);
   const [canScrollRight, setCanScrollRight] = useState(false);
 
-  console.log('alexxxxxxxxxxxxxxxx', groupedData);
+  // console.log('xxxxxxxxxxxxxxx', groupedData);
 
   useEffect(() => {
     updateScrollState();

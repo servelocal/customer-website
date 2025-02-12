@@ -4,21 +4,20 @@ import { ActivitiesPageParams } from '@/types/pageParams';
 import slidesData from '@/data/carousel.json';
 import CategoryData from '@/data/categories.json';
 import { Suspense } from 'react';
-import { fetchCategoriseByTagGroups } from '@/utils/queries/fetchCategoriseByTagGroups';
+// import { fetchCategoriseByTagGroups } from '@/utils/queries/fetchCategoriseByTagGroups';
 import TagGroup from '@/components/TagGroup';
 import { capitalise } from '@/utils/capitalise';
+import { fetchCategoriesByTagGroups } from '@/utils/queries/fetchCategoriseByTagGroups';
 
 const ActivitiesPage = async ({ params }: { params: ActivitiesPageParams }) => {
   const { location } = await params;
 
-  const groupedData = await fetchCategoriseByTagGroups(capitalise(location));
+  const groupedData = await fetchCategoriesByTagGroups(capitalise(location));
 
   return (
     <>
-      {/* Banner Section */}
       <Carousel slides={slidesData.slides} />
 
-      {/* Main Content */}
       <div className="container mx-auto py-14">
         <CategorySection categories={CategoryData.categories} />
 
