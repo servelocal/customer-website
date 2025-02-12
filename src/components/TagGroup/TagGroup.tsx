@@ -3,24 +3,22 @@
 import { useRef, useState, useEffect } from 'react';
 import { FiChevronLeft, FiChevronRight } from 'react-icons/fi';
 import { MdKeyboardArrowRight } from 'react-icons/md';
-import { CategoriesByTagGroups } from '@/types';
+import { TagGroupData } from '@/types'; // Corrected type import
 import ActivityCard from '../ActivityCard';
 
 interface TagGroupProps {
-  groupedData: CategoriesByTagGroups;
+  groupedData: TagGroupData;
 }
 
 const TagGroup = ({ groupedData }: TagGroupProps) => {
   const scrollContainerRef = useRef<HTMLDivElement>(null);
-  const [showButtons, setShowButtons] = useState(false);
-  const [canScrollLeft, setCanScrollLeft] = useState(false);
-  const [canScrollRight, setCanScrollRight] = useState(false);
-
-  // console.log('xxxxxxxxxxxxxxx', groupedData);
+  const [showButtons, setShowButtons] = useState<boolean>(false);
+  const [canScrollLeft, setCanScrollLeft] = useState<boolean>(false);
+  const [canScrollRight, setCanScrollRight] = useState<boolean>(false);
 
   useEffect(() => {
     updateScrollState();
-  }, [groupedData, scrollContainerRef.current]);
+  }, [groupedData]); // Removed scrollContainerRef.current as it does not trigger re-renders
 
   const updateScrollState = () => {
     const container = scrollContainerRef.current;
@@ -33,22 +31,23 @@ const TagGroup = ({ groupedData }: TagGroupProps) => {
     const container = scrollContainerRef.current;
     if (!container) return;
 
-    const cardWidth = container.firstChild
-      ? (container.firstChild as HTMLElement).offsetWidth + 16
-      : 300;
+    const cardWidth =
+      container.firstElementChild instanceof HTMLElement
+        ? container.firstElementChild.offsetWidth + 16
+        : 300;
     const scrollAmount = cardWidth * Math.floor(container.clientWidth / cardWidth);
     container.scrollBy({
       left: direction === 'left' ? -scrollAmount : scrollAmount,
       behavior: 'smooth',
     });
   };
+
   return (
     <div
       className="group/title relative"
       onMouseEnter={() => setShowButtons(true)}
       onMouseLeave={() => setShowButtons(false)}
     >
-      {/* {groupedData.map((data) => ( */}
       <div key={groupedData.tag_group_id} className="group/tag relative inline-block w-full">
         <div className="relative inline-block">
           <h2 className="flex cursor-pointer items-center text-3xl font-semibold capitalize transition duration-300">
@@ -57,7 +56,6 @@ const TagGroup = ({ groupedData }: TagGroupProps) => {
               <MdKeyboardArrowRight />
             </span>
           </h2>
-
           <div className="absolute top-0 left-full ml-1 flex translate-x-[-20px] translate-y-[10%] gap-2 opacity-0 transition-all duration-300 group-hover/tag:translate-x-0 group-hover/tag:opacity-100">
             {groupedData.tags.map((tag, index) => (
               <span
@@ -73,7 +71,6 @@ const TagGroup = ({ groupedData }: TagGroupProps) => {
           <p className="text-md text-gray-500">{groupedData.description}</p>
         )}
 
-        {/* Scrollable Activities */}
         <div className="relative">
           {showButtons && canScrollLeft && (
             <button

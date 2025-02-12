@@ -25,9 +25,7 @@ const ActivitiesPage = async ({ params }: { params: ActivitiesPageParams }) => {
           fallback={<p className="bg-pink test-[2rem] h-[20rem] w-[20rem]">loading please wait</p>}
         >
           {groupedData.length > 0 ? (
-            groupedData.map((data, index) => (
-              <TagGroup key={data.tag_group_id} groupedData={data} />
-            ))
+            groupedData.map((data) => <TagGroup key={data.tag_group_id} groupedData={data} />)
           ) : (
             <p className="text-center text-gray-600">No activities found for this location.</p>
           )}
