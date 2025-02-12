@@ -1,9 +1,10 @@
 // import { TagGroupData } from '@/types';
 import { query } from '../db';
 
-export async function fetchCategoriseByTagGroups() {
+export async function fetchCategoriseByTagGroups(location: string) {
   try {
-    const data = await query(`WITH ActivityData AS (
+    const data = await query(
+      `WITH ActivityData AS (
     SELECT 
         a.activity_id, 
         a.activity_name, 
@@ -27,7 +28,7 @@ export async function fetchCategoriseByTagGroups() {
     LEFT JOIN category cat ON cat.category_id = a.category_id
     LEFT JOIN activity_tag at ON at.activity_location_id = al.activity_location_id
     LEFT JOIN tag t ON t.tag_id = at.tag_id
-    WHERE c.city_name = 'Portsmouth'
+    WHERE c.city_name = $1
     GROUP BY a.activity_id, a.activity_name, cat.category_name, sb.sub_category_name, l.post_code, l.latitude, l.longitude, slug
 )
 SELECT 
@@ -41,7 +42,9 @@ JOIN tag t ON t.tag_group_id = tg.tag_group_id
 LEFT JOIN activity_tag at ON at.tag_id = t.tag_id
 LEFT JOIN activity_location al ON al.activity_location_id = at.activity_location_id  -- Ensuring correct join
 LEFT JOIN ActivityData ad ON ad.activity_id = al.activity_id  -- Linking to correct activity_id
-GROUP BY tg.tag_group_id, tg.tag_title, tg.description;`);
+GROUP BY tg.tag_group_id, tg.tag_title, tg.description;`,
+      [location]
+    );
     return data;
   } catch (err) {
     console.error('Database Error:', err);

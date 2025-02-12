@@ -4,14 +4,14 @@ import { ActivitiesPageParams } from '@/types/pageParams';
 import slidesData from '@/data/carousel.json';
 import CategoryData from '@/data/categories.json';
 import { Suspense } from 'react';
-import TagGroup2 from '@/components/TagGroup2';
 import { fetchCategoriseByTagGroups } from '@/utils/queries/fetchCategoriseByTagGroups';
 import TagGroup from '@/components/TagGroup';
+import { capitalise } from '@/utils/capitalise';
 
 const ActivitiesPage = async ({ params }: { params: ActivitiesPageParams }) => {
   const { location } = await params;
 
-  const groupedData = await fetchCategoriseByTagGroups();
+  const groupedData = await fetchCategoriseByTagGroups(capitalise(location));
 
   return (
     <>
