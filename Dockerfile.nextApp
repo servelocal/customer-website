@@ -1,0 +1,37 @@
+# Use official Node.js 18 as the base image.  You can change 18 to a different version.
+FROM node:23-alpine AS base
+
+WORKDIR /app
+
+COPY package*.json ./
+
+RUN npm install --frozen-lockfile
+
+COPY . .
+
+RUN npm run build
+
+
+FROM node:23-alpine AS prod
+
+WORKDIR /app
+
+# This is useful for debugging and manual database connections.
+## RUN apk add --no-cache postgresql-client 
+
+
+# Copy only the necessary files from the previous stage
+COPY --from=base /app/next.config.ts ./
+COPY --from=base /app/public ./public
+COPY --from=base /app/.next/standalone ./
+COPY --from=base /app/.next/static ./.next/static
+
+RUN addgroup -g 1001 nodejs && \
+    adduser --disabled-password -u 1001 -G nodejs nodejs
+
+USER nodejs
+
+EXPOSE 3000
+
+# Define the command to start the Next.js server in production mode
+CMD ["node", "server.js"]
