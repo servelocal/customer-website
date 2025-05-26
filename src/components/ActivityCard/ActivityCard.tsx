@@ -7,14 +7,7 @@ import { useLocation } from '@/context/LocationContext';
 import { ActivityCardProps } from '@/types';
 import { createPriceIndicator } from '@/utils/priceIndicator';
 import { calculateDistance } from '@/utils/caculateDistance';
-
-const SUBCATEGORY_CLASSES: Record<string, string> = {
-  Bouldering: 'border-blue-500 text-blue-500',
-  Golfing: 'border-green-500 text-green-500',
-  Adventure: 'border-yellow-500 text-yellow-500',
-  Bowling: 'border-red-500 text-red-500',
-  Default: 'border-gray-300 text-gray-700',
-};
+import { SUBCATEGORY_CLASSES } from '@/types/categories';
 
 const getSubCategoryClasses = (subCategory: string) =>
   SUBCATEGORY_CLASSES[subCategory] || SUBCATEGORY_CLASSES.Default;

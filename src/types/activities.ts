@@ -9,6 +9,7 @@ export interface ActivityCardProps {
   name: string;
   price: Price[];
   thumbnailImage: string;
+  description?: string;
   bannerImage: string;
   subCategory: string;
   coordinates: {
