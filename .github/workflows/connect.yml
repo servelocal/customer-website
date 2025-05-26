@@ -1,0 +1,33 @@
+name: Deploy to Raspberry Pi
+
+on:
+  push:
+    branches:
+      - main # Or whatever branch you want to trigger this on
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Tailscale
+        uses: tailscale/github-action@v3.2.1
+        with:
+          oauth-client-id: ${{ secrets.TS_OAUTH_CLIENT_ID }}
+          oauth-secret: ${{ secrets.TS_OAUTH_SECRET }}
+          tags: tag:ci
+          version: latest
+
+      - name: Set up SSH
+        uses: webfactory/ssh-agent@v0.8.0
+        with:
+          ssh-private-key: ${{ secrets.RASPBERRY_PI_SSH_PRIVATE_KEY }}
+
+      - name: Deploy code
+        run: |
+          ssh -o StrictHostKeyChecking=no ${{ secrets.RASPBERRY_PI_SSH_USER }}@${{ secrets.RASPBERRY_PI_TAILSCALE_IP }} << EOF
+          cd customer-website
+          git pull
+          EOF
