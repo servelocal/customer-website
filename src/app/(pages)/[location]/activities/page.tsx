@@ -5,10 +5,13 @@ import { capitalise } from '@/utils/capitalise';
 import fetchActivities from '@/utils/fetchActivities';
 import { ActivitiesPageParams } from '@/types/pageParams';
 import slidesData from '@/data/carousel.json';
-import CategoryData from '@/data/categories.json';
 
 const ActivitiesPage = async ({ params }: { params: ActivitiesPageParams }) => {
   const { location } = await params;
+
+  const categoriesRes = await fetch(`${process.env.NEXT_PUBLIC_BASE_URL}/api/categories`);
+
+  const categoriesData = await categoriesRes.json();
 
   const activities = await fetchActivities(location);
 
@@ -19,7 +22,7 @@ const ActivitiesPage = async ({ params }: { params: ActivitiesPageParams }) => {
 
       {/* Main Content */}
       <div className="container mx-auto py-14">
-        <CategorySection categories={CategoryData.categories} />
+        <CategorySection categories={categoriesData} />
         {Object.entries(activities).length > 0 ? (
           Object.entries(activities).map(
             ([tagGroup, { activities: groupActivities, tags, description }]) => (
