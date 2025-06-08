@@ -1,3 +1,4 @@
+import ScrollToTop from '@/components/ScrollToTop/ScrollToTop';
 import { ReactNode } from 'react';
 
 interface LocationLayoutProps {
@@ -5,5 +6,10 @@ interface LocationLayoutProps {
 }
 
 export default function LocationLayout({ children }: LocationLayoutProps) {
-  return <div>{children}</div>;
+  return (
+    <div>
+      <ScrollToTop />
+      {children}
+    </div>
+  );
 }

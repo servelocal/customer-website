@@ -41,31 +41,35 @@ const ExtendedCard = ({
   return (
     <Link
       href={`/${locationSlug}/activities/${slug}`}
-      className="group block w-80 shrink-0 cursor-pointer rounded-2xl p-3 transition-all duration-300 hover:scale-105 hover:shadow-lg md:w-96"
+      className="group flex w-full gap-4 rounded-2xl border border-gray-200 bg-white p-4 transition-all duration-200 hover:shadow-md"
       aria-label={`View details of ${name}`}
     >
       {/* Banner Image */}
       <ActivityImage name={name} bannerImage={bannerImage} />
 
       {/* Content */}
-      <div className="mt-3 space-y-1">
-        <div className="flex items-center justify-between">
-          <h3 className="text-lg font-bold">{name}</h3>
-          <p className="text-sm font-semibold text-gray-700">{createPriceIndicator(price)}</p>
+      <div className="flex flex-1 flex-col justify-between space-y-2">
+        <div className="space-y-1">
+          <div className="flex items-start justify-between gap-4">
+            <h3 className="text-base font-semibold text-gray-900">{name}</h3>
+            <span className="text-sm whitespace-nowrap text-gray-700">
+              {createPriceIndicator(price)}
+            </span>
+          </div>
+
+          <span
+            className={`inline-block w-fit rounded-full border px-2 py-0.5 text-xs font-medium ${getSubCategoryClasses(
+              subCategory
+            )}`}
+          >
+            {subCategory}
+          </span>
+
+          <p className="text-sm text-gray-600">{truncateText(description || '', 100)}</p>
         </div>
 
-        <span
-          className={`inline-block rounded-full border px-2 py-1 text-xs ${getSubCategoryClasses(
-            subCategory
-          )}`}
-        >
-          {subCategory}
-        </span>
-
-        <p className="text-sm text-gray-600">{truncateText(description || '', 100)}</p>
-
         {distance !== null && (
-          <p className="text-sm text-gray-600">{distance.toFixed(1)} miles away</p>
+          <p className="text-xs text-gray-500">{distance.toFixed(1)} miles away</p>
         )}
       </div>
     </Link>
