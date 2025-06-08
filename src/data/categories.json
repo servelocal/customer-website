@@ -1,0 +1,82 @@
+{
+  "categories": [
+    {
+      "id": 1,
+      "name": "Sports",
+      "description": "Engage in physical activities, from team sports to individual challenges.",
+      "icon": "FaRunning"
+    },
+    {
+      "id": 2,
+      "name": "Games",
+      "description": "Enjoy a variety of games, including board games, arcade games, and more.",
+      "icon": "FaGamepad"
+    },
+    {
+      "id": 3,
+      "name": "Attractions",
+      "description": "Visit popular tourist attractions, landmarks, and points of interest.",
+      "icon": "FaMapSigns"
+    },
+    {
+      "id": 4,
+      "name": "Outdoor Adventures",
+      "description": "Experience the thrill of outdoor activities like hiking, kayaking, and camping.",
+      "icon": "GiCampfire"
+    },
+    {
+      "id": 5,
+      "name": "Entertainment",
+      "description": "Enjoy concerts, theatre performances, cinemas, and live shows.",
+      "icon": "FaFilm"
+    },
+    {
+      "id": 6,
+      "name": "Food & Drink",
+      "description": "Explore local restaurants, bars, and unique dining experiences.",
+      "icon": "FaUtensils"
+    },
+    {
+      "id": 7,
+      "name": "Wellness & Relaxation",
+      "description": "Unwind with spas, yoga, meditation, and other wellness activities.",
+      "icon": "GiMeditation"
+    },
+    {
+      "id": 8,
+      "name": "Workshops & Classes",
+      "description": "Learn new skills with cooking classes, art workshops, and more.",
+      "icon": "FaChalkboardTeacher"
+    },
+    {
+      "id": 9,
+      "name": "Shopping",
+      "description": "Explore local markets, malls, and unique shopping experiences.",
+      "icon": "FaShoppingCart"
+    },
+    {
+      "id": 10,
+      "name": "Nightlife",
+      "description": "Enjoy bars, nightclubs, live music, and vibrant night scenes.",
+      "icon": "FaMoon"
+    },
+    {
+      "id": 11,
+      "name": "Nature",
+      "description": "Explore parks, forests, beaches, and scenic natural environments.",
+      "icon": "FaTree"
+    },
+    {
+      "id": 12,
+      "name": "Culture",
+      "description": "Discover museums, art galleries, and cultural experiences.",
+      "icon": "FaTheaterMasks"
+    },
+    {
+      "id": 13,
+      "name": "Technology",
+      "description": "Explore tech exhibits, gadgets, and innovative experiences.",
+      "icon": "FaLaptopCode"
+    }
+  ]
+}

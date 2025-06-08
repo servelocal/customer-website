@@ -28,3 +28,11 @@ body {
 .hide-scrollbar::-webkit-scrollbar {
   display: none; /* Chrome, Safari, and Edge */
 }
+
+button {
+  cursor: pointer;
+}
+
+button:hover {
+  filter: brightness(0.9);
+}

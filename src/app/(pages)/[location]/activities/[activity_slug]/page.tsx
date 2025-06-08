@@ -17,20 +17,52 @@ const ActivityDetailPage = async ({ params }: { params: ActivityDetailParams }) 
     <div className="container mx-auto p-4">
       <HeaderSection activity={activity} />
       <TagsSection tags={activity.tags} />
-      <DetailSection title="Description" content={activity.description} />
-      <DetailSection
-        title="Address"
-        content={`${activity.address.street}, ${activity.address.city}, ${activity.address.postcode}, ${activity.address.country}`}
-      />
-      <ContactSection contact={activity.contact} />
-      <OpeningTimesSection openingTimes={activity.details.openingTimes} />
-      <h2 className="mb-2 text-xl font-semibold">Price</h2>
-      {activity.details.price.map((price: Price, index: number) => (
-        <PriceSection key={index} price={price} />
-      ))}
+      <div className="flex flex-col items-start gap-6 md:flex-row">
+        <div className="flex-2">
+          <DetailSection title="Description" content={activity.description} />
+          <DetailSection
+            title="Address"
+            content={`${activity.address.street}, ${activity.address.city}, ${activity.address.postcode}, ${activity.address.country}`}
+          />
+          <ContactSection contact={activity.contact} />
+          <OpeningTimesSection openingTimes={activity.details.openingTimes} />
+          <h2 className="mb-2 text-xl font-semibold">Price</h2>
+          {activity.details.price.map((price: Price, index: number) => (
+            <PriceSection key={index} price={price} />
+          ))}
+        </div>
+        <SidePanel
+          price={activity.details.price[0].amount}
+          website={activity.contact.website}
+          address={activity.address}
+        />
+      </div>
     </div>
   );
 };
+
+const SidePanel = ({ price, website, address }: { price: any; website: string; address: any }) => (
+  <div className="h-auto flex-1 rounded-lg border-1 border-gray-200 p-4">
+    <h1 className="text-2xl font-semibold">From £{price}</h1>
+    <p className="mt-1 text-sm text-gray-500">Per Adult</p>
+    <a
+      href={`https://www.google.com/maps/dir/?api=1&destination=${address.street},+${address.city},+${address.postcode}`}
+      target="_blank"
+      rel="noopener noreferrer"
+      className="mt-2 inline-block w-full rounded border border-black px-4 py-2 text-center text-lg text-black"
+    >
+      Get Directions
+    </a>
+    <a
+      href={website}
+      target="_blank"
+      rel="noopener noreferrer"
+      className="mt-2 inline-block w-full rounded bg-black px-4 py-2 text-center text-lg text-white"
+    >
+      Book Now
+    </a>
+  </div>
+);
 
 const HeaderSection = ({ activity }: { activity: Activity }) => (
   <div className="relative mb-6">
@@ -69,7 +101,7 @@ const TagsSection = ({ tags }: { tags: string[] }) => (
   <div className="mb-6">
     <div className="flex flex-wrap gap-2">
       {tags.map((tag) => (
-        <span key={tag} className="text-md rounded bg-black/10 px-3 py-1 text-black/80 shadow-sm">
+        <span key={tag} className="text-md rounded bg-gray-100 px-3 py-1 text-black/80">
           {tag}
         </span>
       ))}

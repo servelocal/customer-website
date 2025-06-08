@@ -2,6 +2,51 @@
   "location": "Portsmouth",
   "activities": [
     {
+      "activity_id": 4,
+      "slug": "dice-board-game-lounge",
+      "name": "Dice Board Game Lounge",
+      "category": "Games",
+      "sub_category": "Boardroom Cafe",
+      "description": "Dice Board Game Lounge in Portsmouth offers a unique experience where board game enthusiasts can relax and enjoy a wide selection of games with friends and family. Located on Albert Road, this board game cafe provides a welcoming atmosphere with a diverse game library and a menu of snacks and beverages. Ideal for casual gamers or groups looking for a fun and interactive experience in a cosy setting.",
+      "tags": [
+        "Indoor",
+        "Board Games",
+        "Cafe",
+        "Group-friendly",
+        "Casual",
+        "Social",
+        "Relaxing",
+        "Snacks and Beverages"
+      ],
+      "address": {
+        "street": "149 Albert Rd",
+        "city": "Portsmouth",
+        "postcode": "PO4 0JR",
+        "country": "UK"
+      },
+      "coordinates": {
+        "latitude": 50.791244,
+        "longitude": -1.064939
+      },
+      "contact": {
+        "phone": "+44 23 9287 3020",
+        "website": "https://diceportsmouth.com/contact/"
+      },
+      "duration": "2 hours",
+      "details": {
+        "openingTimes": {
+          "weekdays": "12:00 PM - 10:00 PM",
+          "friday": "12:00 PM - 11:00 PM",
+          "saturday": "11:00 AM - 11:00 PM",
+          "sunday": "11:00 AM - 10:00 PM",
+          "monday": "Closed"
+        },
+        "price": [{ "type": "General", "amount": 14, "currency": "GBP" }],
+        "bannerImage": "/images/dice-lounge-banner.webp",
+        "thumbnailImage": "/images/dice-lounge-thumb.jpg"
+      }
+    },
+    {
       "activity_id": 1,
       "slug": "hollywood-bowl",
       "name": "Hollywood Bowl",
@@ -152,7 +197,7 @@
         "Snacks and Beverages"
       ],
       "address": {
-        "street": "Albert Rd",
+        "street": "149 Albert Rd",
         "city": "Portsmouth",
         "postcode": "PO4 0JR",
         "country": "UK"
@@ -163,7 +208,7 @@
       },
       "contact": {
         "phone": "+44 23 9287 3020",
-        "website": "https://diceportsmouth.com/"
+        "website": "https://diceportsmouth.com/contact/"
       },
       "details": {
         "openingTimes": {
