@@ -1,8 +1,9 @@
 import { notFound } from 'next/navigation';
 import Image from 'next/image';
 import activitiesData from '@/data/activities.json';
-import { Activity, Price } from '@/types';
+import { Activity, AddressType, OpeningTimesType, Price } from '@/types';
 import { ActivityDetailParams } from '@/types/pageParams';
+import OpeningStatus from '@/components/OpeningStatus/OpeningStatus';
 
 const ActivityDetailPage = async ({ params }: { params: ActivityDetailParams }) => {
   const { activity_slug } = await params;
@@ -35,32 +36,49 @@ const ActivityDetailPage = async ({ params }: { params: ActivityDetailParams }) 
           price={activity.details.price[0].amount}
           website={activity.contact.website}
           address={activity.address}
+          hours={activity.details.openingTimes}
         />
       </div>
     </div>
   );
 };
 
-const SidePanel = ({ price, website, address }: { price: any; website: string; address: any }) => (
-  <div className="h-auto flex-1 rounded-lg border-1 border-gray-200 p-4">
-    <h1 className="text-2xl font-semibold">From £{price}</h1>
-    <p className="mt-1 text-sm text-gray-500">Per Adult</p>
-    <a
-      href={`https://www.google.com/maps/dir/?api=1&destination=${address.street},+${address.city},+${address.postcode}`}
-      target="_blank"
-      rel="noopener noreferrer"
-      className="mt-2 inline-block w-full rounded border border-black px-4 py-2 text-center text-lg text-black"
-    >
-      Get Directions
-    </a>
-    <a
-      href={website}
-      target="_blank"
-      rel="noopener noreferrer"
-      className="mt-2 inline-block w-full rounded bg-black px-4 py-2 text-center text-lg text-white"
-    >
-      Book Now
-    </a>
+const SidePanel = ({
+  price,
+  website,
+  address,
+  hours,
+}: {
+  price: number;
+  website: string;
+  address: AddressType;
+  hours: OpeningTimesType;
+}) => (
+  <div className="flex h-auto flex-1 flex-col gap-5 rounded-lg border-1 border-gray-200 p-5">
+    <div>
+      <h1 className="text-2xl font-semibold">From £{price}</h1>
+      <p className="mt-1 text-sm text-gray-500">Per Adult</p>
+    </div>
+
+    <OpeningStatus openingTimes={hours} />
+    <div>
+      <a
+        href={`https://www.google.com/maps/dir/?api=1&destination=${address.street},+${address.city},+${address.postcode}`}
+        target="_blank"
+        rel="noopener noreferrer"
+        className="inline-block w-full rounded border border-black px-4 py-2 text-center text-lg text-black"
+      >
+        Get Directions
+      </a>
+      <a
+        href={website}
+        target="_blank"
+        rel="noopener noreferrer"
+        className="mt-2 inline-block w-full rounded bg-black px-4 py-2 text-center text-lg text-white"
+      >
+        Book Now
+      </a>
+    </div>
   </div>
 );
 
@@ -131,29 +149,10 @@ const ContactSection = ({ contact }: { contact: Activity['contact'] }) => (
   </div>
 );
 
-const OpeningTimesSection = ({
-  openingTimes,
-}: {
-  openingTimes: Activity['details']['openingTimes'];
-}) => {
-  const filteredOpeningTimes = Object.entries(openingTimes).filter(
-    ([, time]) => time !== undefined
-  );
-
+const OpeningTimesSection = ({ openingTimes }: { openingTimes: OpeningTimesType }) => {
   return (
     <div className="mb-6">
-      <h2 className="mb-2 text-xl font-semibold">Opening Times</h2>
-      {filteredOpeningTimes.length > 0 ? (
-        <ul className="ml-6 list-disc">
-          {filteredOpeningTimes.map(([day, time]) => (
-            <li key={day} className="text-gray-700">
-              {day}: {time}
-            </li>
-          ))}
-        </ul>
-      ) : (
-        <p className="text-gray-500">Opening times not available.</p>
-      )}
+      <OpeningStatus openingTimes={openingTimes} />
     </div>
   );
 };

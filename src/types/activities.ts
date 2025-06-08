@@ -26,7 +26,7 @@ export interface Activity {
   sub_category: string;
   description: string;
   tags: string[];
-  address: Address;
+  address: AddressType;
   contact: Contact;
   details: ActivityDetails;
   coordinates: {
@@ -36,13 +36,13 @@ export interface Activity {
 }
 
 export interface ActivityDetails {
-  openingTimes: OpeningTimes;
+  openingTimes: OpeningTimesType;
   price: Price[];
   bannerImage: string;
   thumbnailImage: string;
 }
 
-export interface Address {
+export interface AddressType {
   street: string;
   city: string;
   postcode: string;
@@ -60,10 +60,13 @@ export interface Contact {
   website: string;
 }
 
-export interface OpeningTimes {
-  Weekdays?: string;
-  Friday?: string;
-  Saturday?: string;
-  Sunday?: string;
-  [key: string]: string | undefined;
+type Weekday = 'Monday' | 'Tuesday' | 'Wednesday' | 'Thursday' | 'Friday' | 'Saturday' | 'Sunday';
+
+interface TimeRange {
+  open: string;
+  close: string;
 }
+
+export type OpeningTimesType = {
+  [day in Weekday]: TimeRange | null;
+};
