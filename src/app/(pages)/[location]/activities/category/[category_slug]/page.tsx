@@ -1,4 +1,4 @@
-import ExtendedCard from '@/components/CardExtended/CardExtended';
+import ExtendedCard from '@/components/ActivityCard/ActivityCardExtended';
 import activitiesData from '@/data/activities.json';
 import { Activity } from '@/types';
 import { CategoryParams } from '@/types/pageParams';
@@ -10,8 +10,6 @@ const CategoryPage = async ({ params }: { params: CategoryParams }) => {
   const activities = activitiesData.activities.filter(
     (act: Activity) => act.category === unslugify(category_slug)
   );
-
-  console.log(activities);
 
   return (
     <div className="container mx-auto mt-12 p-4">
