@@ -2,7 +2,7 @@
 
 import { useRef, useState, useEffect } from 'react';
 import { FiChevronLeft, FiChevronRight } from 'react-icons/fi';
-import { Activity } from '@/types';
+import { ActivityProps } from '@/types';
 import ActivityCard from '../ActivityCard';
 import { MdKeyboardArrowRight } from 'react-icons/md';
 
@@ -10,7 +10,7 @@ interface TagGroupProps {
   title: string;
   description: string;
   tags: string[];
-  activities: Activity[];
+  activities: ActivityProps[];
 }
 
 const TagGroup = ({ title, description, tags, activities }: TagGroupProps) => {
@@ -125,27 +125,9 @@ const TagGroup = ({ title, description, tags, activities }: TagGroupProps) => {
           onScroll={checkScrollPosition}
           className="hide-scrollbar relative flex scroll-p-4 gap-4 overflow-x-auto overflow-y-visible px-4 pt-4 pb-8"
         >
-          {activities.map(
-            ({
-              activity_id,
-              slug,
-              name,
-              sub_category,
-              details: { bannerImage, thumbnailImage, price },
-              coordinates,
-            }) => (
-              <ActivityCard
-                key={activity_id}
-                slug={slug}
-                name={name}
-                price={price}
-                thumbnailImage={thumbnailImage}
-                bannerImage={bannerImage}
-                subCategory={sub_category}
-                coordinates={coordinates}
-              />
-            )
-          )}
+          {activities.map((activity, i) => (
+            <ActivityCard key={i} {...activity} />
+          ))}
         </div>
       </div>
     </div>

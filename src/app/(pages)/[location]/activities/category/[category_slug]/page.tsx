@@ -1,6 +1,6 @@
 import ExtendedCard from '@/components/ActivityCard/ActivityCardExtended';
 import activitiesData from '@/data/activities.json';
-import { Activity } from '@/types';
+import { ActivityProps } from '@/types';
 import { CategoryParams } from '@/types/pageParams';
 import { unslugify } from '@/utils/slugify';
 
@@ -8,7 +8,7 @@ const CategoryPage = async ({ params }: { params: CategoryParams }) => {
   const { category_slug } = await params;
 
   const activities = activitiesData.activities.filter(
-    (act: Activity) => act.category === unslugify(category_slug)
+    (act: ActivityProps) => act.category === unslugify(category_slug)
   );
 
   return (
@@ -16,29 +16,9 @@ const CategoryPage = async ({ params }: { params: CategoryParams }) => {
       <h1 className="text-4xl font-bold">{unslugify(category_slug)}</h1>
       <hr className="my-8 h-px border-0 bg-gray-900 dark:bg-gray-300" />
       <div className="flex flex-col gap-4">
-        {activities.map(
-          ({
-            activity_id,
-            slug,
-            name,
-            description,
-            sub_category,
-            details: { bannerImage, thumbnailImage, price },
-            coordinates,
-          }) => (
-            <ExtendedCard
-              key={activity_id}
-              slug={slug}
-              name={name}
-              description={description}
-              price={price}
-              thumbnailImage={thumbnailImage}
-              bannerImage={bannerImage}
-              subCategory={sub_category}
-              coordinates={coordinates}
-            />
-          )
-        )}
+        {activities.map((activity, i) => (
+          <ExtendedCard key={i} {...activity} />
+        ))}
       </div>
     </div>
   );

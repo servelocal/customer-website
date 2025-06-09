@@ -1,10 +1,8 @@
 'use client';
 
 import Link from 'next/link';
-import Image from 'next/image';
-import { FaRegHeart } from 'react-icons/fa';
 import { useLocation } from '@/context/LocationContext';
-import { ActivityCardProps } from '@/types';
+import { ActivityProps } from '@/types';
 import { createPriceIndicator } from '@/utils/priceIndicator';
 import { calculateDistance } from '@/utils/caculateDistance';
 import { SUBCATEGORY_CLASSES } from '@/types/categories';
@@ -18,10 +16,9 @@ const ExtendedCard = ({
   name,
   price,
   bannerImage,
-  description,
   subCategory,
   coordinates,
-}: ActivityCardProps) => {
+}: ActivityProps) => {
   const { coords, location } = useLocation();
   const locationSlug = location?.toLowerCase() || 'uk';
 
@@ -61,8 +58,6 @@ const ExtendedCard = ({
         >
           {subCategory}
         </span>
-
-        <p className="text-sm text-gray-600">{truncateText(description || '', 100)}</p>
 
         {distance !== null && (
           <p className="text-sm text-gray-600">{distance.toFixed(1)} miles away</p>

@@ -6,7 +6,7 @@
       "slug": "dice-board-game-lounge",
       "name": "Dice Board Game Lounge",
       "category": "Games",
-      "sub_category": "Boardroom Cafe",
+      "subCategory": "Boardroom Cafe",
       "description": "Dice Board Game Lounge in Portsmouth offers a unique experience where board game enthusiasts can relax and enjoy a wide selection of games with friends and family. Located on Albert Road, this board game cafe provides a welcoming atmosphere with a diverse game library and a menu of snacks and beverages. Ideal for casual gamers or groups looking for a fun and interactive experience in a cosy setting.",
       "tags": [
         "Indoor",
@@ -33,20 +33,18 @@
         "website": "https://diceportsmouth.com/contact/"
       },
       "duration": "2 hours",
-      "details": {
-        "openingTimes": {
-          "Monday": null,
-          "Tuesday": { "open": "12:00", "close": "22:30" },
-          "Wednesday": { "open": "12:00", "close": "22:30" },
-          "Thursday": { "open": "12:00", "close": "22:30" },
-          "Friday": { "open": "12:00", "close": "22:30" },
-          "Saturday": { "open": "11:00", "close": "22:30" },
-          "Sunday": { "open": "11:00", "close": "17:00" }
-        },
-        "price": [{ "type": "General", "amount": 14, "currency": "GBP" }],
-        "bannerImage": "/images/dice-lounge-banner.webp",
-        "thumbnailImage": "/images/dice-lounge-thumb.jpg"
-      }
+      "businessHours": {
+        "Monday": null,
+        "Tuesday": { "open": "12:00", "close": "22:30" },
+        "Wednesday": { "open": "12:00", "close": "22:30" },
+        "Thursday": { "open": "12:00", "close": "22:30" },
+        "Friday": { "open": "12:00", "close": "22:30" },
+        "Saturday": { "open": "11:00", "close": "22:30" },
+        "Sunday": { "open": "11:00", "close": "17:00" }
+      },
+      "price": [{ "type": "General", "amount": 14, "currency": "GBP" }],
+      "bannerImage": "/images/dice-lounge-banner.jpg",
+      "thumbnailImage": "/images/dice-lounge-thumb.png"
     }
   ]
 }

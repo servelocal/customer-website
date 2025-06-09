@@ -1,14 +1,16 @@
 import { notFound } from 'next/navigation';
 import Image from 'next/image';
 import activitiesData from '@/data/activities.json';
-import { Activity, AddressType, OpeningTimesType, Price } from '@/types';
+import { ActivityProps, AddressType, BusinessHoursProps, Price } from '@/types';
 import { ActivityDetailParams } from '@/types/pageParams';
-import OpeningStatus from '@/components/OpeningStatus/OpeningStatus';
+import BusinessHoursDropdown from '@/components/BusinessHoursDropdown/BusinessHoursDropdown';
 
 const ActivityDetailPage = async ({ params }: { params: ActivityDetailParams }) => {
   const { activity_slug } = await params;
 
-  const activity = activitiesData.activities.find((act: Activity) => act.slug === activity_slug);
+  const activity = activitiesData.activities.find(
+    (act: ActivityProps) => act.slug === activity_slug
+  );
 
   if (!activity) {
     notFound();
@@ -19,24 +21,24 @@ const ActivityDetailPage = async ({ params }: { params: ActivityDetailParams }) 
       <HeaderSection activity={activity} />
       <TagsSection tags={activity.tags} />
       <div className="flex flex-col items-start gap-6 md:flex-row">
-        <div className="flex-2">
+        <div className="flex-3">
           <DetailSection title="Description" content={activity.description} />
           <DetailSection
             title="Address"
             content={`${activity.address.street}, ${activity.address.city}, ${activity.address.postcode}, ${activity.address.country}`}
           />
           <ContactSection contact={activity.contact} />
-          <OpeningTimesSection openingTimes={activity.details.openingTimes} />
+          <OpeningTimesSection openingTimes={activity.businessHours} />
           <h2 className="mb-2 text-xl font-semibold">Price</h2>
-          {activity.details.price.map((price: Price, index: number) => (
+          {activity.price.map((price: Price, index: number) => (
             <PriceSection key={index} price={price} />
           ))}
         </div>
         <SidePanel
-          price={activity.details.price[0].amount}
+          price={activity.price[0].amount}
           website={activity.contact.website}
           address={activity.address}
-          hours={activity.details.openingTimes}
+          businessHours={activity.businessHours}
         />
       </div>
     </div>
@@ -47,12 +49,12 @@ const SidePanel = ({
   price,
   website,
   address,
-  hours,
+  businessHours,
 }: {
   price: number;
   website: string;
   address: AddressType;
-  hours: OpeningTimesType;
+  businessHours: BusinessHoursProps;
 }) => (
   <div className="flex h-auto flex-1 flex-col gap-5 rounded-lg border-1 border-gray-200 p-5">
     <div>
@@ -60,7 +62,7 @@ const SidePanel = ({
       <p className="mt-1 text-sm text-gray-500">Per Adult</p>
     </div>
 
-    <OpeningStatus openingTimes={hours} />
+    <BusinessHoursDropdown businessHours={businessHours} />
     <div>
       <a
         href={`https://www.google.com/maps/dir/?api=1&destination=${address.street},+${address.city},+${address.postcode}`}
@@ -82,10 +84,10 @@ const SidePanel = ({
   </div>
 );
 
-const HeaderSection = ({ activity }: { activity: Activity }) => (
+const HeaderSection = ({ activity }: { activity: ActivityProps }) => (
   <div className="relative mb-6">
     <Image
-      src={activity.details.bannerImage}
+      src={activity.bannerImage}
       alt={activity.name}
       width={1200}
       height={600}
@@ -96,7 +98,7 @@ const HeaderSection = ({ activity }: { activity: Activity }) => (
     />
     <div className="absolute bottom-6 left-6 flex items-center gap-4 rounded-lg bg-white p-5 shadow-md">
       <Image
-        src={activity.details.thumbnailImage}
+        src={activity.thumbnailImage}
         alt={`${activity.name} thumbnail`}
         width={96}
         height={96}
@@ -108,7 +110,7 @@ const HeaderSection = ({ activity }: { activity: Activity }) => (
       />
       <div>
         <h1 className="text-2xl font-bold">{activity.name}</h1>
-        <p className="text-sm font-medium text-gray-500">{activity.sub_category}</p>
+        <p className="text-sm font-medium text-gray-500">{activity.subCategory}</p>
         <p className="text-sm font-medium text-gray-700">{activity.category}</p>
       </div>
     </div>
@@ -134,7 +136,7 @@ const DetailSection = ({ title, content }: { title: string; content: string }) =
   </div>
 );
 
-const ContactSection = ({ contact }: { contact: Activity['contact'] }) => (
+const ContactSection = ({ contact }: { contact: ActivityProps['contact'] }) => (
   <div className="mb-6">
     <h2 className="mb-2 text-xl font-semibold">Contact</h2>
     <p className="text-gray-700">Phone: {contact.phone}</p>
@@ -149,10 +151,10 @@ const ContactSection = ({ contact }: { contact: Activity['contact'] }) => (
   </div>
 );
 
-const OpeningTimesSection = ({ openingTimes }: { openingTimes: OpeningTimesType }) => {
+const OpeningTimesSection = ({ openingTimes }: { openingTimes: BusinessHoursProps }) => {
   return (
     <div className="mb-6">
-      <OpeningStatus openingTimes={openingTimes} />
+      <BusinessHoursDropdown businessHours={openingTimes} />
     </div>
   );
 };
