@@ -1,4 +1,5 @@
 import ExtendedCard from '@/components/ActivityCard/ActivityCardExtended';
+import Line from '@/components/Line';
 import activitiesData from '@/data/activities.json';
 import { ActivityProps } from '@/types';
 import { CategoryParams } from '@/types/pageParams';
@@ -14,7 +15,7 @@ const CategoryPage = async ({ params }: { params: CategoryParams }) => {
   return (
     <div className="container mx-auto mt-12 p-4">
       <h1 className="text-4xl font-bold">{unslugify(category_slug)}</h1>
-      <hr className="my-8 h-px border-0 bg-gray-900 dark:bg-gray-300" />
+      <Line />
       <div className="flex flex-col gap-4">
         {activities.map((activity, i) => (
           <ExtendedCard key={i} {...activity} />

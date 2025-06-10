@@ -1,21 +1,5 @@
 @import 'tailwindcss';
 
-:root {
-  --background: #ffffff;
-  --foreground: #171717;
-}
-
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
-}
-
-body {
-  font-family: Arial, Helvetica, sans-serif;
-}
-
 .shadow-inset {
   box-shadow: inset 0px -20px 11px -7px rgba(0, 0, 0, 0.15);
 }

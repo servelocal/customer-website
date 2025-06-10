@@ -1,9 +1,11 @@
 import { notFound } from 'next/navigation';
 import Image from 'next/image';
+import { CiTimer, CiLocationOn, CiPhone } from 'react-icons/ci';
 import activitiesData from '@/data/activities.json';
-import { ActivityProps, AddressType, BusinessHoursProps, Price } from '@/types';
+import { ActivityProps } from '@/types';
 import { ActivityDetailParams } from '@/types/pageParams';
-import BusinessHoursDropdown from '@/components/BusinessHoursDropdown/BusinessHoursDropdown';
+import SidePanel from '@/features/SidePanel/SidePanel';
+import Line from '@/components/Line';
 
 const ActivityDetailPage = async ({ params }: { params: ActivityDetailParams }) => {
   const { activity_slug } = await params;
@@ -19,73 +21,42 @@ const ActivityDetailPage = async ({ params }: { params: ActivityDetailParams }) 
   return (
     <div className="container mx-auto p-4">
       <HeaderSection activity={activity} />
-      <TagsSection tags={activity.tags} />
-      <div className="flex flex-col items-start gap-6 md:flex-row">
-        <div className="flex-3">
+      <div className="mb-20 flex flex-col-reverse items-start gap-10 md:flex-row">
+        <div className="flex flex-3 flex-col gap-2">
+          <TagsSection tags={activity.tags} />
           <DetailSection title="Description" content={activity.description} />
-          <DetailSection
-            title="Address"
-            content={`${activity.address.street}, ${activity.address.city}, ${activity.address.postcode}, ${activity.address.country}`}
-          />
-          <ContactSection contact={activity.contact} />
-          <OpeningTimesSection openingTimes={activity.businessHours} />
-          <h2 className="mb-2 text-xl font-semibold">Price</h2>
-          {activity.price.map((price: Price, index: number) => (
-            <PriceSection key={index} price={price} />
-          ))}
+          <Line />
+          <div className="flex justify-between gap-5">
+            <Insight title={'Contacts'} icon={<CiPhone size={28} />}>
+              <p>{activity.contact.phone}</p>
+            </Insight>
+            <Insight title={'Duartion'} icon={<CiTimer size={28} />}>
+              {activity.duration}
+            </Insight>
+            <Insight title={'Location'} icon={<CiLocationOn size={28} />}>
+              <p>
+                {activity.address.street}, {activity.address.postcode}
+              </p>
+              <p>
+                {activity.address.city}, {activity.address.country}
+              </p>
+            </Insight>
+          </div>
         </div>
         <SidePanel
-          price={activity.price[0].amount}
+          price={activity.price}
           website={activity.contact.website}
           address={activity.address}
           businessHours={activity.businessHours}
+          duration={activity.duration}
         />
       </div>
     </div>
   );
 };
 
-const SidePanel = ({
-  price,
-  website,
-  address,
-  businessHours,
-}: {
-  price: number;
-  website: string;
-  address: AddressType;
-  businessHours: BusinessHoursProps;
-}) => (
-  <div className="flex h-auto flex-1 flex-col gap-5 rounded-lg border-1 border-gray-200 p-5">
-    <div>
-      <h1 className="text-2xl font-semibold">From £{price}</h1>
-      <p className="mt-1 text-sm text-gray-500">Per Adult</p>
-    </div>
-
-    <BusinessHoursDropdown businessHours={businessHours} />
-    <div>
-      <a
-        href={`https://www.google.com/maps/dir/?api=1&destination=${address.street},+${address.city},+${address.postcode}`}
-        target="_blank"
-        rel="noopener noreferrer"
-        className="inline-block w-full rounded border border-black px-4 py-2 text-center text-lg text-black"
-      >
-        Get Directions
-      </a>
-      <a
-        href={website}
-        target="_blank"
-        rel="noopener noreferrer"
-        className="mt-2 inline-block w-full rounded bg-black px-4 py-2 text-center text-lg text-white"
-      >
-        Book Now
-      </a>
-    </div>
-  </div>
-);
-
 const HeaderSection = ({ activity }: { activity: ActivityProps }) => (
-  <div className="relative mb-6">
+  <div className="relative mb-8">
     <Image
       src={activity.bannerImage}
       alt={activity.name}
@@ -118,7 +89,7 @@ const HeaderSection = ({ activity }: { activity: ActivityProps }) => (
 );
 
 const TagsSection = ({ tags }: { tags: string[] }) => (
-  <div className="mb-6">
+  <div className="mb-4">
     <div className="flex flex-wrap gap-2">
       {tags.map((tag) => (
         <span key={tag} className="text-md rounded bg-gray-100 px-3 py-1 text-black/80">
@@ -130,40 +101,25 @@ const TagsSection = ({ tags }: { tags: string[] }) => (
 );
 
 const DetailSection = ({ title, content }: { title: string; content: string }) => (
-  <div className="mb-6">
+  <div className="">
     <h2 className="mb-2 text-xl font-semibold">{title}</h2>
     <p className="text-gray-700">{content}</p>
   </div>
 );
 
-const ContactSection = ({ contact }: { contact: ActivityProps['contact'] }) => (
-  <div className="mb-6">
-    <h2 className="mb-2 text-xl font-semibold">Contact</h2>
-    <p className="text-gray-700">Phone: {contact.phone}</p>
-    <a
-      href={contact.website}
-      target="_blank"
-      rel="noopener noreferrer"
-      className="text-blue-500 underline"
-    >
-      Visit Website
-    </a>
-  </div>
-);
-
-const OpeningTimesSection = ({ openingTimes }: { openingTimes: BusinessHoursProps }) => {
-  return (
-    <div className="mb-6">
-      <BusinessHoursDropdown businessHours={openingTimes} />
-    </div>
-  );
-};
-
-const PriceSection = ({ price }: { price: Price }) => (
-  <div className="mb-1">
-    <p className="text-gray-700">
-      {price.type}: {price.amount} {price.currency}
-    </p>
+const Insight = ({
+  title,
+  children,
+  icon,
+}: {
+  title: string;
+  children: React.ReactNode;
+  icon: React.ReactNode;
+}) => (
+  <div className="flex flex-1 flex-col gap-1 rounded-xl bg-gray-100 p-4">
+    {icon}
+    <h2 className="mt-2 font-semibold">{title}</h2>
+    <div className="text-gray-500">{children}</div>
   </div>
 );
 

@@ -8,16 +8,8 @@
       "category": "Games",
       "subCategory": "Boardroom Cafe",
       "description": "Dice Board Game Lounge in Portsmouth offers a unique experience where board game enthusiasts can relax and enjoy a wide selection of games with friends and family. Located on Albert Road, this board game cafe provides a welcoming atmosphere with a diverse game library and a menu of snacks and beverages. Ideal for casual gamers or groups looking for a fun and interactive experience in a cosy setting.",
-      "tags": [
-        "Indoor",
-        "Board Games",
-        "Cafe",
-        "Group-friendly",
-        "Casual",
-        "Social",
-        "Relaxing",
-        "Snacks and Beverages"
-      ],
+      "features": ["Board Games", "Cafe"],
+      "tags": ["Indoor", "Group-friendly", "Casual", "Social", "Relaxing"],
       "address": {
         "street": "149 Albert Rd",
         "city": "Portsmouth",
@@ -32,7 +24,7 @@
         "phone": "+44 23 9287 3020",
         "website": "https://diceportsmouth.com/contact/"
       },
-      "duration": "2 hours",
+      "duration": "2-3 hours",
       "businessHours": {
         "Monday": null,
         "Tuesday": { "open": "12:00", "close": "22:30" },
