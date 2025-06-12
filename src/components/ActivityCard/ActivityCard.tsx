@@ -42,7 +42,7 @@ const ExtendedCard = ({
       aria-label={`View details of ${name}`}
     >
       {/* Banner Image */}
-      <ActivityImage name={name} bannerImage={bannerImage} />
+      <ActivityImage name={name} slug={slug} bannerImage={bannerImage} />
 
       {/* Content */}
       <div className="mt-3 space-y-1">

@@ -24,7 +24,7 @@ export default function Navbar() {
 
   return (
     <nav
-      className={`sticky top-0 left-0 z-50 w-full bg-white transition-colors duration-300 ease-in-out`}
+      className={`sticky top-0 left-0 z-50 w-full bg-white p-1 transition-colors duration-300 ease-in-out`}
     >
       <div className="flex h-16 items-center justify-between px-6">
         <div className="flex items-center space-x-10">

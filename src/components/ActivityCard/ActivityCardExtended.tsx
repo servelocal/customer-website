@@ -43,7 +43,7 @@ const ExtendedCard = ({
       aria-label={`View details of ${name}`}
     >
       {/* Banner Image */}
-      <ActivityImage name={name} bannerImage={bannerImage} />
+      <ActivityImage name={name} slug={slug} bannerImage={bannerImage} />
 
       {/* Content */}
       <div className="flex flex-1 flex-col justify-between space-y-2">

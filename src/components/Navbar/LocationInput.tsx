@@ -150,7 +150,7 @@ export default function LocationInput() {
 
   return (
     <div className="relative w-56" ref={dropdownRef}>
-      <div className="flex w-full items-center rounded-lg border border-gray-300 bg-white p-2 shadow-sm">
+      <div className="flex w-full items-center rounded-lg bg-gray-100 p-2">
         <input
           type="text"
           placeholder="Search City..."

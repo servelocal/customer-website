@@ -5,14 +5,15 @@ import { FaRegHeart } from 'react-icons/fa';
 
 interface ActivityImageProps {
   name: string;
+  slug: string;
   bannerImage: string;
 }
 
-const ActivityImage = ({ name, bannerImage }: ActivityImageProps) => {
+const ActivityImage = ({ name, bannerImage, slug }: ActivityImageProps) => {
   return (
     <div className="relative w-90">
       <Image
-        src={bannerImage}
+        src={`/images/${slug}/${bannerImage}`}
         alt={`Banner of ${name}`}
         width={500}
         height={400}

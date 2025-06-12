@@ -1,5 +1,20 @@
 @import 'tailwindcss';
 
+@theme {
+  --animate-scale: fade-in-scale 0.3s ease-in-out;
+
+  @keyframes fade-in-scale {
+    0% {
+      opacity: 0;
+      transform: scale(0.9);
+    }
+    100% {
+      opacity: 1;
+      transform: scale(1);
+    }
+  }
+}
+
 .shadow-inset {
   box-shadow: inset 0px -20px 11px -7px rgba(0, 0, 0, 0.15);
 }
@@ -19,4 +34,9 @@ button {
 
 button:hover {
   filter: brightness(0.9);
+}
+
+.auto {
+  height: calc-size(auto);
+  width: calc-size(auto);
 }

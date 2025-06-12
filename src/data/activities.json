@@ -35,8 +35,16 @@
         "Sunday": { "open": "11:00", "close": "17:00" }
       },
       "price": [{ "type": "General", "amount": 14, "currency": "GBP" }],
-      "bannerImage": "/images/dice-lounge-banner.jpg",
-      "thumbnailImage": "/images/dice-lounge-thumb.png"
+      "bannerImage": "dice-board-game-lounge-1.jpg",
+      "images": [
+        "dice-board-game-lounge-1.jpg",
+        "dice-board-game-lounge-2.jpg",
+        "dice-board-game-lounge-3.jpg",
+        "dice-board-game-lounge-4.jpg",
+        "dice-board-game-lounge-5.jpg",
+        "dice-board-game-lounge-6.jpg"
+      ],
+      "thumbnailImage": "dice-board-game-lounge-thumbnail.png"
     }
   ]
 }
